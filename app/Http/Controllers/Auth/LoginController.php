@@ -68,8 +68,8 @@
 	                'password' => 'required|string',
 	            ],
 	            [
-	                'identity.required' => 'Username or email is required',
-	                'password.required' => 'Password is required',
+	                'identity.required' => 'El expediente es requerido',
+	                'password.required' => 'La contraseña es requerida',
 	            ]
 	        );
 	    }

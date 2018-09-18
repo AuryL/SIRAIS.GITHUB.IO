@@ -5,13 +5,33 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card">
-                <div class="card-header"><strong>{{ __('ALTA USUARIO') }}</strong></div>
+                <div class="card-header"><strong>{{ __('MODIFICAR USUARIO') }}</strong></div>
                 <br>
                 <div class="card-body">
-                    <label class="col-form-label text-md-right">Registra a un usuario en el sistema, completando los campos siguientes:</label>
-                    <br> <br> <br>
-                    <form id="form_register" method="POST" action="{{ route('register') }}">
+                    
+                    <form id="form_register" method="POST" action="{{ route('us_modificar') }}">
+                    
+                        <div id="div_flex_modificar_expediente">
+                            <label class="col-form-label text-md-right">Selecciona el expediente del usuario que deseas consultar/modificar: </label>
+                            <br> <br> <br>
+                            <!-- Seleccionar el expediente del usuario que se desea Modificar -->
+                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('usernameSelected') ? ' has-error' : '' }}">
+                                <select id="usernameSelected" name="usernameSelected" class="form-control" onchange="expedienteSelected(this.value)" required>
+                                    <option selected value="0" disabled="disabled" > Expediente </option>                               
+                                    @foreach($usuarios as $usuario => $value)
+                                        <option id="usernameSelected" value="{{ $value->username }}">{{ $value->username }}</option>  
+                                    @endforeach  
+                                </select>
+                                <br>
+                                @if ($errors->has('usernameSelected'))
+                                    <span class="invalid-feedback">
+                                        <label class="label-texto"><strong>{{ $errors->first('usernameSelected') }}</strong></label>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         @csrf
+
 
                         <div id="div_flex">
                             <!-- Expediente -->
@@ -64,7 +84,7 @@
 
                             <!-- Apellido Materno -->
                             <div class="div_register_usernameName">
-                                <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno:') }}</label>
+                                <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno') }}</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus pattern="[A-Za-z]+">
@@ -177,10 +197,30 @@
                             </div> -->
                         <!-- </div> -->
 
+
+
+                        <div id="div_flex">
+                            <!-- Estado -->
+                            <div class="div_register_usernameName">
+                                <label for="us_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+
+                                <div class="div_register_usernameName">
+                                    <input type="checkbox" value="1" id="us_estado" name="us_estado">
+
+                                    @if ($errors->has('us_estado'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('us_estado') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        
+
                         <div id="div_boton_registrar" class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button onclick="validar()" type="submit" class="btn btn-primary">
-                                    {{ __('Registrar') }}
+                                <button id="boton_modificar" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
+                                    {{ __('Modificar') }}
                                 </button>
                             </div>
                         </div>
@@ -191,6 +231,7 @@
     </div>
 </div>
 @endsection
+
 
 
 

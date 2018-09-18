@@ -72,18 +72,17 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    SANTANDER
+                    <img class="logo_san" src="/svg/logo_Santander4.png"  width="40%" height="20%" alt="X">
                 </div>
 
-                <div class="links">
-                    Sistema para la Gestión de Riesgos AI
+                <div class="links">                    
+                    <strong>SISTEMA PARA LA GESTION DE RIESGOS AI</strong>
                 </div>
             </div>
         </div>

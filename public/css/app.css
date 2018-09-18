@@ -42,7 +42,7 @@
 :after,
 :before {
 	-webkit-box-sizing: border-box;
-	box-sizing: border-box
+	box-sizing: border-box;
 }
 
 html {
@@ -77,7 +77,7 @@ body {
 	font-size: .9rem;
 	font-weight: 400;
 	line-height: 1.6;
-	color: #212529;
+	color: #3b3d3f;
 	text-align: left;
 	background-color: #f8fafc
 }
@@ -104,8 +104,13 @@ h6 {
 }
 
 p {
-	margin-top: 0;
-	margin-bottom: 1rem
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+}
+
+#p_blanco {
+	color: #fff;
 }
 
 abbr[data-original-title],
@@ -288,6 +293,20 @@ svg:not(:root) {
 	overflow: hidden
 }
 
+
+/*  */
+
+.logo_san, .a_logoSantander{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 15%;
+    width: 150px;
+    height: 35px;
+}
+
+/*  */
+
+
 table {
 	border-collapse: collapse
 }
@@ -445,7 +464,10 @@ h3,
 h4,
 h5,
 h6 {
-	margin-bottom: .5rem;
+	/* margin-bottom: .5rem; */
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
 	font-family: inherit;
 	font-weight: 500;
 	line-height: 1.2;
@@ -492,38 +514,93 @@ h6 {
 }
 
 /* ***************************** */
+#container {
+	margin: 2% 10%; /* top-bottom/left-right */
+	padding: 3% 3%;
+}
+
 #div_flex {
+	display: flex; 
+	width: 100%;
+}
+
+#div_flex_tree {
+	display: flex; 
+	border: 1px solid rgba(0, 0, 0, .125);
+	border-radius: .25rem;
+	border-left: 8px solid #C00;
+}
+
+#div_flex_modificar_expediente {
 	display: flex;
-	
-	background: #37668f;
+	border: 1px solid rgba(0, 0, 0, .125);
+	border-radius: .25rem;
+	border-left: 8px solid #C00;
+	background: hsla(208, 8%, 44%, 0.22);
+	/* padding: 2% 2%; */
+	padding-top: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	margin-bottom: 2%;
+	justify-content:space-between;
+}
+
+#div_modificar_expediente {
+	width: 40%;
+	/* margin: 2%; */
 }
 
 #div_block {
 	display: block;
-	width: 100%;
+	width: 50%;
+	height: auto;
+	border-left: 8px solid #C00;
+}
+
+#div_block_tree {
+	display: block;
+	width: 50%;
 	height: 100%;
-	background: #004b8d8c;
+	/* border: 1px solid rgba(0, 0, 0, .125); */
+	border-radius: .25rem;
 }
 
 #div_tree {
-	background: #5d7488;
 	width: 50%;
 	height: 50%;
-	margin-left: 2rem;
+	margin: 2% 10% 10% 10%; /* top-right-bottom-left: */
 }
 
 #div_controles {
-	background: #a9aaac;
-	/* width: 50%; */
-	/* height: 50%; */
-	/* margin-left: 30rem; */
+	border-bottom: 5px solid #C00; 
+	width: 100%;
+	/* height: 120px; */
+	height: auto; /*Permite que el largo del div crezca conforme crece su contenido
 }
 
 #div_actividades {
-	background-color: #6d6d6d;
-	/* width: 50%; */
-	/* height: 50%; */
-	/* margin-left: 30rem; */
+	width: 100%;
+	/* height: 120px; */
+	height: auto; /*Permite que el largo del div crezca conforme crece su contenido*/
+}
+
+.div_register_usernameName {
+	display: flex;
+	width: 50%;
+	margin: 2%;
+}
+
+#div_register_usernameName {
+	display: flex;
+	width: 50%;
+	margin: 2%;
+}
+
+#div_boton_registrar{
+	width: 50%;
+	/* margin-left: 2%; */
+	/* text-align: right!important; */
+	margin-bottom: 15px;
 }
 
 /*  */
@@ -1327,7 +1404,11 @@ pre code {
 		-webkit-box-flex: 0;
 		-ms-flex: 0 0 66.66666667%;
 		flex: 0 0 66.66666667%;
-		max-width: 66.66666667%
+		/* max-width: 66.66666667% */		
+		max-width: 70%;
+		/* max-width: 100%; */
+		margin: auto;
+		text-align: center;
 	}
 	.col-md-9 {
 		-webkit-box-flex: 0;
@@ -2139,13 +2220,34 @@ pre code {
 	color: #495057;
 	background-color: #fff;
 	background-clip: padding-box;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
+	/* border: 1px solid #ced4da; */
+	/* border-radius: .25rem; */
+	border-radius: .30rem;
 	-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 	transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
 }
+
+/*  */
+
+#per_id, #dom_id {
+	width: 50%;
+}
+
+#form_login {
+	padding: 5%;
+}
+
+#form_register {	
+	border: 1px solid rgba(0, 0, 0, .125);
+	border-radius: .25rem;
+	border-left: 8px solid #C00;
+	background: hsla(208, 8%, 44%, 0.22);
+    padding: 2%;	
+}
+
+/*  */
 
 @media screen and (prefers-reduced-motion:reduce) {
 	.form-control {
@@ -2209,7 +2311,8 @@ select.form-control:focus::-ms-value {
 	padding-top: calc(.375rem + 1px);
 	padding-bottom: calc(.375rem + 1px);
 	margin-bottom: 0;
-	font-size: inherit;
+	/* font-size: inherit; */
+	font-size: 1rem;
 	line-height: 1.6
 }
 
@@ -2743,14 +2846,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
 	color: #fff;
-	background-color: #3490dc;
-	border-color: #3490dc
+	background-color: #ea0808;
+	border-color:  #b20a0a;
 }
 
 .btn-primary:hover {
 	color: #fff;
-	background-color: #227dc7;
-	border-color: #2176bd
+	background-color: #b20a0a;
+	border-color: #ea0808;
 }
 
 .btn-primary.focus,
@@ -2762,16 +2865,16 @@ fieldset:disabled a.btn {
 .btn-primary.disabled,
 .btn-primary:disabled {
 	color: #fff;
-	background-color: #3490dc;
-	border-color: #3490dc
+	background-color: #b20a0a;
+	border-color:  #ea0808;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show>.btn-primary.dropdown-toggle {
 	color: #fff;
-	background-color: #2176bd;
-	border-color: #1f6fb2
+	background-color: #b20a0a;
+	border-color:  #ea0808;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -4933,6 +5036,7 @@ input[type=submit].btn-block {
 }
 
 .card {
+	width: 100%;
 	position: relative;
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -4946,7 +5050,8 @@ input[type=submit].btn-block {
 	background-color: #fff;
 	background-clip: border-box;
 	border: 1px solid rgba(0, 0, 0, .125);
-	border-radius: .25rem
+	border-radius: .25rem;
+	margin-top: 5%;
 }
 
 .card>hr {
@@ -4993,9 +5098,12 @@ input[type=submit].btn-block {
 }
 
 .card-header {
-	padding: .75rem 1.25rem;
+	padding: 1rem 1.25rem;
 	margin-bottom: 0;
-	background-color: rgba(0, 0, 0, .03);
+	text-align: center;
+	font-family: Nunito, sans-serif;
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.42);
 	border-bottom: 1px solid rgba(0, 0, 0, .125)
 }
 
@@ -7286,6 +7394,7 @@ button.bg-dark:hover {
 }
 
 .justify-content-center {
+	max-width: 100%;
 	-webkit-box-pack: center!important;
 	-ms-flex-pack: center!important;
 	justify-content: center!important

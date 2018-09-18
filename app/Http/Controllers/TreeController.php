@@ -31,6 +31,7 @@ class TreeController extends Controller
     }
     
 
+    // Funcion que envia a la vista tree.blade.php las variables pasadas en el arreglo del return view
     public function viewTree()
     {        
         $user = Auth::user();
@@ -44,6 +45,8 @@ class TreeController extends Controller
 
         return view('/tree/tree', ['dominios' => $dominios, 'procesos' => $procesos, 'subprocesos' => $subprocesos, 'riesgos' => $riesgos, 'controles' => $controles, 'actividades' => $actividades]);
     }
+
+    // 
     public function export() 
     {
         $riesgos = request('riesgos');
