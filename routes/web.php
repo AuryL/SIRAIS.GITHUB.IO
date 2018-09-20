@@ -11,20 +11,6 @@
 |
 */
 
-// TREE - ARBOL DE RIESGOS
-Route::get('/tree/tree', 'TreeController@viewTree')->name('tree');
-
-
-// USERS
-Route::get('/user/us_viewModificar', 'UserController@viewModificar')->name('us_viewModificar');
-Route::post('/user/us_viewModificar', 'UserController@modificar')->name('us_modificar');
-
-
-// PAG DE BIENVENIDA
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 // AUTENTICACION 
 // Authentication Routes...
@@ -44,3 +30,23 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 // PAG DE INICIO DE SESIÓN
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// PAG DE BIENVENIDA
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+// TREE - ARBOL DE RIESGOS
+Route::get('/tree/tree', 'TreeController@viewTree')->name('tree');
+
+
+// USERS
+Route::get('/user/us_viewModificar', 'UserController@viewModificar')->name('us_viewModificar');
+Route::post('/user/us_viewModificar', 'UserController@modificar')->name('us_modificar');
+
+
+// DOMINIO
+Route::get('/dominio/dom_viewAlta', 'DominioController@viewDominio')->name('dom_viewAlta');
+Route::post('/dominio/dom_viewAlta', 'DominioController@altaDominio')->name('dom_alta');

@@ -66,12 +66,6 @@ Route::get('addAct/{rgo_id}', function($rgo_id) {
     return $actividades->get(); // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (data) { 
                               // las actividades que coincidan con rgo_id
 });
-// Obtiene los controles que correspondan con el rgo_id seleccionado en el checkbox del arbol y el rgo_id del  control
-Route::get('addRisk', function() {
-    return "hola"; // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/addContr/" + rgo_id, function (data) { 
-});
-
-
 
 
 /////////////////// DATOS USUARIO /////////////////////

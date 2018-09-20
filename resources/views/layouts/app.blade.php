@@ -30,6 +30,7 @@
 
     <!-- SCRIPTS CREADOS POR MI -->
     <script src="{{ asset('/js/user.js') }}"></script>
+    <script src="{{ asset('/js/dominio.js') }}"></script> 
     <script src="{{ asset('/js/tree.js') }}"></script> 
     
 
@@ -101,7 +102,7 @@
                                 </li>
                                 <li><a href="">Dominios</a>
                                     <ul>
-                                        <li><a href="">Alta</a></li>
+                                        <li><a href="{{ route('dom_viewAlta') }}">Alta</a></li>
                                         <li><a href="">Modificar</a></li>
                                     </ul>
                                 </li>

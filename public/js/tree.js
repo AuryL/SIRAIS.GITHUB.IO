@@ -2,7 +2,56 @@ $(document).ready(function () {
     $('#div_tree').jstree({
         "plugins": ["checkbox"]
     });
+
+    // $('#div_tree').on('changed.jstree', function (e, data) {
+    //     console.log(data.node);
+    // });
+
+    $('#div_tree').on('changed.jstree', function (e, data) {
+        var i, j, r = [];
+
+        for (i = 0, j = data.selected.length; i < j; i++) {
+
+            if (data.instance.get_node(data.selected[i]).li_attr.value != undefined) {
+                // console.log(data.instance.get_node(data.selected[i]).li_attr.value);
+                r.push(data.instance.get_node(data.selected[i]).li_attr.value);
+                // console.log(r);
+            }
+        }
+
+        r.forEach(function (rgo_id) {
+            $.get("http://127.0.0.1:8000/api/addContr/" + rgo_id, function (data1) {// Se direcciona a la url especificada (api.php)
+                // Posteriormente, recibe el resultado de la petición, que es data
+                if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
+                    data1.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
+                        $("#div_controles").append('<p> - ' + c.cont_nombre_es + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
+                    });
+
+                } else {// Si el array "data" recibido esta vacia
+                    $("#div_controles").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
+                }
+            });
+
+            $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (data1) {// Se direcciona a la url especificada (api.php)
+                // Posteriormente, recibe el resultado de la petición, que es data
+                if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
+                    data1.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
+                        $("#div_actividades").append('<p> - ' + a.act_nombre_es + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
+                    });
+                } else {// Si el array "data" recibido esta vacia
+                    $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
+                }
+            });
+        });
+        $("#div_controles").empty();// Elimina el contenido del elemento #div_actividades
+        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
+    })
 });
+
+
+
+
+
 
 
 
@@ -150,7 +199,7 @@ var cargarActividadesYControles = function (rgo_id) {
 
 
 
-///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
+/////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
 var globalContr = "";
 var gaglobalActiv = "";
 
@@ -192,368 +241,93 @@ function prueba(rgo_id) {
 
 
 
-///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
-var gc = "";
-var ga = "";
-
-// Al dar clic en riesgo del arbol, se genera un evento que usa la funcion prubeba2
-function prueba2(rgo_id) {
-
-    //////////////// CONTROLES ///////////////
-    $.get("http://127.0.0.1:8000/api/addContr/" + rgo_id, function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addContr/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('controles:data', data);
-                        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gc = gc + "\n" + " -> " + c.cont_nombre_es + "<br>";
-                                console.log(gc);
-                                $("#div_controles").append('<p>' + gc + '</p>');// Se agrega un <p> en el elemento #div_controles, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_controles").append("<p>No se encontraron Controles</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gc = "";
-        }
-        gc = "";
-    });
-
-
-    //////////////// ACTIVIDADES ///////////////
-    $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addAct/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('actividades:data', data);
-                        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                ga = ga + "\n" + " -> " + a.act_nombre_es + "<br>";
-                                console.log(ga);
-                                $("#div_actividades").append('<p>' + ga + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            ga = "";
-        }
-        ga = "";
-    });
-}
-
-
-
-///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
-var gcSubp = "";
-var gaSubp = "";
-function prueba3() {
-
-    //////////////// CONTROLES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addContr/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('controles:data', data);
-                        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gcSubp = gcSubp + "\n" + " -> " + c.cont_nombre_es + "<br>";
-                                console.log(gcSubp);
-                                $("#div_controles").append('<p>' + gcSubp + '</p>');// Se agrega un <p> en el elemento #div_controles, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_controles").append("<p>No se encontraron Controles</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gcSubp = "";
-        }
-        gcSubp = "";
-    });
-
-
-    //////////////// ACTIVIDADES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addAct/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('actividades:data', data);
-                        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gaSubp = gaSubp + "\n" + " -> " + a.act_nombre_es + "<br>";
-                                console.log(gaSubp);
-                                $("#div_actividades").append('<p>' + gaSubp + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gaSubp = "";
-        }
-        gaSubp = "";
-    });
-}
-
-
-
-
-///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
-var gcProc = "";
-var gaProc = "";
-function prueba4() {
-
-    //////////////// CONTROLES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addContr/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('controles:data', data);
-                        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gcProc = gcProc + "\n" + " -> " + c.cont_nombre_es + "<br>";
-                                console.log(gcProc);
-                                $("#div_controles").append('<p>' + gcProc + '</p>');// Se agrega un <p> en el elemento #div_controles, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_controles").append("<p>No se encontraron Controles</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gcProc = "";
-        }
-        gcProc = "";
-    });
-
-
-    //////////////// ACTIVIDADES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addAct/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('actividades:data', data);
-                        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gaProc = gaProc + "\n" + " -> " + a.act_nombre_es + "<br>";
-                                console.log(gaProc);
-                                $("#div_actividades").append('<p>' + gaProc + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gaProc = "";
-        }
-        gaProc = "";
-    });
-}
-
-
-
-
-///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
-var gcDom = "";
-var gaDom = "";
-function prueba5() {
-
-    //////////////// CONTROLES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addContr/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('controles:data', data);
-                        $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gcDom = gcDom + "\n" + " -> " + c.cont_nombre_es + "<br>";
-                                console.log(gcDom);
-                                $("#div_controles").append('<p>' + gcDom + '</p>');// Se agrega un <p> en el elemento #div_controles, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_controles").append("<p>No se encontraron Controles</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gcDom = "";
-        }
-        gcDom = "";
-    });
-
-
-    //////////////// ACTIVIDADES ///////////////
-    $.get("http://127.0.0.1:8000/api/addRisk", function (value) {// Se direcciona a la url especificada (api.php)
-
-        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-
-        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
-
-        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
-
-            console.log(arrayElemSelected[i]);
-            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
-                var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
-
-                console.log(textChildren);
-                console.log(arrayElemSelected[i].li_attr.value);
-
-                if (arrayElemSelected[i].state.selected == true) {
-
-                    var riesgoId = arrayElemSelected[i].li_attr.value;
-                    $.get("http://127.0.0.1:8000/api/addAct/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
-
-                        // Posteriormente, recibe el resultado de la petición, que es data
-                        console.log('actividades:data', data);
-                        $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
-                        if (data && data.length > 0) {// Verificar que no esta vacia "data"
-                            data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                                gaDom = gaDom + "\n" + " -> " + a.act_nombre_es + "<br>";
-                                console.log(gaDom);
-                                $("#div_actividades").append('<p>' + gaDom + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
-                            });
-                        } else {// Si el array "data" recibido esta vacia
-                            $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
-                        }
-                    });
-                }
-            }
-            gaDom = "";
-        }
-        gaDom = "";
-    });
-}
+// ///////////////////////// Funcion para mostrar todos los Controles y Actividades que se van seleccionando ////////////////////////////
+// var gc = "";
+// var ga = "";
+
+// // Al dar clic en riesgo del arbol, se genera un evento que usa la funcion prubeba2
+// function prueba2(rgo_id) {
+
+//     //////////////// CONTROLES ///////////////
+//     $.get("http://127.0.0.1:8000/api/addContr/" + rgo_id, function (value) {// Se direcciona a la url especificada (api.php)
+
+//         $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
+
+//         var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
+
+//         for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
+
+//             console.log(arrayElemSelected[i]);
+//             if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
+//                 var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
+
+//                 console.log(textChildren);
+//                 console.log(arrayElemSelected[i].li_attr.value);
+
+//                 if (arrayElemSelected[i].state.selected == true) {
+
+//                     var riesgoId = arrayElemSelected[i].li_attr.value;
+//                     $.get("http://127.0.0.1:8000/api/addContr/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
+
+//                         // Posteriormente, recibe el resultado de la petición, que es data
+//                         console.log('controles:data', data);
+//                         $("#div_controles").empty();// Elimina el contenido del elemento #div_controles
+//                         if (data && data.length > 0) {// Verificar que no esta vacia "data"
+//                             data.forEach(function (c) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
+//                                 gc = gc + "\n" + " -> " + c.cont_nombre_es + "<br>";
+//                                 console.log(gc);
+//                                 $("#div_controles").append('<p>' + gc + '</p>');// Se agrega un <p> en el elemento #div_controles, por cada elemento del array "data"
+//                             });
+//                         } else {// Si el array "data" recibido esta vacia
+//                             $("#div_controles").append("<p>No se encontraron Controles</p>");// Se agrega un <p> señalando que no se encontraron controles
+//                         }
+//                     });
+//                 }
+//             }
+//             gc = "";
+//         }
+//         gc = "";
+//     });
+
+
+//     //////////////// ACTIVIDADES ///////////////
+//     $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (value) {// Se direcciona a la url especificada (api.php)
+
+//         $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
+
+//         var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
+
+//         for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
+
+//             console.log(arrayElemSelected[i]);
+//             if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
+//                 var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
+
+//                 console.log(textChildren);
+//                 console.log(arrayElemSelected[i].li_attr.value);
+
+//                 if (arrayElemSelected[i].state.selected == true) {
+
+//                     var riesgoId = arrayElemSelected[i].li_attr.value;
+//                     $.get("http://127.0.0.1:8000/api/addAct/" + riesgoId, function (data) {// Se direcciona a la url especificada (api.php)
+
+//                         // Posteriormente, recibe el resultado de la petición, que es data
+//                         console.log('actividades:data', data);
+//                         $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
+//                         if (data && data.length > 0) {// Verificar que no esta vacia "data"
+//                             data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
+//                                 ga = ga + "\n" + " -> " + a.act_nombre_es + "<br>";
+//                                 console.log(ga);
+//                                 $("#div_actividades").append('<p>' + ga + '</p>');// Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
+//                             });
+//                         } else {// Si el array "data" recibido esta vacia
+//                             $("#div_actividades").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
+//                         }
+//                     });
+//                 }
+//             }
+//             ga = "";
+//         }
+//         ga = "";
+//     });
+// }
