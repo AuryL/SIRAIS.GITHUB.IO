@@ -86,11 +86,13 @@ class UserController extends Controller
             $user->email = Input::get('email');            
             $user->per_id = Input::get('per_id');         
             $user->dom_id = Input::get('dom_id');  
+
             if((Input::get('us_estado')) == null) {
                 $user->us_estado = 0;
             }else {
                 $user->us_estado = 1;
             }
+            
             $user->save();
 
             // redirect

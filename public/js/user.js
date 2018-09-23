@@ -43,7 +43,7 @@ var expedienteSelected = function (expediente) {
                     }
                 }
 
-                document.getElementById("boton_modificar").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("boton_modificar").disabled = false;// habilitar boton al llenar campos del formulario
 
             });
 

@@ -28,10 +28,12 @@
     <script src="{{ asset('dist/jstree.min.js') }}"></script>
 
 
-    <!-- SCRIPTS CREADOS POR MI -->
+    <!-- SCRIPTS CREADOS POR MI -->    
     <script src="{{ asset('/js/user.js') }}"></script>
-    <script src="{{ asset('/js/dominio.js') }}"></script> 
     <script src="{{ asset('/js/tree.js') }}"></script> 
+    <script src="{{ asset('/js/dominio.js') }}"></script> 
+    <script src="{{ asset('/js/proceso.js') }}"></script> 
+    <script src="{{ asset('/js/subproceso.js') }}"></script> 
     
 
     <!-- TITULO -->
@@ -90,32 +92,24 @@
                                     <ul>
                                         <li><a href="{{ route('register') }}">Alta</a></li>
                                         <li><a href="{{ route('us_viewModificar') }}">Modificar</a></li>
-                                        <!-- <li>Prueba
-                                            <ul>
-                                                <li><a href="">--</a></li>
-                                                <li><a href="">--</a></li>
-                                                <li><a href="">--</a></li>
-                                                <li><a href="">--</a></li>
-                                            </ul>
-                                        </li> -->
                                     </ul>
                                 </li>
                                 <li><a href="">Dominios</a>
-                                    <ul>
+                                    <ul
                                         <li><a href="{{ route('dom_viewAlta') }}">Alta</a></li>
-                                        <li><a href="">Modificar</a></li>
+                                        <li><a href="{{ route('dom_viewModificar') }}">Modificar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="">Procesos</a>
                                     <ul>
-                                        <li><a href="">Alta</a></li>
-                                        <li><a href="">Modificar</a></li>
+                                        <li><a href="{{ route('proc_viewAlta') }}">Alta</a></li>
+                                        <li><a href="{{ route('proc_viewModificar') }}">Modificar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="">Subprocesos</a>
                                     <ul>
-                                        <li><a href="">Alta</a></li>
-                                        <li><a href="">Modificar</a></li>
+                                        <li><a href="{{ route('subp_viewAlta') }}">Alta</a></li>
+                                        <li><a href="{{ route('subp_viewModificar') }}">Modificar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="">Riesgos</a>

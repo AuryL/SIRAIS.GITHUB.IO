@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Proceso extends Model
 {
     //
+    protected $primaryKey = 'proc_id';
 }

@@ -50,3 +50,19 @@ Route::post('/user/us_viewModificar', 'UserController@modificar')->name('us_modi
 // DOMINIO
 Route::get('/dominio/dom_viewAlta', 'DominioController@viewDominio')->name('dom_viewAlta');
 Route::post('/dominio/dom_viewAlta', 'DominioController@altaDominio')->name('dom_alta');
+Route::get('/dominio/dom_viewModificar', 'DominioController@viewModificar')->name('dom_viewModificar');
+Route::post('/dominio/dom_viewModificar', 'DominioController@modificar')->name('dom_modificar');
+
+
+// PROCESO
+Route::get('/proceso/proc_viewAlta', 'ProcesoController@viewProceso')->name('proc_viewAlta');
+Route::post('/proceso/proc_viewAlta', 'ProcesoController@altaProceso')->name('proc_alta');
+Route::get('/proceso/proc_viewModificar', 'ProcesoController@viewModificar')->name('proc_viewModificar');
+Route::post('/proceso/proc_viewModificar', 'ProcesoController@modificar')->name('proc_modificar');
+
+
+// SUBPROCESO
+Route::get('/subproceso/subp_viewAlta', 'SubprocesoController@viewSubproceso')->name('subp_viewAlta');
+Route::post('/subproceso/subp_viewAlta', 'SubprocesoController@altaSubproceso')->name('subp_alta');
+Route::get('/subproceso/subp_viewModificar', 'SubprocesoController@viewModificar')->name('subp_viewModificar');
+Route::post('/subproceso/subp_viewModificar', 'SubprocesoController@modificar')->name('subp_modificar');

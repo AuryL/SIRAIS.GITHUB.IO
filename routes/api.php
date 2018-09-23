@@ -6,6 +6,8 @@ use App\User;
 Use App\Riesgo;
 Use App\Actividad;
 Use App\Control;
+Use App\Dominio;
+Use App\Proceso;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -72,4 +74,41 @@ Route::get('addAct/{rgo_id}', function($rgo_id) {
 Route::get('cargar_datosUser/{username}', function($username) {
     $usuario = User::where('username',$username);
     return $usuario->get(); 
+});
+
+
+
+/////////////////// DATOS DOMINIO /////////////////////
+Route::get('cargar_datosdom/{dominio}', function($dominio) {
+    $dom = Dominio::where('dom_id',$dominio);
+    return $dom->get(); 
+});
+
+
+
+/////////////////// DATOS PROCESO /////////////////////
+Route::get('cargar_datosProc/{proceso}', function($proceso) {
+    $proc = Proceso::where('proc_id',$proceso);
+    return $proc->get(); 
+});
+
+
+
+/////////////////// DATOS Dominio asociado al Subproceso /////////////////////
+Route::get('cargar_subpId/{proceso}', function($proceso) {
+    $proc = Proceso::where('proc_id',$proceso);
+    return $proc->get(); 
+});
+/////////////////// DATOS Dominio asociado al Subproceso /////////////////////
+Route::get('cargar_domId/{dom_id}', function($dom_id) {
+    $dominio = Dominio::where('dom_id',$dom_id);
+    return $dominio->get(); 
+});
+
+
+
+/////////////////// DATOS Dominio asociado al Subproceso /////////////////////
+Route::get('cargar_datosSubp/{subproceso}', function($subproceso) {
+    $subp = Subproceso::where('subp_id',$subproceso);
+    return $subp->get(); 
 });

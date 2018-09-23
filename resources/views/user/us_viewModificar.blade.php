@@ -219,7 +219,7 @@
 
                         <div id="div_boton_registrar" class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button id="boton_alta_dom" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
+                                <button id="boton_modificar" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
                                     {{ __('Modificar') }}
                                 </button>
                             </div>

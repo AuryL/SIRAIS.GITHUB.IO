@@ -71,4 +71,68 @@ class DominioController extends Controller
             return Redirect::to('/dominio/dom_viewAlta');
         }
     }
+
+
+
+
+
+    //  
+    public function viewModificar () {
+
+        $user = Auth::user();        
+
+        $doms = Dominio::all();
+
+        return view('/dominio/dom_viewModificar', ['user' => $user, 'doms' => $doms]);
+    }
+
+
+
+
+    // 
+    public function modificar () {
+        // validate
+        $rules = array(
+            'dom_nombre_es' => 'required|string|max:45',
+            'dom_nombre_en' => 'required|string|max:45',
+            'dom_detalles_es' => 'required|string|max:280',
+            'dom_detalles_en' => 'required|string|max:280',  
+        );
+        
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('home')
+                ->withErrors($validator);
+        } else {
+            // store
+            $domId = Input::get('dom_id');
+
+            // echo($domId);
+
+            $dominio = \DB::table('dominios')
+            ->select('dominios.*')
+            ->where('dominios.dom_id','=',$domId)
+            ->first();
+            
+            $dom = Dominio::find($dominio->dom_id);
+
+            $dom->dom_nombre_es = Input::get('dom_nombre_es');
+            $dom->dom_nombre_en = Input::get('dom_nombre_en');
+            $dom->dom_detalles_es = Input::get('dom_detalles_es');
+            $dom->dom_detalles_en = Input::get('dom_detalles_en'); 
+            if((Input::get('dom_estado')) == null) {
+                $dom->dom_estado = 0;
+            }else {
+                $dom->dom_estado = 1;
+            }
+            $dom->save();
+
+            // // redirect
+            Session::flash('message', 'Successfully updated nerd!');
+            return Redirect::to('/dominio/dom_viewModificar');
+        }
+        return view('dominios/dom_viewModificar', ['dominio' => $dominio, 'dom' => $dom]);
+    }
 }
