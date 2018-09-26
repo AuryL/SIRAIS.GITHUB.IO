@@ -9,18 +9,18 @@
                 <br>
                 <div class="card-body">
 
-                    <form id="form_register" method="POST" action="{{ route('subp_alta') }}">
+                    <form id="form_register" method="POST" action="{{ route('subp_modificar') }}">
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">
                             <label class="col-form-label text-md-right">Selecciona el nombre del Subproceso que deseas consultar/modificar: </label>
                             <br> <br> <br>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
-                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('dominio') ? ' has-error' : '' }}">
+                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
                                 <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required>
                                     <option selected value="0" disabled="disabled" > Subproceso </option>                               
                                     @foreach($subps as $subp => $value)
-                                        <option id="subproceso" value="{{ $value->dsubp_id }}">{{ $value->subp_nombre_es }}</option>  
+                                        <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
                                     @endforeach  
                                 </select>
                                 <br>
@@ -45,7 +45,7 @@
                                 <label for="subp_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_es" type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="subp_nombre_es" type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus >
 
                                     @if ($errors->has('subp_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
                                 <label for="subp_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_en" type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="subp_nombre_en" type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus >
 
                                     @if ($errors->has('subp_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                                 <label for="subp_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_es" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <textarea rows="4" cols="50" id="subp_detalles_es" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus >
                                     </textarea>
 
                                     @if ($errors->has('subp_detalles_es'))
@@ -96,7 +96,7 @@
                                 <label for="subp_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_en" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <textarea rows="4" cols="50" id="subp_detalles_en" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus >
                                     </textarea>
 
                                     @if ($errors->has('subp_detalles_en'))
@@ -133,13 +133,38 @@
                                 <label for="dom_id" class="col-md-4 col-form-label text-md-right">{{ __(' Dominio: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
 
                                     @if ($errors->has('dom_id'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('dom_id') }}</strong>
                                         </span>
                                     @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="div_flex_modificar_expediente">
+                        <!-- Estado -->
+                            <div class="div_register_usernameName">
+                                <label for="subp_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+
+                                <div class="div_register_usernameName">
+                                    <input type="checkbox" value="1" id="subp_estado" name="subp_estado">
+
+                                    @if ($errors->has('subp_estado'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('subp_estado') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div id="div_boton_registrar" class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button id="boton_modificar" onclick="validarSubp()" type="submit" class="btn btn-primary" disabled="true">
+                                        {{ __('Modificar') }}
+                                    </button>
                                 </div>
                             </div>
                         </div>

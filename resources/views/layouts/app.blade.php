@@ -32,9 +32,11 @@
     <script src="{{ asset('/js/user.js') }}"></script>
     <script src="{{ asset('/js/tree.js') }}"></script> 
     <script src="{{ asset('/js/dominio.js') }}"></script> 
-    <script src="{{ asset('/js/proceso.js') }}"></script> 
-    <script src="{{ asset('/js/subproceso.js') }}"></script> 
-    
+    <script src="{{ asset('/js/proceso.js') }}"></script>  
+    <script src="{{ asset('/js/subproceso.js') }}"></script>
+    <script src="{{ asset('/js/riesgo.js') }}"></script>
+    <script src="{{ asset('/js/control.js') }}"></script>
+    <script src="{{ asset('/js/actividad.js') }}"></script>
 
     <!-- TITULO -->
     <title>SANTANDER</title>
@@ -114,11 +116,10 @@
                                 </li>
                                 <li><a href="">Riesgos</a>
                                     <ul>
-                                        <li><a href="">Objetivos de Control</a></li>
-                                        <li><a href="">Actividades</a></li>
-                                        <li><a href="">Alta</a></li>
-                                        <li><a href="">Baja</a></li>                                        
-                                        <li><a href="">Modificar</a></li>
+                                        <!-- <li><a href="">Objetivos de Control</a></li>
+                                        <li><a href="">Actividades</a></li> -->
+                                        <li><a href="{{ route('rgo_viewAlta') }}">Alta</a></li>                                       
+                                        <li><a href="{{ route('rgo_viewModificar') }}">Modificar</a></li>
                                     </ul>
                                 </li>
 

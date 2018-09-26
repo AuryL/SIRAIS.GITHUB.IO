@@ -21,18 +21,19 @@ use Validator;
 class SubprocesoController extends Controller
 {
        // 
-       public function viewSubproceso () {
+    public function viewSubproceso () {
 
-            $user = Auth::user();    
+        $user = Auth::user();    
 
-            $userPerfil = \DB::table('perfils')
-            ->select('perfils.*')
-            ->where('perfils.per_id','=',$user->per_id)
-            ->first();
+        $userPerfil = \DB::table('perfils')
+        ->select('perfils.*')
+        ->where('perfils.per_id','=',$user->per_id)
+        ->first();
 
-            $procs = Proceso::all();
-            
-            return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs]);
+        $procs = Proceso::all();
+        $subp = Subproceso::all();
+        
+        return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
     }
 
 
@@ -49,6 +50,7 @@ class SubprocesoController extends Controller
         ->first();
 
         $procs = Proceso::all();
+        $subp = Subproceso::all();
 
         $rules = array(
             'subp_nombre_es' => 'required|string|max:45',
@@ -77,24 +79,24 @@ class SubprocesoController extends Controller
             Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/proceso/proc_viewAlta');
             // return Redirect::to('home');
-            return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs]);
+            return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
         }
     }
 
 
 
 
-    
+
     //  
     public function viewModificar () {
 
         $user = Auth::user();        
 
-        $subps = Subproceso::all();
-        $procs = Proceso::all();
         $doms = Dominio::all();
+        $procs = Proceso::all();
+        $subps = Subproceso::all();
 
-        return view('/subproceso/subp_viewModificar', ['user' => $user, 'subps' => $subps, 'procs' => $procs, 'doms' => $doms]);
+        return view('/subproceso/subp_viewModificar', ['user' => $user, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
     }
 
 
@@ -107,7 +109,7 @@ class SubprocesoController extends Controller
             'subp_nombre_es' => 'required|string|max:45',
             'subp_nombre_en' => 'required|string|max:45',
             'subp_detalles_es' => 'required|string|max:280',
-            'subp_detalles_en' => 'required|string|max:280',  
+            'subp_detalles_en' => 'required|string|max:280'
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -131,12 +133,15 @@ class SubprocesoController extends Controller
             $subp->subp_nombre_en = Input::get('subp_nombre_en');
             $subp->subp_detalles_es = Input::get('subp_detalles_es');
             $subp->subp_detalles_en = Input::get('subp_detalles_en'); 
+            $subp->proc_id = Input::get('proceso'); 
+
             if((Input::get('subp_estado')) == null) {
                 $subp->subp_estado = 0;
             }else {
                 $subp->subp_estado = 1;
             }
             $subp->save();
+
 
 
             
@@ -147,7 +152,7 @@ class SubprocesoController extends Controller
             ->where('perfils.per_id','=',$user->per_id)
             ->first();
             $subps = Subproceso::all();
-            $procs = Dominio::all();
+            $procs = Proceso::all();
 
 
 

@@ -66,3 +66,21 @@ Route::get('/subproceso/subp_viewAlta', 'SubprocesoController@viewSubproceso')->
 Route::post('/subproceso/subp_viewAlta', 'SubprocesoController@altaSubproceso')->name('subp_alta');
 Route::get('/subproceso/subp_viewModificar', 'SubprocesoController@viewModificar')->name('subp_viewModificar');
 Route::post('/subproceso/subp_viewModificar', 'SubprocesoController@modificar')->name('subp_modificar');
+
+
+
+// RIESGO
+Route::get('/riesgo/rgo_viewAlta', 'RiesgoController@viewRiesgo')->name('rgo_viewAlta');
+Route::post('/riesgo/rgo_viewAlta', 'RiesgoController@altaRiesgo')->name('rgo_alta');
+Route::get('/riesgo/rgo_viewModificar', 'RiesgoController@viewModificar')->name('rgo_viewModificar');
+Route::post('/riesgo/rgo_viewModificar', 'RiesgoController@modificar')->name('rgo_modificar');
+// CONTROL
+Route::get('/control/cont_viewAlta', 'ControlController@viewControl')->name('cont_viewAlta');
+Route::post('/control/cont_viewAlta', 'ControlController@altaControl')->name('cont_alta');
+Route::get('/control/cont_viewModificar/{riesgo}/{cont_id}', 'ControlController@viewModificar')->name('cont_viewModificar');
+Route::post('/control/cont_viewModificar', 'ControlController@post')->name('cont_modificar');
+// ACTIVIDAD
+Route::get('/actividad/act_viewAlta', 'ActividadController@viewActividad')->name('act_viewAlta');
+Route::post('/actividad/act_viewAlta', 'ActividadController@altaActividad')->name('act_alta');
+Route::get('/actividad/act_viewModificar/{riesgo}/{act_id}', 'ActividadController@viewModificar')->name('act_viewModificar');
+Route::post('/actividad/act_viewModificar', 'ActividadController@modificar')->name('act_modificar');
