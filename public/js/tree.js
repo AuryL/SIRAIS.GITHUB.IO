@@ -137,7 +137,8 @@ var generarExcel = function () {
         }
     }
 
-    xhr.send(JSON.stringify({ riesgos: arrayArrays }));
+    // xhr.send(JSON.stringify({ riesgos: arrayArrays }));
+    xhr.send(JSON.stringify({ controls: arrayArrays }));
 }
 
 

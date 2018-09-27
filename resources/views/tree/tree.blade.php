@@ -12,9 +12,9 @@
                             <p>Selecciona los riesgos que consideres dentro del arbol de dominios: </p>
                             <div id="div_tree">
                                 <ul class="tree_menu">
+                                    <!-- data-jstree='{"opened":false}' es parte del plugin jstree y permite colocar la estructura html en forma de arbol -->
                                     @foreach($dominios as $dominio => $value1) <!-- Dominio -->
                                         <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_es }} 
-                                            <!-- data-jstree='{"opened":false}' es parte del plugin jstree y permite colocar la estructura html en forma de arbol -->
                                             <ul>
                                             @foreach($procesos as $proceso => $value2) <!-- Proceso -->
                                                 @if($value1->dom_id == $value2->dom_id)
@@ -28,7 +28,17 @@
                                                                                 @if($value3->subp_id == $value4->subp_id)
                                                                                     <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
                                                                                     <!-- La funcion esta en el archivo tree.js -->
-                                                                                    <li value="{{ $value4 -> rgo_id }}">{{ $value4->rgo_nombre_es }}</li>
+                                                                                    <li>{{ $value4->rgo_nombre_es }}
+                                                                                        <ul>
+                                                                                            @foreach($controls as $control => $value5) <!-- Riesgo -->
+                                                                                                @if($value4->rgo_id == $value5->rgo_id)
+                                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                    <!-- La funcion esta en el archivo tree.js -->
+                                                                                                    <li value="{{ $value5 -> cont_id }}">{{ $value5->cont_nombre_es }}</li>
+                                                                                                @endif
+                                                                                            @endforeach
+                                                                                        </ul>                                                                                    
+                                                                                    </li>
                                                                                 @endif
                                                                             @endforeach
                                                                         </ul>
