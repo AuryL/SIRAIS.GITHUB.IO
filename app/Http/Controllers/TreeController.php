@@ -41,9 +41,9 @@ class TreeController extends Controller
         $subprocesos = Subproceso::all();
         $riesgos = Riesgo::all();
         $controls = Control::all();
-        $actividades = Actividad::all();
+        $actividads = Actividad::all();
 
-        return view('/tree/tree', ['dominios' => $dominios, 'procesos' => $procesos, 'subprocesos' => $subprocesos, 'riesgos' => $riesgos, 'controls' => $controls, 'actividades' => $actividades]);
+        return view('/tree/tree', ['dominios' => $dominios, 'procesos' => $procesos, 'subprocesos' => $subprocesos, 'riesgos' => $riesgos, 'controls' => $controls, 'actividads' => $actividads]);
     }
 
     // 
@@ -52,8 +52,11 @@ class TreeController extends Controller
         // $riesgos = request('riesgos');
         // return $this->excel->download(new TreeExport($riesgos), 'riesgos.xlsx');
 
-        $controls = request('controls');
-        return $this->excel->download(new TreeExport($controls), 'riesgos.xlsx');
+        // $controls = request('controls');
+        // return $this->excel->download(new TreeExport($controls), 'riesgos.xlsx');
+     
+        $actividads = request('actividads');
+        return $this->excel->download(new TreeExport($actividads), 'riesgos.xlsx');
 
     }
 }

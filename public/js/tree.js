@@ -8,18 +8,19 @@ $(document).ready(function () {
     // });
 
     $('#div_tree').on('changed.jstree', function (e, data) {
-        var i, j, r = [];
+        var i, j, r = [], rCont = [], rAct = [];
 
         for (i = 0, j = data.selected.length; i < j; i++) {
 
             if (data.instance.get_node(data.selected[i]).li_attr.value != undefined) {
-                // console.log(data.instance.get_node(data.selected[i]).li_attr.value);
-                r.push(data.instance.get_node(data.selected[i]).li_attr.value);
-                // console.log(r);
+                rCont.push(data.instance.get_node(data.selected[i]).li_attr.name);
+                console.log("rCont", rCont);
+                rAct.push(data.instance.get_node(data.selected[i]).li_attr.value);
+                console.log("rAct", rAct);
             }
         }
 
-        r.forEach(function (rgo_id) {
+        rCont.forEach(function (rgo_id) {
             $.get("http://127.0.0.1:8000/api/addContr/" + rgo_id, function (data1) {// Se direcciona a la url especificada (api.php)
                 // Posteriormente, recibe el resultado de la petición, que es data
                 if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
@@ -28,11 +29,12 @@ $(document).ready(function () {
                     });
 
                 } else {// Si el array "data" recibido esta vacia
-                    $("#div_controles").append("<p>No se encontraron actividades</p>");// Se agrega un <p> señalando que no se encontraron controles
+                    $("#div_controles").append("<p>No se encontraron controles</p>");// Se agrega un <p> señalando que no se encontraron controles
                 }
             });
-
-            $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (data1) {// Se direcciona a la url especificada (api.php)
+        });
+        rAct.forEach(function (cont_id) {
+            $.get("http://127.0.0.1:8000/api/addAct/" + cont_id, function (data1) {// Se direcciona a la url especificada (api.php)
                 // Posteriormente, recibe el resultado de la petición, que es data
                 if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
                     data1.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
@@ -138,8 +140,15 @@ var generarExcel = function () {
     }
 
     // xhr.send(JSON.stringify({ riesgos: arrayArrays }));
-    xhr.send(JSON.stringify({ controls: arrayArrays }));
+    // xhr.send(JSON.stringify({ controls: arrayArrays }));
+    xhr.send(JSON.stringify({ actividads: arrayArrays }));
 }
+
+
+
+
+
+
 
 
 ////////////////////////// Funcion que recibe como parametro el rgo_id ////////////////////////////

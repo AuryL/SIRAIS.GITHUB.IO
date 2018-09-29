@@ -6,16 +6,18 @@
             <th>Subproceso</th>
             <th>Riesgo</th>
             <th>Control</th>
+            <th>Actividad</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach($controls as $control)
+    <tbody>      
+        @foreach($actividads as $actividad)
         <tr>
-            <td>{{ $control[0] }}</td>
-            <td>{{ $control[1] }}</td>
-            <td>{{ $control[2] }}</td>
-            <td>{{ $control[3] }}</td>
-            <td>{{ $control[4] }}</td>
+            <td>{{ $actividad[0] }}</td>
+            <td>{{ $actividad[1] }}</td>
+            <td>{{ $actividad[2] }}</td>
+            <td>{{ $actividad[3] }}</td>
+            <td>{{ $actividad[4] }}</td>
+            <td>{{ $actividad[5] }}</td>
         </tr>
         @endforeach
     </tbody>

@@ -71,10 +71,10 @@ Route::get('addContr/{rgo_id}', function($rgo_id) {
                               // los controles que coincidan con rgo_id
 });
 // Obtiene las actividades que correspondan con el rgo_id seleccionado en el checkbox del arbol y el rgo_id del  control
-Route::get('addAct/{rgo_id}', function($rgo_id) {
-    $actividades = Actividad::where('rgo_id',$rgo_id);
-    return $actividades->get(); // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/addAct/" + rgo_id, function (data) { 
-                              // las actividades que coincidan con rgo_id
+Route::get('addAct/{cont_id}', function($cont_id) {
+    $actividades = Actividad::where('cont_id',$cont_id);
+    return $actividades->get(); // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/addAct/" + cont_id, function (data) { 
+                              // las actividades que coincidan con cont_id
 });
 
 

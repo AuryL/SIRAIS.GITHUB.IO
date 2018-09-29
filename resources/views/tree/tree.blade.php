@@ -14,6 +14,7 @@
                                 <ul class="tree_menu">
                                     @foreach($dominios as $dominio => $value1) <!-- Dominio -->
                                         <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_es }} 
+                                            <!-- data-jstree='{"opened":false}' es parte del plugin jstree y permite colocar la estructura html en forma de arbol -->
                                             <ul>
                                             @foreach($procesos as $proceso => $value2) <!-- Proceso -->
                                                 @if($value1->dom_id == $value2->dom_id)
@@ -25,16 +26,28 @@
                                                                         <ul>
                                                                             @foreach($riesgos as $riesgo => $value4) <!-- Riesgo -->
                                                                                 @if($value3->subp_id == $value4->subp_id)
+                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                    <!-- La funcion esta en el archivo tree.js -->
                                                                                     <li>{{ $value4->rgo_nombre_es }}
                                                                                         <ul>
                                                                                             @foreach($controls as $control => $value5) <!-- Riesgo -->
                                                                                                 @if($value4->rgo_id == $value5->rgo_id)
                                                                                                     <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
                                                                                                     <!-- La funcion esta en el archivo tree.js -->
-                                                                                                    <li value="{{ $value5 -> cont_id }}">{{ $value5->cont_nombre_es }}</li>
+                                                                                                    <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}">{{ $value5->cont_nombre_es }}
+                                                                                                        <ul>
+                                                                                                            @foreach($actividads as $actividad => $value6) <!-- Riesgo -->
+                                                                                                                @if($value5->cont_id == $value6->cont_id)
+                                                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                                    <!-- La funcion esta en el archivo tree.js -->
+                                                                                                                    <li>{{ $value6->act_nombre_es }}</li>
+                                                                                                                @endif
+                                                                                                            @endforeach
+                                                                                                        </ul>
+                                                                                                    </li>
                                                                                                 @endif
                                                                                             @endforeach
-                                                                                        </ul>
+                                                                                        </ul>                                                                                    
                                                                                     </li>
                                                                                 @endif
                                                                             @endforeach
