@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\BeforeExport;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class TreeExport implements FromView, WithEvents, WithEvents 
+class TreeExport implements FromView, WithEvents 
 {
     // private $controls;
     // public function __construct($controls)
@@ -66,17 +66,7 @@ class TreeExport implements FromView, WithEvents, WithEvents
                         'color' => array('rgb' => '00ff00'),
                     ]
                 ]);
-                $event->sheet->styleCells(
-                    'B2:G8', [
-                    'borders' => [
-                    'outline' => [
-                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
-                    'color' => ['argb' => 'FFFF0000'],
-                    ],
-                ]
-                    ]
-            );
-            },
+            }
         ];
     }
 }
