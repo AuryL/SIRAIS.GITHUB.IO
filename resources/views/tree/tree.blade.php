@@ -34,7 +34,7 @@
                                                                                                 @if($value4->rgo_id == $value5->rgo_id)
                                                                                                     <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
                                                                                                     <!-- La funcion esta en el archivo tree.js -->
-                                                                                                    <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}">{{ $value5->cont_nombre_es }}
+                                                                                                    <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}" onclick="cargarActividadesYControlesAlClick(this.attributes['name'].value, this.value)">{{ $value5->cont_nombre_es }}
                                                                                                         <ul>
                                                                                                             @foreach($actividads as $actividad => $value6) <!-- Riesgo -->
                                                                                                                 @if($value5->cont_id == $value6->cont_id)
@@ -66,13 +66,40 @@
                             </div>
                         </div>
                         <div id="div_block">
-                            <h6>CONTROLES ASOCIADO</h6>
-                            <div id="div_controles">
-                            </div>
+                            <h6>En seguida se muestra el objetivo al que le haz dado click</h6>
+                            <div id="div_block_tabla_controles">
+                                <div id="div_controles"></div>     
+                            </div> 
 
-                            <h6>ACTIVIDADES ASOCIADAS</h6>
-                            <div id="div_actividades">
-                            </div>            
+                            <table class="tabla_porcentajes" border="1">
+                                <!-- thead: define el encabezado de la tabla -->
+                                <thead class="cabecera_tabla">
+                                <!-- Por cada fila que querramos agregar, sera un elemento <tr> mas -->
+                                    <tr>
+                                        <!-- Por cada celda que querramos agregar, sera un elemento <td> -->
+                                        <td class="td_cabecera"></td>
+                                        <td class="td_cabecera">Total</td>
+                                        <td class="td_cabecera">Seleccionados</td>
+                                        <td class="td_cabecera">%</td>
+                                    </tr>
+                                </thead>
+                                <!-- tbody: define el cuerpo de la tabla -->
+                                <tbody class="cuerpo_tabla">
+                                    <tr>
+                                        <td class='td_body'>Dominio</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='td_body'>Proceso</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='td_body'>Subproceso</td>
+                                    </tr>
+                                    <tr>
+                                        <td class='td_body'>Riesgo</td>
+                                    </tr>
+                                </tbody>          
+                            </table>
+                                
                         </div>
                     </div>
                     <br>

@@ -47,10 +47,10 @@ Route::post('treeexcel', 'TreeController@export')->name('treeexcel');
 /////////////////// Coloca solo las actividaes y controles que va seleccionando, sin concateniar /////////////////////
 // ACTIVIDADES
 // cargar_actividades:  Obtiene los actividades que correspondan con el rgo_id seleccionado en el checkbox del arbol y el rgo_id de la actividad
-Route::get('cargar_actividades/{rgo_id}', function($rgo_id) {
-    $actividades = Actividad::where('rgo_id',$rgo_id);
-    return $actividades->get();// regresa en tree.js -> $.get("http://127.0.0.1:8000/api/cargar_actividades/" + rgo_id, function (data) { 
-                               // los controles que coincidan con rgo_id
+Route::get('cargar_actividades/{cont_id}', function($cont_id) {
+    $actividades = Actividad::where('cont_id',$cont_id);
+    return $actividades->get();// regresa en tree.js -> $.get("http://127.0.0.1:8000/api/cargar_actividades/" + cont_id, function (data) { 
+                               // los controles que coincidan con cont_id
 });
 // CONTROLES
 // cargar_controles: Obtiene los controles que correspondan con el rgo_id seleccionado en el checkbox del arbol y el rgo_id del  control
