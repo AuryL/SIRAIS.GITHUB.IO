@@ -14,7 +14,6 @@
                                 <ul class="tree_menu">
                                     @foreach($dominios as $dominio => $value1) <!-- Dominio -->
                                         <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_es }} 
-                                            <!-- data-jstree='{"opened":false}' es parte del plugin jstree y permite colocar la estructura html en forma de arbol -->
                                             <ul>
                                             @foreach($procesos as $proceso => $value2) <!-- Proceso -->
                                                 @if($value1->dom_id == $value2->dom_id)
@@ -78,9 +77,9 @@
                                     <tr>
                                         <!-- Por cada celda que querramos agregar, sera un elemento <td> -->
                                         <td class="td_cabecera"></td>
-                                        <td class="td_cabecera">Total</td>
-                                        <td class="td_cabecera">Seleccionados</td>
-                                        <td class="td_cabecera">%</td>
+                                        <td class="td_cabecera"><strong>Total</strong></td>
+                                        <td class="td_cabecera"><strong>Seleccionados</strong></td>
+                                        <td class="td_cabecera"><strong>%</strong></td>
                                     </tr>
                                 </thead>
                                 <!-- tbody: define el cuerpo de la tabla -->
@@ -109,6 +108,29 @@
                             <!-- La funcion se encuentra en el archivo tree.js -->
                             <button class="btn btn-primary" onclick="generarExcel()">Generar Excel</button>
                         </div>
+                        <div id="div_vistaPrevia">
+                            <br>
+                            <p>Vista previa de la matriz de riesgos (de acuerdo a los elementos seleccionados previamente en el arbol de dominios): </p>
+                            <table class="tabla_vistaPrevia" border="1">
+                                <!-- thead: define el encabezado de la tabla -->
+                                <thead class="cabecera_tabla">
+                                <!-- Por cada fila que querramos agregar, sera un elemento <tr> mas -->
+                                    <tr>
+                                        <!-- Por cada celda que querramos agregar, sera un elemento <td> -->
+                                        <td class="td_cabecera"><strong>Dominio</strong></td>
+                                        <td class="td_cabecera"><strong>Proceso</strong></td>
+                                        <td class="td_cabecera"><strong>Subproceso</strong></td>
+                                        <td class="td_cabecera"><strong>Riesgo</strong></td>
+                                        <td class="td_cabecera"><strong>Control</strong></td>
+                                        <td class="td_cabecera"><strong>Actividad</strong></td>
+                                    </tr>
+                                </thead>
+                                <!-- tbody: define el cuerpo de la tabla -->
+                                <tbody class="cuerpo_tabla_vistaPrevia">
+                                    
+                                </tbody>          
+                            </table>
+                        </div>                        
                     </div>
                 </div>
             </div>

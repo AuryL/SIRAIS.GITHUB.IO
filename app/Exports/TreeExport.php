@@ -63,7 +63,7 @@ class TreeExport implements FromView, WithEvents
                 $event->sheet->getStyle('A1:N1')->applyFromArray([
                     'font' => [
                         'bold' => true,
-                        'color' => array('rgb' => '00ff00'),
+                        'color' => array('rgb' => 'ad0404'),
                     ]
                 ]);
             }

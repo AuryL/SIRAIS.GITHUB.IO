@@ -57,6 +57,70 @@ $(document).ready(function () {
     //     $("#div_controles").empty();// Elimina el contenido del elemento #div_actividades
     //     $("#div_actividades").empty();// Elimina el contenido del elemento #div_actividades
     // })
+
+
+
+
+
+    //////////////////////////////// TRATANDO DE LLENAR TABLA DE PORCENTAJES Y TABLA DE VISTA PREVIA /////////////////
+    $('#div_tree').on('changed.jstree', function (e, data) {
+        var i, j, r = [];
+        console.log(data);
+        for (i = 0, j = data.selected.length; i < j; i++) {
+
+            if (data.selected[i].parent == "#") {
+                r.push(data.instance.get_node(data.selected[i]).text);
+            }
+        }
+        console.log(r);
+
+        /////////////////
+        // Inicializar arrays 
+        var jsonArray = [];
+        var arrayParents = [];
+        var arrayInvertir = [];
+        var arrayArrays = [];
+        // Se obtienen los elementos seleccionados(checkbox) del arbol tree en tree.blade.php
+        // Se guarda en el arreglo "arrayElemSelected"
+        var arrayElemSelected = $("#div_tree").jstree("get_selected", true);
+
+        for (let i in arrayElemSelected) { // Recorremos el arreglo(arrayElemSelected) que tiene los elementos de los checkbox seleccionados
+            if (arrayElemSelected[i].children == "") { // Se hace un filtro del arreglo, para saber cuál es la útima rama, 
+                // si el elemento children es vacio, quiere decir que ya no tiene hijos, por lo que es él el ultimo hijo(rama)
+                arrayParents = arrayElemSelected[i].parents; // arrayParents: Array en donde se guardan las ramas padre de la ultima rama(ultimo hijo)
+                // arrayElemSelected[i].parents es un array de los id de los padres de la ultima rama.
+
+                for (let j in arrayParents) { // Se recorre el array de los padres(arrayElemSelected)
+                    if (arrayParents[j] != "#") { // Se hace un filtro, el id=# quiere decir que es la rama de riesgos, en la que nos encontramos, la ultima rama
+
+                        // get_node (obj [, as_dom]): obtener la representación JSON de un nodo (o el nodo DOM 
+                        // extendido de jQuery real) mediante el uso de cualquier entrada (elemento DOM doméstico, cadena ID, selector, etc.)
+                        // Con la funcion text - Se obtiene el texto de los padresy del hijo.
+                        var textParents = $('#div_tree').jstree(true).get_node(arrayParents[j]).text;
+                        var textChildren = $('#div_tree').jstree(true).get_node(arrayElemSelected[i]).text;
+
+                        // El JSON de los nodos padres, obtenido anteriormente, se coloca en un array
+                        arrayInvertir.push(textParents);
+                    }
+                }
+                arrayInvertir.reverse(); // Se invierte el array para que los elementos esten ordenados. (dominio, proceso, subproceso)
+                arrayInvertir.push(textChildren); // ya ordenados los elementos del array, se inserta el ultimo elemento: riesgo - la ultima rama.(dominio, proceso, subproceso, riesgo)
+                console.log("arrayInvertir", arrayInvertir);
+
+                arrayArrays.push(arrayInvertir); // Ahora se agrega, en otro array(arrayArrays), cada arreglo que se vaya generando
+                arrayInvertir = [];// Se limpia el array que guardó los padres del children actual.
+            }
+        }
+        console.log('arrayArrays', arrayArrays);
+        $(".cuerpo_tabla_vistaPrevia").empty(); // cada vez que se seleccione un nuevo checkbox, se limpia la tabla y se recarga con los nuevos datos
+        for (let j in arrayArrays) {
+            // for (let i in arrayArrays) {
+            // console.log("arrayArrays[j][i]", arrayArrays[j][i]);
+            $(".cuerpo_tabla_vistaPrevia").append('<tr><td class="td_body">' + arrayArrays[j][0] + '</td><td class="td_body">' + arrayArrays[j][1] + '</td><td class="td_body">' + arrayArrays[j][2] + '</td><td class="td_body">' + arrayArrays[j][3] + '</td><td class="td_body">' + arrayArrays[j][4] + '</td><td class="td_body">' + arrayArrays[j][5] + '</td></tr>');
+            // }
+        }
+    })
+
 });
 
 

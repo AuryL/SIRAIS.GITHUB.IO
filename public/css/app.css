@@ -107,6 +107,7 @@ p {
 	margin-top: 2rem;
 	margin-bottom: 1rem;
 	margin-left: 1rem;
+	margin-right: 1rem;
 }
 
 #p_blanco {
@@ -678,6 +679,13 @@ h6 {
 }
 
 #div_controles {
+	/* border-bottom: 5px solid #C00;  */
+	width: 100%;
+	/* height: 120px; */
+	height: auto; /*Permite que el largo del div crezca conforme crece su contenido*/
+}
+
+#div_vistaPrevia {
 	/* border-bottom: 5px solid #C00;  */
 	width: 100%;
 	/* height: 120px; */
@@ -2355,18 +2363,28 @@ pre code {
 	border: none;
 }
 
+.tabla_vistaPrevia {
+	width: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	border: none;
+}
+
 .td_cabecera{/* cada celda de la cabecera de la tabla tendra este estilo*/
 	/*font-family: 'Rammetto One', cursive;*/
 	font-family:  "Raleway", sans-serif;
-	font-weight: 400;
-	letter-spacing: 2px;
+	font-weight: 345;
+	letter-spacing: 1px;
 	font-size: 1.0rem;/*18px*/
 	text-align: center;
-	padding-bottom: 1%;
-	padding-top: 1%;
+	/* padding-bottom: 1%;
+	padding-top: 1%; */
+	padding: 0.4rem;
 	/* color:#1E8449; */
-	background-color: rgb(243, 0, 0);
-	color: #360606;
+	background-color: rgb(255, 0, 0);
+	color: #820202;
 }
 .td_body, .td_foot{/* cada celda del body de la tabla tendra este estilo*/
 	/* letter-spacing: 2px; */
