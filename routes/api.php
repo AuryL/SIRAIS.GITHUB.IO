@@ -183,41 +183,22 @@ Route::get('cargar_control/{riesgo}/{cont_id}', function($riesgo) {
 
 
 
-
-////////////////////////////////////////////// 
-Route::post('cargar_controlModificar/{rgo_id}/{cont_id}/{nombre_es}/{nombre_en}/{detalles_es}/{detalles_en}/{estado}', function($rgo_id, $cont_id, $nombre_es, $nombre_en, $detalles_es, $detalles_en, $estado){
-    $cont = Control::where('cont_id',$contId)->first();    
-
-    // $rules = array(
-    //     'cont_nombre_es' => 'required|string|max:45',
-    //     'cont_nombre_en' => 'required|string|max:45',
-    //     'cont_detalles_es' => 'required|string|max:280',
-    //     'cont_detalles_en' => 'required|string|max:280'
-    // );
+////////////////////////// OBTENER Dominios, Procesos, Subprocesos, Riesgos, Controles, Actividades/////////////////////
+Route::get('cargar_allElementsTree', function() {
+    $dom = Dominio::all();
+    $proc = Proceso::all();
+    $subp = Subproceso::all();
+    $rgo = Riesgo::all();    
+    $cont = Control::all();
+    $act = Actividad::all(); 
     
-    // $validator = Validator::make(Input::all(), $rules);
+    $allElements = [$dom, $proc, $subp, $rgo, $cont, $act];    
+    // $allElements = [$dom, $proc, $subp, $rgo, $cont];
 
-    // // process the login
-    // if ($validator->fails()) {
-    //     return $cont;
-    // } else {
-        // store
-        // $cont = Control::where('cont_id',$contId)->first();    
-
-        $cont->cont_nombre_en = $nombre_es;
-        $cont->cont_nombre_en = $nombre_es;
-        $cont->cont_detalles_es = $detalles_es;
-        $cont->cont_detalles_en = $detalles_en; 
-        $cont->rgo_id = $rgo_id; 
-
-        if(($estado) == null) {
-            $cont->cont_estado = 0;
-        }else {
-            $cont->cont_estado = 1;
-        }
-        $cont->save();
-    // }
-
-    return $cont;
+    return $allElements;
 });
-// Route::post('riesgo/rgo_viewModificar/{cont_id}', 'ControlController@modificar')->name('cont_modificar');
+
+
+///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
+// Route::post('/control/cont_viewModificar', 'ControlController@post')->name('cont_modificar');
+

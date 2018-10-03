@@ -124,28 +124,65 @@ $(document).ready(function () {
     $("#boton_modificar_control").click(function () {
         // $('#boton_modificar_control').on('click', function (e) {
 
-        console.log("hola");
         // e.preventDefault();
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        //     }
+        // });
+
+        // $.ajax({
+        //     // url: "{{ url('/control/cont_viewModificar') }}",
+        //     // url: "route('cont_modificar',[])",
+        //     // url: '@Url.Action("ControlController","post")',                
+        //     // url: "",
+        //     url: "cont_modificar",
+        //     method: 'post',
+        //     data: {
+        //         rgo_id: $('#rgo_id').val(),
+        //         cont_nombre_es: $('#cont_nombre_es').val(),
+        //         cont_nombre_en: $('#cont_nombre_en').val(),
+        //         cont_detalles_es: $('#cont_detalles_es').val(),
+        //         cont_detalles_en: $('#cont_detalles_en').val(),
+        //         cont_estado: $('#cont_estado').val()
+        //     },
+        //     success: function (result) {
+        //         alert(result);
+        //         // $("#div_control").html("<div>" + result.success + "</div>");
+        //     }
+        // });
+
+
+        var rgo_id = $('#rgo_id').val();
+        var cont_nombre_es = $('#cont_nombre_es').val();
+        var cont_nombre_en = $('#cont_nombre_en').val();
+        var cont_detalles_es = $('#cont_detalles_es').val();
+        var cont_detalles_en = $('#cont_detalles_en').val();
+        var cont_estado = $('#cont_estado').val();
+
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: "{{ url('/control/cont_viewModificar') }}",
-            method: 'post',
-            data: {
-                rgo_id: $('#rgo_id').val(),
-                cont_nombre_es: $('#cont_nombre_es').val(),
-                cont_nombre_en: $('#cont_nombre_en').val(),
-                cont_detalles_es: $('#cont_detalles_es').val(),
-                cont_detalles_en: $('#cont_detalles_en').val(),
-                cont_estado: $('#cont_estado').val()
+            method: 'POST', // Type of response and matches what we said in the route
+            url: '/control/cont_modificar', // This is the url we gave in the route
+            data: { 
+                'rgo_id': rgo_id, 
+                'cont_nombre_es': cont_nombre_es, 
+                'cont_nombre_en': cont_nombre_en, 
+                'cont_detalles_es': cont_detalles_es, 
+                'cont_detalles_en': cont_detalles_en, 
+                'cont_estado': cont_estado 
+            }, // a JSON object to send back
+            
+            success: function (response) { // What to do if we succeed
+                console.log(response);
             },
-            success: function (result) {
-                $('.alert').show();
-                // $('.alert').html(result.success);
-                $("#div_control").html("<div>" + result.success + "</div>");
+            error: function (jqXHR, textStatus, errorThrown) { // What to do if we fail
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
             }
         });
     });

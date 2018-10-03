@@ -2364,7 +2364,7 @@ pre code {
 }
 
 .tabla_vistaPrevia {
-	width: auto;
+	width: 97%;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom: 30px;
@@ -2397,6 +2397,9 @@ pre code {
 	padding-top: 1%;
 }
 
+#total, #seleccionados, #porcentaje {
+	text-align: center;
+}
 
 #td_lic, #td_grupo, #td_cubo, #td_edit, #td_elim, #td_calificacion, #td_depa, #td_div, #td_tipoMaterial{
 	text-align: center;

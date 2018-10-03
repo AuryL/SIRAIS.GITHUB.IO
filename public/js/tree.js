@@ -74,7 +74,7 @@ $(document).ready(function () {
         }
         console.log(r);
 
-        /////////////////
+        ///////////////// PARTE DE LA FUNCION QUE PERMITE LLENAR LA TABLA DE VISTA PREVIA DEL EXCEL, EN LA VISTA DEL TREE
         // Inicializar arrays 
         var jsonArray = [];
         var arrayParents = [];
@@ -112,17 +112,162 @@ $(document).ready(function () {
             }
         }
         console.log('arrayArrays', arrayArrays);
-        $(".cuerpo_tabla_vistaPrevia").empty(); // cada vez que se seleccione un nuevo checkbox, se limpia la tabla y se recarga con los nuevos datos
+
+
+
+
+
+        ///////////////////////////////////
+        // Arrays que guardarán los elemento seleccionados en el tree, dependiendo el nivel en el que se encuentran en este tree.
+        var dominiosArray = [];
+        var procesosArray = [];
+        var subprocesosArray = [];
+        var riesgosArray = [];
+        var controlesArray = [];
+        var actividadesArray = [];
+        // Arrays que guardarán los registros de dominios, procesos, subprocesos, riesgos, controles y actividades obtenidos de la DB
+        var dominiosTotales = [];
+        var procesosTotales = [];
+        var subprocesosTotales = [];
+        var riesgosTotales = [];
+        var controlesTotales = [];
+        var actividadesTotales = [];
+        // Arrays que guardarán los elemento seleccionados en el tree (Ya sin estar repetidos), dependiendo el nivel en el que se encuentran en este tree.
+        var dominiosSinDuplicar = [];
+        var procesoSinDuplicar = [];
+        var subprocesosSinDuplicar = [];
+        var riesgosSinDuplicar = [];
+        var controlesSinDuplicar = [];
+        var actividadesSinDuplicar = [];
+
+
         for (let j in arrayArrays) {
-            // for (let i in arrayArrays) {
-            // console.log("arrayArrays[j][i]", arrayArrays[j][i]);
+            dominiosArray.push(arrayArrays[j][0]);
+            procesosArray.push(arrayArrays[j][1]);
+            subprocesosArray.push(arrayArrays[j][2]);
+            riesgosArray.push(arrayArrays[j][3]);
+            controlesArray.push(arrayArrays[j][4]);
+            actividadesArray.push(arrayArrays[j][5]);
+        }
+        // console.log("dominiosArray", dominiosArray);
+        // console.log("procesosArray", procesosArray);
+        // console.log("subprocesosArray", subprocesosArray);
+        // console.log("riesgosArray", riesgosArray);
+        // console.log("controlesArray", controlesArray);
+        // console.log("actividadesArray", actividadesArray);
+
+        // Se obtenen todos los registros de los diminios, proceso, subproceso, riesgos, controes y actividades
+        $.get("http://127.0.0.1:8000/api/cargar_allElementsTree/", function (data) { // Se direcciona a la url especificada (api.php)
+            // Posteriormente, recibe el resultado de la petición, que es data
+            console.log('cargar_allElementsTree:data', data);
+            $("#dominio").empty();
+            $("#proceso").empty();
+            $("#subproceso").empty();
+            $("#riesgo").empty();
+            $("#control").empty();
+            $("#actividad").empty();
+
+            if (data && data.length > 0) { // Verificar que no esta vacia "data"
+                // Lleamos los array con la informacion obtenida de la DB
+                for (let j in data[0]) {
+                    dominiosTotales.push(data[0][j].dom_nombre_es);
+                }
+                for (let j in data[1]) {
+                    procesosTotales.push(data[1][j].proc_nombre_es);
+                }
+                for (let j in data[2]) {
+                    subprocesosTotales.push(data[2][j].subp_nombre_es);
+                }
+                for (let j in data[3]) {
+                    riesgosTotales.push(data[3][j].rgo_nombre_es);
+                }
+                for (let j in data[4]) {
+                    controlesTotales.push(data[4][j].cont_nombre_es);
+                }
+                for (let j in data[5]) {
+                    actividadesTotales.push(data[5][j].act_nombre_es);
+                }
+                console.log("dominiosTotales", dominiosTotales);
+                console.log("procesosTotales", procesosTotales);
+                console.log("subprocesosTotales", subprocesosTotales);
+                console.log("riesgosTotales", riesgosTotales);
+                console.log("controlesTotales", controlesTotales);
+                console.log("actividadesTotales", actividadesTotales);
+
+
+                ///////////////////// Se eliminan todos los elementos que esten duplicados en cada array que se obtuvo de los checkbox seleccionados
+                var dominiosSinDuplicar = eliminateDuplicates(dominiosArray);
+                var procesosSinDuplicar = eliminateDuplicates(procesosArray);
+                var subprocesosSinDuplicar = eliminateDuplicates(subprocesosArray);
+                var riesgosSinDuplicar = eliminateDuplicates(riesgosArray);
+                var controlesSinDuplicar = eliminateDuplicates(controlesArray);
+                var actividadesSinDuplicar = eliminateDuplicates(actividadesArray);
+                console.log("dominiosSinDuplicar", dominiosSinDuplicar);
+                console.log("procesosSinDuplicar", procesosSinDuplicar);
+                console.log("subprocesosSinDuplicar", subprocesosSinDuplicar);
+                console.log("driesgosSinDuplicar", riesgosSinDuplicar);
+                console.log("controlesSinDuplicar", controlesSinDuplicar);
+                console.log("actividadesSinDuplicar", actividadesSinDuplicar);
+
+
+                ////////////////////// Se calcula el promedio con los elementos totales y los elementos seleccionados en el tree, segun sea el caso
+                var numeroDouble = (dominiosSinDuplicar.length * 100) / dominiosTotales.length;
+                var porcentajeDominios = numeroDouble.toFixed(2);
+                $("#dominio").append("<td class='td_body'>Dominio</td><td class='td_body' id='total'>" + dominiosTotales.length + "</td><td class='td_body' id='seleccionados'>" + dominiosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeDominios + "% </td>");
+
+                numeroDouble = (procesosSinDuplicar.length * 100) / procesosTotales.length;
+                var porcentajeProcesos = numeroDouble.toFixed(2);
+                $("#proceso").append("<td class='td_body'>Proceso</td><td class='td_body' id='total'>" + procesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + procesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeProcesos + "% </td>");
+
+                numeroDouble = (subprocesosSinDuplicar.length * 100) / subprocesosTotales.length;
+                var porcentajeSubprocesos = numeroDouble.toFixed(2);
+                $("#subproceso").append("<td class='td_body'>Subproceso</td><td class='td_body' id='total'>" + subprocesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + subprocesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeSubprocesos + "% </td>");
+
+                numeroDouble = (riesgosSinDuplicar.length * 100) / riesgosTotales.length;
+                var porcentajeRiesgos = numeroDouble.toFixed(2);
+                $("#riesgo").append("<td class='td_body'>Riesgo</td><td class='td_body' id='total'>" + riesgosTotales.length + "</td><td class='td_body' id='seleccionados'>" + riesgosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeRiesgos + "% </td>");
+
+                numeroDouble = (controlesSinDuplicar.length * 100) / controlesTotales.length;
+                var porcentajeControles = numeroDouble.toFixed(2);
+                $("#control").append("<td class='td_body'>Control</td><td class='td_body' id='total'>" + controlesTotales.length + "</td><td class='td_body' id='seleccionados'>" + controlesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeControles + "% </td>");
+
+                numeroDouble = (actividadesSinDuplicar.length * 100) / actividadesTotales.length;
+                var porcentajeActividades = numeroDouble.toFixed(2);
+                $("#actividad").append("<td class='td_body'>Actividad</td><td class='td_body' id='total'>" + actividadesTotales.length + "</td><td class='td_body' id='seleccionados'>" + actividadesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeActividades + "% </td>");
+
+
+
+
+            } else { // Si el array "data" recibido esta vacia
+                $("#div_actividades").append("<p>No se encontraron actividades</p>"); // Se agrega un <p> señalando que no se encontraron actividades
+            }
+        });
+
+
+        /////// SE AGREGA A LA TABLA LAS FILAS CORRESPONDIENTES A LOS CHECKBOX SELECCIONADOS, LLENANDO LA TABLA ///////
+        $(".cuerpo_tabla_vistaPrevia").empty(); // cada vez que se seleccione un nuevo checkbox, se limpia la tabla y se recarga con los datos de los todos los checkbox seleccionados
+        for (let j in arrayArrays) {
             $(".cuerpo_tabla_vistaPrevia").append('<tr><td class="td_body">' + arrayArrays[j][0] + '</td><td class="td_body">' + arrayArrays[j][1] + '</td><td class="td_body">' + arrayArrays[j][2] + '</td><td class="td_body">' + arrayArrays[j][3] + '</td><td class="td_body">' + arrayArrays[j][4] + '</td><td class="td_body">' + arrayArrays[j][5] + '</td></tr>');
-            // }
         }
     })
 
 });
+///////////////////////////// FUNCION QUE ELIMINA LOS ELEMENTOS DUPLICADOS EN UN ARRAY, 
+// Esta funcion es usada aqui arriba
+var eliminateDuplicates = function (arr) {
+    var i,
+        len = arr.length,
+        out = [],
+        obj = {};
 
+    for (i = 0; i < len; i++) {
+        obj[arr[i]] = 0;
+    }
+    for (i in obj) {
+        out.push(i);
+    }
+    return out;
+}
 
 
 
@@ -297,7 +442,7 @@ var cargarActividadesYControlesAlClick = function (rgo_id, cont_id) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
                 // $(".cuerpo_tabla").append('<tr><td class="td_body">' + a.cont_nombre_es + '</td><td class="td_body">' + a.cont_detalles_es + '</td></tr>');
-                $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>OBJETIVO</td><td class='td_cabecera'>DETALLES</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
+                $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objetivo</td><td class='td_cabecera'>Detalles</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
             });
         } else {// Si el array "data" recibido esta vacia
             $(".cuerpo_tabla").append("<p>No se encontraron controles</p>");// Se agrega un <p> señalando que no se encontraron controles

@@ -67,9 +67,12 @@
                         <div id="div_block">
                             <h6>En seguida se muestra el objetivo al que le haz dado click</h6>
                             <div id="div_block_tabla_controles">
+                                
+                                <!-- En el contenedor div_controles, se coloca una Tabla (mediante javascript en tree.js), que contiene el control y sus detalles,al cual, el usuario le ha dado click -->
                                 <div id="div_controles"></div>     
                             </div> 
-
+                            <!-- Tabla que contiene el numero total de Dominios, Procesos, Subprocesos, Riesgos, Controles y Actividades  y el numero de checkbox seleccionados de los mismos, asi como el porcentaje entre el tital y los seleccionados, correspondientemente-->
+                            <p>A continuacion se visualizan los porcentajes de los elementos seleccionados, de acuerdo al total de los mismos, respectivamente: </p>
                             <table class="tabla_porcentajes" border="1">
                                 <!-- thead: define el encabezado de la tabla -->
                                 <thead class="cabecera_tabla">
@@ -84,17 +87,17 @@
                                 </thead>
                                 <!-- tbody: define el cuerpo de la tabla -->
                                 <tbody class="cuerpo_tabla">
-                                    <tr>
-                                        <td class='td_body'>Dominio</td>
+                                    <tr id="dominio">
                                     </tr>
-                                    <tr>
-                                        <td class='td_body'>Proceso</td>
+                                    <tr id="proceso">
                                     </tr>
-                                    <tr>
-                                        <td class='td_body'>Subproceso</td>
+                                    <tr id="subproceso">
                                     </tr>
-                                    <tr>
-                                        <td class='td_body'>Riesgo</td>
+                                    <tr id="riesgo">
+                                    </tr>
+                                    <tr id="control">
+                                    </tr>
+                                    <tr id="actividad">
                                     </tr>
                                 </tbody>          
                             </table>
@@ -111,6 +114,7 @@
                         <div id="div_vistaPrevia">
                             <br>
                             <p>Vista previa de la matriz de riesgos (de acuerdo a los elementos seleccionados previamente en el arbol de dominios): </p>
+                            <!-- Tabla que contiene  -->
                             <table class="tabla_vistaPrevia" border="1">
                                 <!-- thead: define el encabezado de la tabla -->
                                 <thead class="cabecera_tabla">

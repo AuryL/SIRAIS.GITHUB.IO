@@ -169,4 +169,10 @@ class RiesgoController extends Controller
             // return Redirect::to('/proceso/proc_viewAlta');       
         }
     }
+
+
+
+
+    ///////////////////////////////////////////
+    
 }
