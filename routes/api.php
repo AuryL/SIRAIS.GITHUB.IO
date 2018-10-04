@@ -59,6 +59,15 @@ Route::get('cargar_controles/{rgo_id}', function($rgo_id) {
     return $controles->get(); // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/cargar_controles/" + rgo_id, function (data) { 
                               // los controles que coincidan con rgo_id
 });
+// MODIFICAR CONTROLES - RIESGO
+Route::get('cargar_controlRiesgo/{cont_id}', function($cont_id) {
+    $control = Control::where('cont_id',$cont_id);
+    return $controles->get(); // regresa en tree.js -> $.get("http://127.0.0.1:8000/api/cargar_controles/" + rgo_id, function (data) { 
+                              // los controles que coincidan con rgo_id
+});
+
+
+
 
 
 
@@ -117,6 +126,15 @@ Route::get('cargar_datosSubp/{subproceso}', function($subproceso) {
     $subp = Subproceso::where('subp_id',$subproceso);
     return $subp->get(); 
 });
+///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
+Route::post('cont_modificar', 'ControlController@post')->name('cont_modificar');
+
+
+
+
+
+
+
 
 
 
@@ -199,6 +217,4 @@ Route::get('cargar_allElementsTree', function() {
 });
 
 
-///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
-// Route::post('/control/cont_viewModificar', 'ControlController@post')->name('cont_modificar');
 

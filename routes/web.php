@@ -78,7 +78,9 @@ Route::post('/riesgo/rgo_viewModificar', 'RiesgoController@modificar')->name('rg
 Route::get('/control/cont_viewAlta', 'ControlController@viewControl')->name('cont_viewAlta');
 Route::post('/control/cont_viewAlta', 'ControlController@altaControl')->name('cont_alta');
 Route::get('/control/cont_viewModificar/{riesgo}/{cont_id}', 'ControlController@viewModificar')->name('cont_viewModificar');
-Route::post('/control/cont_modificar', 'ControlController@post')->name('cont_modificar');
+Route::post('/rgo/rgo_viewModificar', 'ControlController@post')->name('cont_modificar');
+// Route::post('/riesgo/rgo_viewModificar', 'ControlController@post')->name('cont_modificar');
+
 // ACTIVIDAD
 Route::get('/actividad/act_viewAlta', 'ActividadController@viewActividad')->name('act_viewAlta');
 Route::post('/actividad/act_viewAlta', 'ActividadController@altaActividad')->name('act_alta');

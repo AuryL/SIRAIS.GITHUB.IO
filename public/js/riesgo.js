@@ -121,72 +121,117 @@ $(document).ready(function () {
     });
 
 
-    $("#boton_modificar_control").click(function () {
-        // $('#boton_modificar_control').on('click', function (e) {
+    // $("#boton_modificar_control").click(function () {
+    // $('#boton_modificar_control').on('click', function (e) {
 
-        // e.preventDefault();
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        //     }
-        // });
+    // e.preventDefault();
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //     }
+    // });
 
-        // $.ajax({
-        //     // url: "{{ url('/control/cont_viewModificar') }}",
-        //     // url: "route('cont_modificar',[])",
-        //     // url: '@Url.Action("ControlController","post")',                
-        //     // url: "",
-        //     url: "cont_modificar",
-        //     method: 'post',
-        //     data: {
-        //         rgo_id: $('#rgo_id').val(),
-        //         cont_nombre_es: $('#cont_nombre_es').val(),
-        //         cont_nombre_en: $('#cont_nombre_en').val(),
-        //         cont_detalles_es: $('#cont_detalles_es').val(),
-        //         cont_detalles_en: $('#cont_detalles_en').val(),
-        //         cont_estado: $('#cont_estado').val()
-        //     },
-        //     success: function (result) {
-        //         alert(result);
-        //         // $("#div_control").html("<div>" + result.success + "</div>");
-        //     }
-        // });
+    // $.ajax({
+    //     // url: "{{ url('/control/cont_viewModificar') }}",
+    //     // url: "route('cont_modificar',[])",
+    //     // url: '@Url.Action("ControlController","post")',                
+    //     // url: "",
+    //     url: "cont_modificar",
+    //     method: 'post',
+    //     data: {
+    //         rgo_id: $('#rgo_id').val(),
+    //         cont_nombre_es: $('#cont_nombre_es').val(),
+    //         cont_nombre_en: $('#cont_nombre_en').val(),
+    //         cont_detalles_es: $('#cont_detalles_es').val(),
+    //         cont_detalles_en: $('#cont_detalles_en').val(),
+    //         cont_estado: $('#cont_estado').val()
+    //     },
+    //     success: function (result) {
+    //         alert(result);
+    //         // $("#div_control").html("<div>" + result.success + "</div>");
+    //     }
+    // });
 
 
-        var rgo_id = $('#rgo_id').val();
-        var cont_nombre_es = $('#cont_nombre_es').val();
-        var cont_nombre_en = $('#cont_nombre_en').val();
-        var cont_detalles_es = $('#cont_detalles_es').val();
-        var cont_detalles_en = $('#cont_detalles_en').val();
-        var cont_estado = $('#cont_estado').val();
+});
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            method: 'POST', // Type of response and matches what we said in the route
-            url: '/control/cont_modificar', // This is the url we gave in the route
-            data: { 
-                'rgo_id': rgo_id, 
-                'cont_nombre_es': cont_nombre_es, 
-                'cont_nombre_en': cont_nombre_en, 
-                'cont_detalles_es': cont_detalles_es, 
-                'cont_detalles_en': cont_detalles_en, 
-                'cont_estado': cont_estado 
-            }, // a JSON object to send back
-            
-            success: function (response) { // What to do if we succeed
-                console.log(response);
-            },
-            error: function (jqXHR, textStatus, errorThrown) { // What to do if we fail
-                console.log(JSON.stringify(jqXHR));
-                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-            }
-        });
+
+
+
+////////////////////////////////INTENTOS PARA MODIFICAR CONTROL EN VISTA RIESGO
+
+// var intentando = function () {
+$('.modificarform').submit(function (event) {
+    console.log("SII!");
+    var rgo_id = $('#rgo_id').val();
+    var cont_id = $('#cont_id').val();
+    var cont_nombre_es = $('#cont_nombre_es').val();
+    var cont_nombre_en = $('#cont_nombre_en').val();
+    var cont_detalles_es = $('#cont_detalles_es').val();
+    var cont_detalles_en = $('#cont_detalles_en').val();
+    var cont_estado = $('#cont_estado').val();
+
+    var $form = $(this);
+    url = $form.attr('action');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        method: 'POST', // Type of response and matches what we said in the route
+        url: url, // This is the url we gave in the route
+        data: {
+            'rgo_id': rgo_id,
+            'cont_nombre_es': cont_nombre_es,
+            'cont_nombre_en': cont_nombre_en,
+            'cont_detalles_es': cont_detalles_es,
+            'cont_detalles_en': cont_detalles_en,
+            'cont_estado': cont_estado
+        }, // a JSON object to send back
+        dataType: "text",
+        success: function (data) {
+            alert(data.success);
+        },
+        // success: function (response) { // What to do if we succeed
+        //     console.log("response", response);
+        // },
+        error: function (jqXHR, textStatus, errorThrown) { // What to do if we fail
+            console.log(JSON.stringify(jqXHR));
+            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+        }
     });
 });
+
+
+
+
+
+
+//////////////////
+// var aurora = function (controlRiesgo) {
+//     console.log("dentro");
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('POST', 'http://127.0.0.1:8000/api/cont_modificar');
+//     xhr.setRequestHeader('Content-Type', 'application/json');
+
+//     // xhr.onreadystatechange = function () {
+//     //     console.log("hola Aurora");
+//     // }
+//     xhr.onload = function (e) {
+//         console.log(this.status);
+//         if (this.status == 200) {
+//             $("#div_flex_dom").append("<p>hola</p>")
+//         } else {
+//             console.log('xhr error');
+//         }
+//     }
+
+//     xhr.send();
+// }
+
+
 
 
 
@@ -316,6 +361,11 @@ var contRiesgo = function (cont_id) {
                 document.getElementById("cont_nombre_en").value = valor.cont_nombre_en;
                 document.getElementById("cont_detalles_es").value = valor.cont_detalles_es;
                 document.getElementById("cont_detalles_en").value = valor.cont_detalles_en;
+
+                // $("#boton_modificar_control").click(function () {
+                //     aurora(valor.cont_id);
+                // });
+
 
                 console.log(document.getElementById("rgo_id_control").value);
                 console.log(document.getElementById("cont_nombre_es").value);

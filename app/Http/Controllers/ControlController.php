@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use EllipseSynergie\ApiResponse\Contracts\Response;
 use Illuminate\Support\Facades\Input;
+use App\Transformer\TaskTransformer;
 
 use App\User;
 use App\Perfil;
@@ -52,42 +55,38 @@ class ControlController extends Controller
 
     // 
     public function post (Request $request) {
+
+        /*************************** PRUEBA 1 *************************/
         // validate
-        $rules = array(
-            'cont_nombre_es' => 'required|string|max:45',
-            'cont_nombre_en' => 'required|string|max:45',
-            'cont_detalles_es' => 'required|string|max:280',
-            'cont_detalles_en' => 'required|string|max:280'
-        );
+        // $rules = array(
+        //     'cont_nombre_es' => 'required|string|max:45',
+        //     'cont_nombre_en' => 'required|string|max:45',
+        //     'cont_detalles_es' => 'required|string|max:280',
+        //     'cont_detalles_en' => 'required|string|max:280'
+        // );
         
-        $validator = Validator::make(Input::all(), $rules);
+        // $validator = Validator::make($request->all(), $rules);
+        
+        // // process the login
+        // if ($validator->fails()) {
+        //     return Redirect::to('home')
+        //         ->withErrors($validator);
+        // } else {
+        //     // store
+        //     $contId = $request->cont_id;
+        //     $cont = Control::where('cont_id',$contId)->first();    
 
-        // process the login
-        if ($validator->fails()) {
-            return Redirect::to('home')
-                ->withErrors($validator);
-        } else {
-            // store
-            $contId = $request->cont_id;
-            $cont = Control::where('cont_id',$contId)->first();    
+        //     $cont->cont_nombre_en = $request->cont_nombre_en;
+        //     $cont->cont_detalles_es = $request->cont_detalles_es;
+        //     $cont->cont_detalles_en = $request->cont_detalles_en; 
+        //     $cont->rgo_id = $request->rgo_id; 
 
-            $cont->cont_nombre_en = $request->cont_nombre_en;
-            $cont->cont_detalles_es = $request->cont_detalles_es;
-            $cont->cont_detalles_en = $request->cont_detalles_en; 
-            $cont->rgo_id = $request->rgo_id; 
-
-            if(($request->cont_estado) == null) {
-                $cont->cont_estado = 0;
-            }else {
-                $cont->cont_estado = 1;
-            }
-            $cont->save();
-
-            $response = array(
-                'status' => 'success',
-                'msg' => $request->message,
-            );
-            return response()->json($response); 
+        //     if(($request->cont_estado) == null) {
+        //         $cont->cont_estado = 0;
+        //     }else {
+        //         $cont->cont_estado = 1;
+        //     }
+        //     $cont->save();
 
             // $user = Auth::user();
             // $userPerfil = \DB::table('perfils')
@@ -110,6 +109,32 @@ class ControlController extends Controller
 
             // return Redirect::to('/proceso/proc_viewAlta');
             // return response()->json(['success'=>'Data is successfully added']);       
-        }
+        // }
+
+
+
+        
+        /*************************** PRUEBA 2 *************************/
+        // $control = Control::where('cont_id',$cont->cont_id)->first();   
+        // if($control->save()) {
+        //     return $this->response->withItem($control, new  ControlTransformer());
+        // } else {
+        //      return $this->response->errorInternalError('Could not updated/created a task');
+        // }
+
+        
+        
+       
+        /*************************** PRUEBA 3 *************************/
+        $msg = "This is a simple message.";
+        $contId = $request->cont_id;
+        $cont = Control::findOrFail($contId);
+        $cont->update($request->all());
+    
+        // return response()->json($cont);            
+        // return response()->json(['success'=>'Data is successfully added']);
+      return response()->json(array('msg'=> $msg), 200);       
+
+
     }
 }

@@ -187,7 +187,8 @@
 
 
                         <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-                    <form id="form_control">
+                    <form id="form_control" method="post" action="{{action('ControlController@post')}}" class="modificarform">
+                        <meta name="csrf-token" content="{{ csrf_token() }}">
                         <div id="div_block_riesgo">
                             <div id="div_flex_riesgos_controles"> {{ __('CONTROLES') }}</div>
                                 <!-- Seleccionar el expediente del usuario que se desea Modificar -->
@@ -295,9 +296,10 @@
                                     </div>
                                     <div id="div_boton_registrar" class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
-                                            <button id="boton_modificar_control" class="btn btn-primary" disabled="true">
-                                                {{ __('Modificar') }}
-                                            </button>
+                                            <!-- <button id="boton_modificar_control" class="btn btn-primary" disabled="true">
+                                                Modificar
+                                            </button> -->
+                                            <input type="submit" id="boton_modificar_control" value="Modificar" class="btn btn-primary" disabled="true">
                                         </div>
                                     </div>
                                 </div>
