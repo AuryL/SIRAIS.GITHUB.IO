@@ -311,122 +311,122 @@
                     </div>  
 
 
-                        <!-- /////////////////////////////////////////////////////////////////////////////////// -->
-                        <div id="div_block_riesgo">
-                            <div id="div_flex_riesgos_actividades"> {{ __('ACTIVIDADES') }}</div>
-                                <!-- Seleccionar el expediente del usuario que se desea Modificar -->
-                            <div id="div_actividad" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
-                                <div id="div_actividadSeleccionado" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
-                                    <select id="actividad" name="actividad" class="form-control" onchange="actRiesgo(this.value)" required>
-                                        <option selected value="0" disabled="disabled" > Actividad </option>  
-                                    </select>
-                                    <br>
-                                    @if ($errors->has('actividad'))
-                                        <span class="invalid-feedback">
-                                            <label class="label-texto"><strong>{{ $errors->first('actividad') }}</strong></label>
-                                        </span>
-                                    @endif
-                                </div>
-                                <!-- RIESGO ID -->
-                                <input type="hidden" id="rgo_id_actividad" name="rgo_id_control" value="rgorgo_id_actividad">
-                                <input type="hidden" id="act_id" name="act_id" value="act_id">
-                                <!-- **** NOMBRE **** -->
-                                <div id="div_flex_dom">
-                                    <!-- Español -->
-                                    <label id="label_dom" for="act_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
-
-                                    <div class="div_register_usernameName">
-                                        <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
-
-                                        <div class="div_register_usernameName">
-                                            <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}"  required autofocus disabled="true">
-
-                                            @if ($errors->has('act_nombre_es'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('act_nombre_es') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Inglés-->
-                                    <div class="div_register_usernameName">
-                                        <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
-
-                                        <div class="div_register_usernameName">
-                                            <input id="act_nombre_en" type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
-
-                                            @if ($errors->has('act_nombre_en'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('act_nombre_en') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+                    <!-- ///////////////////////////////////////// ACTIVIDADES ////////////////////////////////////////// -->
+                    <div id="div_block_riesgo">
+                        <div id="div_flex_riesgos_actividades"> {{ __('ACTIVIDADES') }}</div>
+                            <!-- Seleccionar el expediente del usuario que se desea Modificar -->
+                        <div id="div_actividad" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
+                            <div id="div_actividadSeleccionado" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
+                                <select id="actividad" name="actividad" class="form-control" onchange="actControl(this.value)" required>
+                                    <option selected value="0" disabled="disabled" > Actividad </option>  
+                                </select>
                                 <br>
-                                <!-- **** DETALLES **** -->
-                                <div id="div_flex_dom">
+                                @if ($errors->has('actividad'))
+                                    <span class="invalid-feedback">
+                                        <label class="label-texto"><strong>{{ $errors->first('actividad') }}</strong></label>
+                                    </span>
+                                @endif
+                            </div>
+                            <!-- RIESGO ID -->
+                            <input type="hidden" id="cont_id_actividad" name="cont_id_actividad" value="cont_id_actividad">
+                            <input type="hidden" id="act_id" name="act_id" value="act_id">
+                            <!-- **** NOMBRE **** -->
+                            <div id="div_flex_dom">
                                 <!-- Español -->
-                                    <label id="label_dom" for="act_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+                                <label id="label_dom" for="act_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
+
+                                <div class="div_register_usernameName">
+                                    <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
 
                                     <div class="div_register_usernameName">
-                                        <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+                                        <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}"  required autofocus disabled="true">
 
-                                        <div class="div_register_usernameName">
-                                            <textarea rows="4" cols="50" id="act_detalles_es" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true">
-                                            </textarea>
-
-                                            @if ($errors->has('act_detalles_es'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('act_detalles_es') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    <!-- Inglés -->
-                                    <div class="div_register_usernameName">
-                                        <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
-
-                                        <div class="div_register_usernameName">
-                                            <textarea rows="4" cols="50" id="act_detalles_en" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true">
-                                            </textarea>
-
-                                            @if ($errors->has('act_detalles_en'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('act_detalles_en') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                        @if ($errors->has('act_nombre_es'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('act_nombre_es') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-                                <br>              
-                                <!-- Estado -->
-                                <div id="div_flex_modificar_expediente">
+                                
+                                <!-- Inglés-->
+                                <div class="div_register_usernameName">
+                                    <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
+
                                     <div class="div_register_usernameName">
-                                        <label for="act_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+                                        <input id="act_nombre_en" type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
 
-                                        <div class="div_register_usernameName">
-                                            <input type="checkbox" value="1" id="act_estado" name="act_estado" disabled="true">
-
-                                            @if ($errors->has('act_estado'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('act_estado') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
+                                        @if ($errors->has('act_nombre_en'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('act_nombre_en') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
-                                    <div id="div_boton_registrar" class="form-group row mb-0">
-                                        <div class="col-md-6 offset-md-4">
-                                            <button id="boton_modificar_actividad" onclick="validarAct()" type="submit" class="btn btn-primary" disabled="true">
-                                                {{ __('Modificar') }}
-                                            </button>
-                                        </div>
+                                </div>
+                            </div>
+                            <br>
+                            <!-- **** DETALLES **** -->
+                            <div id="div_flex_dom">
+                            <!-- Español -->
+                                <label id="label_dom" for="act_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+
+                                <div class="div_register_usernameName">
+                                    <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+
+                                    <div class="div_register_usernameName">
+                                        <textarea rows="4" cols="50" id="act_detalles_es" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true">
+                                        </textarea>
+
+                                        @if ($errors->has('act_detalles_es'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('act_detalles_es') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Inglés -->
+                                <div class="div_register_usernameName">
+                                    <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
+
+                                    <div class="div_register_usernameName">
+                                        <textarea rows="4" cols="50" id="act_detalles_en" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true">
+                                        </textarea>
+
+                                        @if ($errors->has('act_detalles_en'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('act_detalles_en') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <br>              
+                            <!-- Estado -->
+                            <div id="div_flex_modificar_expediente">
+                                <div class="div_register_usernameName">
+                                    <label for="act_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+
+                                    <div class="div_register_usernameName">
+                                        <input type="checkbox" value="1" id="act_estado" name="act_estado" disabled="true">
+
+                                        @if ($errors->has('act_estado'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('act_estado') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div id="div_boton_registrar" class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="boton_modificar_actividad" type="submit" class="btn btn-primary" disabled="true">
+                                            {{ __('Modificar') }}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

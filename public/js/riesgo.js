@@ -167,6 +167,90 @@ $(document).ready(function () {
             }
         });
     });
+
+
+
+    ////////////////////////////////INTENTOS PARA MODIFICAR ACTIVIDAD EN VISTA RIESGO
+    $('#boton_modificar_actividad').click(function () {
+        console.log("Dentro de Modificar Actividades en Riesgos!");
+        var cont_id = $('#cont_id_actividad').val();
+        var act_id = $('#act_id').val();
+        var act_nombre_es = $('#act_nombre_es').val();
+        var act_nombre_en = $('#act_nombre_en').val();
+        var act_detalles_es = $('#act_detalles_es').val();
+        var act_detalles_en = $('#act_detalles_en').val();
+        var act_estado = $('#act_estado').val();
+
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+        $.ajax({
+            url: 'http://127.0.0.1:8000/api/modificarActividad',
+            method: 'POST',
+            data: {
+                'cont_id': cont_id,
+                // 'cont_id': cont_id,
+                'act_nombre_es': act_nombre_es,
+                'act_nombre_en': act_nombre_en,
+                'act_detalles_es': act_detalles_es,
+                'act_detalles_en': act_detalles_en,
+                'act_estado': act_estado
+            },
+            success: function (data) {
+
+                $('#cont_id_actividad_error').html('');
+                // $('#cont_id_error').html('');
+                $('#act_nombre_es_error').html('');
+                $('#act_nombre_en_error').html('');
+                $('#act_detalles_es_error').html('');
+                $('#act_detalles_en_error').html('');
+                $('#act_estado_error').html('');
+
+
+                $('#success_message').html('Modificacion guardada conrrectamente.');
+            },
+            error: function (data) {
+
+                $('#cont_id_actividad_error').html('');
+                // $('#cont_id_error').html('');
+                $('#act_nombre_es_error').html('');
+                $('#act_nombre_en_error').html('');
+                $('#act_detalles_es_error').html('');
+                $('#act_detalles_en_error').html('');
+                $('#act_estado_error').html('');
+
+                $('#success_message').html('Error');
+
+                var error = data.responseJSON;
+                $.each(error, function (key, value) {
+                    if (key == 'cont_id') {
+                        $("#cont_id_actividad_error").html(value);
+                    }
+                    // if (key == 'act_id') {
+                    //     $("#act_id_error").html(value);
+                    // }
+                    if (key == 'act_nombre_es') {
+                        $("#act_nombre_es_error").html(value);
+                    }
+                    if (key == 'act_nombre_en') {
+                        $("#act_nombre_en_error").html(value);
+                    }
+                    if (key == 'act_detalles_es') {
+                        $("#act_detalles_es_error").html(value);
+                    }
+                    if (key == 'act_detalles_en') {
+                        $("#act_detalles_en_error").html(value);
+                    }
+                    if (key == 'act_estado') {
+                        $("#act_estado_error").html(value);
+                    }
+                })
+
+            }
+        });
+    });
 });
 
 
@@ -298,6 +382,9 @@ var contRiesgo = function (cont_id) {
                 document.getElementById("cont_detalles_es").value = valor.cont_detalles_es;
                 document.getElementById("cont_detalles_en").value = valor.cont_detalles_en;
 
+
+                actSelect(valor.cont_id);
+
                 // $("#boton_modificar_control").click(function () {
                 //     aurora(valor.cont_id);
                 // });
@@ -329,11 +416,11 @@ var contRiesgo = function (cont_id) {
     });
 }
 ////////////////////// ACTIVIDADES ASOIADAS ////////////////////////////
-var actSelect = function (riesgo) {
+var actSelect = function (control) {
     console.log('actSelect');
-    console.log("RIESGO: " + riesgo);
+    console.log("CONTROL: " + control);
 
-    $.get("http://127.0.0.1:8000/api/cargar_actSelect/" + riesgo, function (data1) {// Se direcciona a la url especificada (api.php)
+    $.get("http://127.0.0.1:8000/api/cargar_actSelect/" + control, function (data1) {// Se direcciona a la url especificada (api.php)
         // Posteriormente, recibe el resultado de la petición, que es data
         console.log('datosControl:data1', data1);
         $("#actividad").empty();
@@ -346,12 +433,13 @@ var actSelect = function (riesgo) {
             $("#actividad").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
         }
     });
+    console.log("?");
 }
-var actRiesgo = function (act_id) {
-    console.log('actRiesgo');
-    console.log("RIESGO: " + act_id);
+var actControl = function (act_id) {
+    console.log('actControl');
+    console.log("ACTIVIDAD: " + act_id);
 
-    $.get("http://127.0.0.1:8000/api/cargar_actRiesgo/" + act_id, function (data1) {// Se direcciona a la url especificada (api.php)
+    $.get("http://127.0.0.1:8000/api/cargar_actControl/" + act_id, function (data1) {// Se direcciona a la url especificada (api.php)
         // Posteriormente, recibe el resultado de la petición, que es data
         console.log('datosControl:data1', data1);
 
@@ -382,6 +470,7 @@ var actRiesgo = function (act_id) {
                         $("#act_estado").prop('checked', false);
                     }
                 }
+                document.getElementById("boton_modificar_actividad").disabled = false; // habilitar boton al llenar campos del formulario   
 
             });
         } else {// Si el array "data" recibido esta vacia
@@ -452,7 +541,7 @@ var riesgoSelected = function (riesgo) {
 
                 procRiesgo(valor.subp_id);
                 contSelect(valor.rgo_id);
-                actSelect(valor.rgo_id);
+                // actSelect(valor.cont_id);
 
                 console.log(document.getElementById("rgo_id").value);
                 console.log(document.getElementById("rgo_nombre_es").value);

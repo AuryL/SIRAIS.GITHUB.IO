@@ -581,7 +581,8 @@ h6 {
 	margin-bottom: 2%;
 	justify-content:space-between;
 	background-color: #C00;
-	color: #360606;
+	/* color: #360606; */
+	color: #fff;
 	text-align: center;
 	
 }
@@ -594,7 +595,8 @@ h6 {
 	margin-bottom: 2%;
 	justify-content:space-between;
 	background-color: #C00;
-	color: #360606;
+	/* color: #360606;	 */
+	color: #fff;
 	text-align: center;
 }
 
@@ -5301,6 +5303,10 @@ input[type=submit].btn-block {
 	border: 1px solid rgba(0, 0, 0, .125);
 	border-radius: .25rem;
 	margin-top: 5%;
+	/* color: #360606; */
+	/* color: #524c4c; */
+
+
 }
 
 .card>hr {

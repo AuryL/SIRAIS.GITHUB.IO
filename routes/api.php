@@ -134,7 +134,7 @@ Route::get('cargar_datosSubp/{subproceso}', function($subproceso) {
 });
 ///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
 Route::post('modificarControl', 'ControlController@post');
-
+Route::post('modificarActividad', 'ActividadController@post');
 
 
 
@@ -168,8 +168,8 @@ Route::get('cargar_contSelect/{riesgo}', function($riesgo) {
     return $control->get(); 
 });
 /////////////////////////////////////
-Route::get('cargar_actSelect/{riesgo}', function($riesgo) {
-    $actividad = Actividad::where('rgo_id',$riesgo);
+Route::get('cargar_actSelect/{control}', function($control) {
+    $actividad = Actividad::where('cont_id',$control);
     return $actividad->get(); 
 });
 ///////////////////////////////////////////////
@@ -178,7 +178,7 @@ Route::get('cargar_contRiesgo/{cont_id}', function($cont_id) {
     return $cont->get(); 
 });
 ///////////////////////////////////////////////
-Route::get('cargar_actRiesgo/{act_id}', function($act_id) {
+Route::get('cargar_actControl/{act_id}', function($act_id) {
     $act = Actividad::where('act_id',$act_id);    
     return $act->get(); 
 });
