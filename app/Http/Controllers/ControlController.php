@@ -69,18 +69,19 @@ class ControlController extends Controller
         // process the login
         if ($validator->fails()) {
             return response()->json($validator->error(), 400);
-        }
+        }else{
         
-        // store
-        $input = $request->all();
+            // store
+            $input = $request->all();
 
-        // $contId = $request->cont_id;
-        // $cont = Control::findOrFail($contId); 
-        // $cont->update($input);       
-        $cont = Control::create($input);
-    
-        return response()->json(['details' => $cont], 200);       
-
+            // $contId = $request->cont_id;
+            // $cont = Control::findOrFail($contId); 
+            // $cont->update($input);       
+            $cont = Control::create($input);
+        
+            return response()->json(['details' => $cont], 200);      
+             
+        }
 
     }
 }

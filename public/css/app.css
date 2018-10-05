@@ -2384,7 +2384,9 @@ pre code {
 	padding: 0.4rem;
 	/* color:#1E8449; */
 	background-color: rgb(255, 0, 0);
-	color: #820202;
+	/* color: #820202; */
+	color: #fff;
+
 }
 .td_body, .td_foot{/* cada celda del body de la tabla tendra este estilo*/
 	/* letter-spacing: 2px; */

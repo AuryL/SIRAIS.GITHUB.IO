@@ -107,7 +107,7 @@ $(document).ready(function () {
             method: 'POST',
             data: {
                 'rgo_id': rgo_id,
-                'cont_id': cont_id,
+                // 'cont_id': cont_id,
                 'cont_nombre_es': cont_nombre_es,
                 'cont_nombre_en': cont_nombre_en,
                 'cont_detalles_es': cont_detalles_es,
@@ -117,7 +117,7 @@ $(document).ready(function () {
             success: function (data) {
 
                 $('#rgo_id_control_error').html('');
-                $('#cont_id_error').html('');
+                // $('#cont_id_error').html('');
                 $('#cont_nombre_es_error').html('');
                 $('#cont_nombre_en_error').html('');
                 $('#cont_detalles_es_error').html('');
@@ -130,7 +130,7 @@ $(document).ready(function () {
             error: function (data) {
 
                 $('#rgo_id_control_error').html('');
-                $('#cont_id_error').html('');
+                // $('#cont_id_error').html('');
                 $('#cont_nombre_es_error').html('');
                 $('#cont_nombre_en_error').html('');
                 $('#cont_detalles_es_error').html('');
@@ -144,9 +144,9 @@ $(document).ready(function () {
                     if (key == 'rgo_id') {
                         $("#rgo_id_control_error").html(value);
                     }
-                    if (key == 'cont_id') {
-                        $("#cont_id_error").html(value);
-                    }
+                    // if (key == 'cont_id') {
+                    //     $("#cont_id_error").html(value);
+                    // }
                     if (key == 'cont_nombre_es') {
                         $("#cont_nombre_es_error").html(value);
                     }
