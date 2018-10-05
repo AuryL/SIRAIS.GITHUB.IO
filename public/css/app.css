@@ -195,6 +195,19 @@ ul, ol {
     top:0px;
 }
 
+/*  */
+#espaniol, #ingles {
+	background-color: #850808ec;
+}
+#espaniol:hover {
+    background-color: rgb(255, 0, 0);;
+}
+ #ingles:hover {
+    background-color: rgb(255, 0, 0);;
+}
+
+/*  */
+
 /* ****************************************** */
 
 dt {
@@ -311,6 +324,9 @@ svg:not(:root) {
 table {
 	border-collapse: collapse
 }
+
+
+
 
 caption {
 	padding-top: .75rem;
@@ -691,7 +707,10 @@ h6 {
 	/* border-bottom: 5px solid #C00;  */
 	width: 100%;
 	/* height: 120px; */
-	height: auto; /*Permite que el largo del div crezca conforme crece su contenido*/
+	 height: auto;/* Permite que el largo del div crezca conforme crece su contenido */
+	
+	/* overflow:scroll;
+    height:500px; */
 }
 
 #div_actividades {
@@ -2374,6 +2393,46 @@ pre code {
 	border: none;
 }
 
+/********** SCROLL EN LA TABLA *********/
+/* table.tabla_vistaPrevia {
+    width: 100%; 
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid black;
+}
+
+table.tabla_vistaPrevia tbody,
+table.tabla_vistaPrevia thead { 
+	display: block; 
+	
+    width: 100%;
+}
+
+thead tr th { 
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+table.tabla_vistaPrevia tbody {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+tbody { border-top: 2px solid black; }
+
+tbody td, thead th {
+    width: 20%; 
+    border-right: 1px solid black;
+    white-space: nowrap;
+}
+
+tbody td:last-child, thead th:last-child {
+    border-right: none;
+} */
+
+/**/
 .td_cabecera{/* cada celda de la cabecera de la tabla tendra este estilo*/
 	/*font-family: 'Rammetto One', cursive;*/
 	font-family:  "Raleway", sans-serif;

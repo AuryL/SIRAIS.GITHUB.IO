@@ -3,13 +3,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">ARBOL DE RIESGOS</div>
+            <div class="card-header">@lang('menu.arbol')</div>
 
                 <div class="card-body">
 
                     <div id="div_flex_tree">
                         <div id="div_block_tree">
-                            <p>Selecciona los riesgos que consideres dentro del arbol de dominios: </p>
+                            <p>@lang('tree.instr1')</p>
                             <div id="div_tree">
                                 <ul class="tree_menu">
                                     @foreach($dominios as $dominio => $value1) <!-- Dominio -->
@@ -65,14 +65,14 @@
                             </div>
                         </div>
                         <div id="div_block">
-                            <h6>En seguida se muestra el objetivo al que le haz dado click</h6>
+                            <h6>@lang('tree.instr2')</h6>
                             <div id="div_block_tabla_controles">
                                 
                                 <!-- En el contenedor div_controles, se coloca una Tabla (mediante javascript en tree.js), que contiene el control y sus detalles,al cual, el usuario le ha dado click -->
                                 <div id="div_controles"></div>     
                             </div> 
                             <!-- Tabla que contiene el numero total de Dominios, Procesos, Subprocesos, Riesgos, Controles y Actividades  y el numero de checkbox seleccionados de los mismos, asi como el porcentaje entre el tital y los seleccionados, correspondientemente-->
-                            <p>A continuacion se visualizan los porcentajes de los elementos seleccionados, de acuerdo al total de los mismos, respectivamente: </p>
+                            <p>@lang('tree.instr3')</p>
                             <table class="tabla_porcentajes" border="1">
                                 <!-- thead: define el encabezado de la tabla -->
                                 <thead class="cabecera_tabla">
@@ -111,9 +111,11 @@
                             <!-- La funcion se encuentra en el archivo tree.js -->
                             <button class="btn btn-primary" onclick="generarExcel()">Generar Excel</button>
                         </div>
+                        
                         <div id="div_vistaPrevia">
-                            <br>
-                            <p>Vista previa de la matriz de riesgos (de acuerdo a los elementos seleccionados previamente en el arbol de dominios): </p>
+                        <br>
+                        <p>@lang('tree.instr4')</p>
+                            
                             <!-- Tabla que contiene  -->
                             <table class="tabla_vistaPrevia" border="1">
                                 <!-- thead: define el encabezado de la tabla -->

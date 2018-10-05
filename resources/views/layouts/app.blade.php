@@ -47,6 +47,7 @@
     <!-- FONTS -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <!-- <link href="{{ asset('css/nunito.css') }}" rel="stylesheet" type="text/css"> -->
     <!-- STYLES -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  
@@ -89,43 +90,45 @@
 
                             <!-- SUPERUSARIO / SUBDIRECTOR-->
                             @if (Auth::user()->per_id == 1 || Auth::user()->per_id == 2)
-                                <li><a href="{{ route('tree') }}">RISKS´ TREE</a></li>                                
-                                <li><a href="">Usuarios</a>
+                                <li><a href="{{ route('tree') }}">@lang('menu.arbol')</a></li>                                
+                                <li><a href="">@lang('menu.usuario')</a>
                                     <ul>
-                                        <li><a href="{{ route('register') }}">Alta</a></li>
-                                        <li><a href="{{ route('us_viewModificar') }}">Modificar</a></li>
+                                        <li><a href="{{ route('register') }}">@lang('menu.alta')</a></li>
+                                        <li><a href="{{ route('us_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Dominios</a>
+                                <li><a href="">@lang('menu.dominio')</a>
                                     <ul
-                                        <li><a href="{{ route('dom_viewAlta') }}">Alta</a></li>
-                                        <li><a href="{{ route('dom_viewModificar') }}">Modificar</a></li>
+                                        <li><a href="{{ route('dom_viewAlta') }}">@lang('menu.alta')</a></li>
+                                        <li><a href="{{ route('dom_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Procesos</a>
+                                <li><a href="">@lang('menu.proceso')</a>
                                     <ul>
-                                        <li><a href="{{ route('proc_viewAlta') }}">Alta</a></li>
-                                        <li><a href="{{ route('proc_viewModificar') }}">Modificar</a></li>
+                                        <li><a href="{{ route('proc_viewAlta') }}">@lang('menu.alta')</a></li>
+                                        <li><a href="{{ route('proc_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Subprocesos</a>
+                                <li><a href="">@lang('menu.subp')</a>
                                     <ul>
-                                        <li><a href="{{ route('subp_viewAlta') }}">Alta</a></li>
-                                        <li><a href="{{ route('subp_viewModificar') }}">Modificar</a></li>
+                                        <li><a href="{{ route('subp_viewAlta') }}">@lang('menu.alta')</a></li>
+                                        <li><a href="{{ route('subp_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Riesgos</a>
+                                <li><a href="">@lang('menu.riesgo')</a>
                                     <ul>
                                         <!-- <li><a href="">Objetivos de Control</a></li>
                                         <li><a href="">Actividades</a></li> -->
-                                        <li><a href="{{ route('rgo_viewAlta') }}">Alta</a></li>                                       
-                                        <li><a href="{{ route('rgo_viewModificar') }}">Modificar</a></li>
+                                        <li><a href="{{ route('rgo_viewAlta') }}">@lang('menu.alta')</a></li>                                       
+                                        <li><a href="{{ route('rgo_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>
                                 </li>
+                                <li ><a id="espaniol" href="{{ url('lang', ['es']) }}">ES</a></li>
+                                <li ><a id="ingles" href="{{ url('lang', ['en']) }}">EN</a></li>
 
                             <!-- CONSULTA-->
                             @elseif (Auth::user()->per_id == 3)
-                                <li><a href="{{ route('tree') }}">RISKS´ TREE</a></li>                                
+                                <li><a href="{{ route('tree') }}">@lang('menu.arbol')</a></li>                                
                             @endif
                             
                             <!-- TODOS -->

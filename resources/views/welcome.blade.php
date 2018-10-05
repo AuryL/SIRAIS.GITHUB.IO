@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <!-- <link href="{{ asset('css/nunito.css') }}" rel="stylesheet" type="text/css"> -->
 
         <!-- Styles -->
         <style>
@@ -70,6 +71,8 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
+                        <li><a id="espaniol" href="{{ url('lang', ['es']) }}">ES</a></li>
+                        <li><a id="ingles" href="{{ url('lang', ['en']) }}">EN</a></li>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
@@ -81,8 +84,10 @@
                     <img class="logo_san" src="/svg/logo_Santander4.png"  width="40%" height="20%" alt="X">
                 </div>
 
-                <div class="links">                    
-                    <strong>SISTEMA PARA LA GESTION DE RIESGOS AI</strong>
+                <div class="links">                  
+                    <!-- <strong>SISTEMA PARA LA GESTION DE RIESGOS AI</strong> -->
+                    <strong> @lang('welcomeYhome.titulo') </strong>
+
                 </div>
             </div>
         </div>

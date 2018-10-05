@@ -78,7 +78,10 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // Para establecer el idioma por defecto de una aplicación
+    // 'locale' => 'en',    
+    'locale' => 'es',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -91,6 +94,7 @@ return [
     |
     */
 
+    // habiendo establecido español como lenguaje predeterminado colocamos el inglés cuando no se obtenga la traducción en el idioma español
     'fallback_locale' => 'en',
 
     /*

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Sistema para la Gestión de Riesgos AI</div>
+                <div class="card-header">@lang('welcomeYhome.subtitulo')</div>
 
                 <div class="card-body">
                     @if (session('status'))
