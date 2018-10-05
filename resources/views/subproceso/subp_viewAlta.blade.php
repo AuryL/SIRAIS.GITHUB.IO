@@ -5,36 +5,24 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card">
-                <div class="card-header"><strong>{{ __('MODIFICAR SUBPROCESO') }}</strong></div>
+                <div class="card-header"><strong>{{ __('ALTA SUBPROCESO') }}</strong></div>
                 <br>
                 <div class="card-body">
 
-                    <form id="form_register" method="POST" action="{{ route('subp_modificar') }}">
+                    <form id="form_register" method="POST" action="{{ route('subp_alta') }}">
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">
-                            <label class="col-form-label text-md-right">Selecciona el nombre del Subproceso que deseas consultar/modificar: </label>
-                            <br> <br> <br>
-                            <!-- Seleccionar el expediente del usuario que se desea Modificar -->
-                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
-                                <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > Subproceso </option>                               
-                                    @foreach($subps as $subp => $value)
-                                        <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
-                                    @endforeach  
-                                </select>
-                                <br>
-                                @if ($errors->has('subproceso'))
-                                    <span class="invalid-feedback">
-                                        <label class="label-texto"><strong>{{ $errors->first('subproceso') }}</strong></label>
-                                    </span>
-                                @endif
+                            <label class="col-form-label">Como {{ $userPerfil->per_nombre_es }} tienes los permisos para dar de alta Subprocesos. Porfavor complete los campos solicitados correctamente: </label>                            
+                            <div id="div_boton_registrar" class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button id="boton_alta" onclick="validarSubp()" type="submit" class="btn btn-primary">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('Alta ') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <br>
-                        
-                        <!-- ID -->
-                        <input type="hidden" id="subp_id" name="subp_id" value="subp_id">
 
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
@@ -144,8 +132,7 @@
                             </div>
                         </div>
 
-                        <div id="div_flex_modificar_expediente">
-                        <!-- Estado -->
+                        <!-- <div id="div_flex_modificar_expediente">
                             <div class="div_register_usernameName">
                                 <label for="subp_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
 
@@ -162,12 +149,12 @@
 
                             <div id="div_boton_registrar" class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button id="boton_modificar" onclick="validarSubp()" type="submit" class="btn btn-primary" disabled="true">
+                                    <button id="boton_alta_dom" onclick="validarSubp()" type="submit" class="btn btn-primary" disabled="true">
                                         {{ __('Modificar') }}
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </form>
                 </div>

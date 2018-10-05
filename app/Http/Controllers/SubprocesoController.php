@@ -31,7 +31,7 @@ class SubprocesoController extends Controller
         ->first();
 
         $procs = Proceso::all();
-        $subp = Subproceso::all();
+        $subps = Subproceso::all();
         
         return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
     }
@@ -74,6 +74,15 @@ class SubprocesoController extends Controller
             $subp->subp_detalles_en = Input::get('subp_detalles_en');                   
             $subp->proc_id = Input::get('proceso');
             $subp->save();
+
+
+            
+            $userPerfil = \DB::table('perfils')
+            ->select('perfils.*')
+            ->where('perfils.per_id','=',$user->per_id)
+            ->first();    
+            $procs = Proceso::all();
+            $subps = Subproceso::all();
 
             // redirect
             Session::flash('message', 'Successfully updated nerd!');

@@ -86,17 +86,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([            
-            'username' => $data['username'],            
-            'name' => $data['name'],                   
-            'us_apellidopat' => $data['us_apellidopat'],        
-            'us_apellidomat' => $data['us_apellidomat'], 
-            'us_extension' => $data['us_extension'],
-            'email' => $data['email'],
-            'per_id' => $data['per_id'],
-            'dom_id' => $data['dom_id'],
-            // 'password' => Hash::make($data['password']),
-        ]);
+
+        try{
+            $usuario = User::create([            
+                'username' => $data['username'],            
+                'name' => $data['name'],                   
+                'us_apellidopat' => $data['us_apellidopat'],        
+                'us_apellidomat' => $data['us_apellidomat'], 
+                'us_extension' => $data['us_extension'],
+                'email' => $data['email'],
+                'per_id' => $data['per_id'],
+                'dom_id' => $data['dom_id'],
+                // 'password' => Hash::make($data['password']),
+            ]);
+        
+            return  $usuario;
+            
+        }catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
     }
 
 

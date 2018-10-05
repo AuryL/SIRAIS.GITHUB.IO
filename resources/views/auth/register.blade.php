@@ -119,7 +119,7 @@
                                 <select id="per_id" name="per_id" class="form-control" required>
                                     <option selected value="0" disabled="disabled" > Perfil </option>                               
                                     @foreach($perfiles as $perfil => $value)
-                                        <option value="{{ $value->per_id }}">{{ $value->proc_nombre_es }}</option>  
+                                        <option value="{{ $value->per_id }}">{{ $value->per_nombre_es }}</option>  
                                     @endforeach  
                                 </select>
                                 <br>

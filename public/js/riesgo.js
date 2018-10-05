@@ -320,8 +320,8 @@ var procRiesgo = function (subproceso) {
                     console.log("data2", data2);
                     if (data2 && data2.length > 0) {// Verificar que no esta vacia "data"
                         data2.forEach(function (valor2) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                            document.getElementById("proceso").value = valor2.proc_nombre_es;
-                            document.getElementById("proceso").disabled = true; // habilitar boton al llenar campos del formulario
+                            document.getElementById("proc_id").value = valor2.proc_nombre_es;
+                            document.getElementById("proc_id").disabled = true; // habilitar boton al llenar campos del formulario
                             domSubproceso(valor2.proc_id);
 
                         });

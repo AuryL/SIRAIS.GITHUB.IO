@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         <br>                   
-                        <!-- PROCESO -->
+                        <!-- SUBPROCESO -->
                         <div id="div_flex_modificar_expediente">
                             <div class="div_register_usernameName">
                                 <label for="subproceso" class="col-md-4 col-form-label text-md-right">{{ __('Subproceso: ') }}</label>
@@ -130,14 +130,14 @@
                             </div>
 
                             <div class="div_register_usernameName">
-                                <label for="proceso" class="col-md-4 col-form-label text-md-right">{{ __(' Proceso: ') }}</label>
+                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">{{ __(' Proceso: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="proceso" type="text" class="form-control{{ $errors->has('proceso') ? ' is-invalid' : '' }}" name="proceso" value="{{ old('proceso') }}" disabled = "false" required autofocus >
+                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="proc_id" value="{{ old('proc_id') }}" disabled = "false" required autofocus >
 
-                                    @if ($errors->has('proceso'))
+                                    @if ($errors->has('proc_id'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('proceso') }}</strong>
+                                            <strong>{{ $errors->first('proc_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
