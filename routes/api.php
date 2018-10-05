@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Origin, Content-Type, Authorization, X-Auth-Token');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS');
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -15,6 +19,8 @@ Use App\Subproceso;
 Use App\Riesgo;
 Use App\Control;
 Use App\Actividad;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -127,7 +133,7 @@ Route::get('cargar_datosSubp/{subproceso}', function($subproceso) {
     return $subp->get(); 
 });
 ///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
-Route::post('cont_modificar', 'ControlController@post')->name('cont_modificar');
+Route::post('modificarControl', 'ControlController@post');
 
 
 
