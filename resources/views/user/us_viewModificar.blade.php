@@ -5,19 +5,19 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card">
-                <div class="card-header"><strong>{{ __('MODIFICAR USUARIO') }}</strong></div>
+                <div class="card-header"><strong>@lang('usuario.titulo_modificar')</strong></div>
                 <br>
                 <div class="card-body">
                     
                     <form id="form_register" method="POST" action="{{ route('us_modificar') }}">
                     
                         <div id="div_flex_modificar_expediente">
-                            <label class="col-form-label text-md-right">Selecciona el expediente del usuario que deseas consultar/modificar: </label>
+                            <label class="col-form-label text-md-right">@lang('usuario.instr_modificar')</label>
                             <br> <br> <br>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('usernameSelected') ? ' has-error' : '' }}">
                                 <select id="usernameSelected" name="usernameSelected" class="form-control" onchange="expedienteSelected(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > Expediente </option>                               
+                                    <option selected value="0" disabled="disabled" > @lang('usuario.expediente') </option>                               
                                     @foreach($usuarios as $usuario => $value)
                                         <option id="usernameSelected" value="{{ $value->username }}">{{ $value->username }}</option>  
                                     @endforeach  
@@ -37,7 +37,7 @@
                             <!-- Expediente -->
                             <!-- <div class="form-group row"> -->
                             <div class="div_register_usernameName">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Expediente: ') }}</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right">@lang('usuario.expediente')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus pattern="[A-Za-z0-9]+">
@@ -52,7 +52,7 @@
                             
                             <!-- Nombre -->
                             <div class="div_register_usernameName">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre: ') }}</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('usuario.nombre')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus pattern="[A-Za-z]+">
@@ -69,7 +69,7 @@
                         <div id="div_flex">
                             <!-- Apellido Paterno -->
                             <div class="div_register_usernameName">
-                                <label for="us_apellidopat" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Paterno: ') }}</label>
+                                <label for="us_apellidopat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoPat')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="us_apellidopat" type="text" class="form-control{{ $errors->has('us_apellidopat') ? ' is-invalid' : '' }}" name="us_apellidopat" value="{{ old('us_apellidopat') }}" required autofocus pattern="[A-Za-z]+">
@@ -84,7 +84,7 @@
 
                             <!-- Apellido Materno -->
                             <div class="div_register_usernameName">
-                                <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">{{ __('Apellido Materno') }}</label>
+                                <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoMat')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus pattern="[A-Za-z]+">
@@ -101,7 +101,7 @@
                         <div id="div_flex">
                             <!-- Extensión -->
                             <div class="div_register_usernameName">
-                                <label for="us_extension" class="col-md-4 col-form-label text-md-right">{{ __('Extensión: ') }}</label>
+                                <label for="us_extension" class="col-md-4 col-form-label text-md-right">@lang('usuario.extension')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="us_extension" type="text" class="form-control{{ $errors->has('us_extension') ? ' is-invalid' : '' }}" name="us_extension" value="{{ old('us_extension') }}" required autofocus pattern="[0-9]+">
@@ -134,10 +134,10 @@
                             <!-- Perfil -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('per_id') ? ' has-error' : '' }}">
 
-                                <label for="per_id" class="col-md-4 col-form-label text-md-right">{{ Form::label('per_id', 'Perfil: ') }}</label>
+                                <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.perfil')</label>
 
                                 <select id="per_id" name="per_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > Perfil </option>                               
+                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_perfil') </option>                               
                                     @foreach($perfiles as $perfil => $value)
                                         <option value="{{ $value->per_id }}">{{ $value->per_nombre_es }}</option>  
                                     @endforeach  
@@ -153,10 +153,10 @@
                             <!-- Dominio -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">{{ Form::label('dom_id', 'Dominio: ') }}</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.dominio')</label>
 
                                 <select id="dom_id" name="dom_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > Dominio </option>
+                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_dominio') </option>
                                     @foreach($dominios as $dominio => $value)
                                         <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
                                     @endforeach                           
@@ -202,7 +202,7 @@
                         <div id="div_flex">
                             <!-- Estado -->
                             <div class="div_register_usernameName">
-                                <label for="us_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+                                <label for="us_estado" class="col-md-4 col-form-label text-md-right">@lang('usuario.activo')</label>
 
                                 <div class="div_register_usernameName">
                                     <input type="checkbox" value="1" id="us_estado" name="us_estado">
@@ -220,7 +220,7 @@
                         <div id="div_boton_registrar" class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button id="boton_modificar" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
-                                    {{ __('Modificar') }}
+                                    @lang('boton.boton_modificar')
                                 </button>
                             </div>
                         </div>

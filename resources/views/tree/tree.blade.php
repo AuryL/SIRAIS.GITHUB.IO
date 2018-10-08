@@ -81,7 +81,7 @@
                                         <!-- Por cada celda que querramos agregar, sera un elemento <td> -->
                                         <td class="td_cabecera"></td>
                                         <td class="td_cabecera"><strong>Total</strong></td>
-                                        <td class="td_cabecera"><strong>Seleccionados</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('tree.tabla_porcentaje_seleccionados')</strong></td>
                                         <td class="td_cabecera"><strong>%</strong></td>
                                     </tr>
                                 </thead>
@@ -109,7 +109,7 @@
                         <div class="col sm-12">
                             <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
                             <!-- La funcion se encuentra en el archivo tree.js -->
-                            <button class="btn btn-primary" onclick="generarExcel()">Generar Excel</button>
+                            <button class="btn btn-primary" onclick="generarExcel()">@lang('boton.boton_excel')</button>
                         </div>
                         
                         <div id="div_vistaPrevia">
@@ -123,12 +123,12 @@
                                 <!-- Por cada fila que querramos agregar, sera un elemento <tr> mas -->
                                     <tr>
                                         <!-- Por cada celda que querramos agregar, sera un elemento <td> -->
-                                        <td class="td_cabecera"><strong>Dominio</strong></td>
-                                        <td class="td_cabecera"><strong>Proceso</strong></td>
-                                        <td class="td_cabecera"><strong>Subproceso</strong></td>
-                                        <td class="td_cabecera"><strong>Riesgo</strong></td>
-                                        <td class="td_cabecera"><strong>Control</strong></td>
-                                        <td class="td_cabecera"><strong>Actividad</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.dominio')</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.proceso')</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.subp')</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.riesgo')</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.control')</strong></td>
+                                        <td class="td_cabecera"><strong>@lang('menu.actividad')</strong></td>
                                     </tr>
                                 </thead>
                                 <!-- tbody: define el cuerpo de la tabla -->

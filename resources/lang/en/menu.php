@@ -9,6 +9,8 @@ return [
     'proceso' => 'Processes',
     'subp' => 'Subprocesses',
     'riesgo' => 'Risks',
+    'control' => 'Controls',
+    'actividad' => 'Activities',
 
     'alta' => 'Create',
     'modificar' => 'Update',

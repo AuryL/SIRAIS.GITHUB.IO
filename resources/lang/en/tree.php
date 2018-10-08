@@ -11,4 +11,5 @@ return [
 
     'tabla_porcentaje_seleccionados' => 'Selected',
 
+
 ];

@@ -442,7 +442,7 @@ var cargarActividadesYControlesAlClick = function (rgo_id, cont_id) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
                 // $(".cuerpo_tabla").append('<tr><td class="td_body">' + a.cont_nombre_es + '</td><td class="td_body">' + a.cont_detalles_es + '</td></tr>');
-                $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objetivo</td><td class='td_cabecera'>Detalles</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
+                $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objetivo</td><td class='td_cabecera'>@lang('tree.tabla_controles_detalles')</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
             });
         } else {// Si el array "data" recibido esta vacia
             $(".cuerpo_tabla").append("<p>No se encontraron controles</p>");// Se agrega un <p> señalando que no se encontraron controles
