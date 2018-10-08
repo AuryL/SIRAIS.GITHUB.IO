@@ -12,12 +12,12 @@
                     <form id="form_register" method="POST" action="{{ route('us_modificar') }}">
                     
                         <div id="div_flex_modificar_expediente">
-                            <label class="col-form-label text-md-right">@lang('usuario.instr_modificar')</label>
+                            <label class="col-form-label">@lang('usuario.instr_modificar')</label>   
                             <br> <br> <br>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('usernameSelected') ? ' has-error' : '' }}">
                                 <select id="usernameSelected" name="usernameSelected" class="form-control" onchange="expedienteSelected(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > @lang('usuario.expediente') </option>                               
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_expediente') </option>                               
                                     @foreach($usuarios as $usuario => $value)
                                         <option id="usernameSelected" value="{{ $value->username }}">{{ $value->username }}</option>  
                                     @endforeach  
@@ -52,7 +52,7 @@
                             
                             <!-- Nombre -->
                             <div class="div_register_usernameName">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('usuario.nombre')</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('menu.nombre_min')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus pattern="[A-Za-z]+">
@@ -134,10 +134,10 @@
                             <!-- Perfil -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('per_id') ? ' has-error' : '' }}">
 
-                                <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.perfil')</label>
+                                <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('selects.perfil')</label>
 
                                 <select id="per_id" name="per_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_perfil') </option>                               
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_perfil') </option>                               
                                     @foreach($perfiles as $perfil => $value)
                                         <option value="{{ $value->per_id }}">{{ $value->per_nombre_es }}</option>  
                                     @endforeach  
@@ -153,10 +153,10 @@
                             <!-- Dominio -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.dominio')</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <select id="dom_id" name="dom_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_dominio') </option>
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
                                     @foreach($dominios as $dominio => $value)
                                         <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
                                     @endforeach                           
@@ -202,7 +202,7 @@
                         <div id="div_flex">
                             <!-- Estado -->
                             <div class="div_register_usernameName">
-                                <label for="us_estado" class="col-md-4 col-form-label text-md-right">@lang('usuario.activo')</label>
+                                <label for="us_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                 <div class="div_register_usernameName">
                                     <input type="checkbox" value="1" id="us_estado" name="us_estado">
@@ -214,16 +214,18 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        
-
-                        <div id="div_boton_registrar" class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button id="boton_modificar" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
-                                    @lang('boton.boton_modificar')
-                                </button>
+                            
+                            <!-- Boton -->
+                            <div id="div_boton_registrar" class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <br>
+                                    <button id="boton_modificar" onclick="validar()" type="submit" class="btn btn-primary" disabled="true">
+                                        @lang('boton.boton_modificar')
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -12,6 +12,7 @@
 */
 
 Route::group(['middleware' => ['web']], function () {
+    
     // AUTENTICACION 
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -100,5 +101,4 @@ Route::group(['middleware' => ['web']], function () {
     })->where([
         'lang' => 'en|es'
     ]);
-
 });

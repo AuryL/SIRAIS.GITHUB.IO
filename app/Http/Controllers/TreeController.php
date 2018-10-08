@@ -36,14 +36,18 @@ class TreeController extends Controller
     {        
         $user = Auth::user();
 
-        $dominios = Dominio::all();
-        $procesos = Proceso::all();
-        $subprocesos = Subproceso::all();
-        $riesgos = Riesgo::all();
-        $controls = Control::all();
-        $actividads = Actividad::all();
+        $lenguaje =Session::has('locale');
 
-        return view('/tree/tree', ['dominios' => $dominios, 'procesos' => $procesos, 'subprocesos' => $subprocesos, 'riesgos' => $riesgos, 'controls' => $controls, 'actividads' => $actividads]);
+        echo($lenguaje);
+
+        // $dominios = Dominio::all();
+        // $procesos = Proceso::all();
+        // $subprocesos = Subproceso::all();
+        // $riesgos = Riesgo::all();
+        // $controls = Control::all();
+        // $actividads = Actividad::all();
+
+        // return view('/tree/tree', ['dominios' => $dominios, 'procesos' => $procesos, 'subprocesos' => $subprocesos, 'riesgos' => $riesgos, 'controls' => $controls, 'actividads' => $actividads]);
     }
 
     // 

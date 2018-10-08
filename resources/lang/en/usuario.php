@@ -13,12 +13,6 @@ return [
     'apellidoPat' => 'Last Name: ',
     'apellidoMat' => 'Second Last Name: ',
     'extension' => 'Extension: ',
-    'perfil' => 'Profile: ',
-    'dominio' => 'Domain: ',
-    'activo' => 'Active: ',
-
-    'select_perfil' => 'Profile',
-    'select_dominio' => 'Domain',
-
+    
 
 ];

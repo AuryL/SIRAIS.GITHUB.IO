@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card">
-                <div class="card-header"><strong>{{ __('ALTA SUBPROCESO') }}</strong></div>
+                <div class="card-header"><strong>@lang('subp.titulo_alta')</strong></div>
                 <br>
                 <div class="card-body">
 
@@ -13,11 +13,11 @@
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">
-                            <label class="col-form-label">Como {{ $userPerfil->per_nombre_es }} tienes los permisos para dar de alta Subprocesos. Porfavor complete los campos solicitados correctamente: </label>                            
+                            <label class="col-form-label">@lang('subp.instr_alta', ['perfil' => $userPerfil->per_nombre_en])</label>                            
                             <div id="div_boton_registrar" class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button id="boton_alta" onclick="validarSubp()" type="submit" class="btn btn-primary">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ __('Alta ') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@lang('boton.boton_registrar')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </button>
                                 </div>
                             </div>
@@ -27,10 +27,10 @@
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
-                            <label id="label_dom" for="subp_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
+                            <label id="label_dom" for="subp_nombre_es"><strong>@lang('menu.nombre')</strong></label>
 
                             <div class="div_register_usernameName">
-                                <label for="subp_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
+                                <label for="subp_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="subp_nombre_es" type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus >
@@ -45,7 +45,7 @@
                             
                             <!-- Inglés-->
                             <div class="div_register_usernameName">
-                                <label for="subp_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
+                                <label for="subp_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="subp_nombre_en" type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus >
@@ -62,10 +62,10 @@
                         <!-- **** DETALLES **** -->
                         <div id="div_flex_dom">
                         <!-- Español -->
-                            <label id="label_dom" for="subp_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+                            <label id="label_dom" for="subp_detalles_es"><strong>@lang('menu.detalles')</strong></label>
         
                             <div class="div_register_usernameName">
-                                <label for="subp_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+                                <label for="subp_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
                                     <textarea rows="4" cols="50" id="subp_detalles_es" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus >
@@ -81,7 +81,7 @@
 
                             <!-- Inglés -->
                             <div class="div_register_usernameName">
-                                <label for="subp_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
+                                <label for="subp_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
                                     <textarea rows="4" cols="50" id="subp_detalles_en" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus >
@@ -99,11 +99,11 @@
                         <!-- PROCESO -->
                         <div id="div_flex_modificar_expediente">
                             <div class="div_register_usernameName">
-                                <label for="proceso" class="col-md-4 col-form-label text-md-right">{{ __('Proceso: ') }}</label>
+                                <label for="proceso" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
                                 <div class="div_register_usernameName"> 
                                     <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required>
-                                        <option selected value="0" disabled="disabled" > Proceso </option>                               
+                                        <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
                                         @foreach($procs as $proc => $value)
                                             <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
                                         @endforeach  
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">{{ __(' Dominio: ') }}</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >

@@ -30,11 +30,16 @@ class UserController extends Controller
     {
         $user = Auth::user();
         
+        $userPerfil = \DB::table('perfils')
+        ->select('perfils.*')
+        ->where('perfils.per_id','=',$user->per_id)
+        ->get();
+
         $usuarios = User::all();
         $perfiles = Perfil::all();
         $dominios = Dominio::all();
 
-        return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);
+        return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios, 'userPerfil' => $userPerfil]);
     }
 
 

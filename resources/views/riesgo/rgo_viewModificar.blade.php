@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <!-- <div class="col-md-8"> -->
             <div class="card">
-                <div class="card-header"><strong>{{ __('MODIFICAR RIESGO') }}</strong></div>
+                <div class="card-header"><strong>@lang('riesgo.titulo_modificar')</strong></div>
                 <br>
                 <div class="card-body">
 
@@ -13,12 +13,12 @@
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">
-                            <label class="col-form-label text-md-right">Selecciona el nombre del Subproceso que deseas consultar/modificar: </label>
+                            <label class="col-form-label text-md-right">@lang('riesgo.instr_modificar')</label>
                             <br> <br> <br>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
                                 <select id="riesgo" name="riesgo" class="form-control" onchange="riesgoSelected(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > Riesgo </option>                               
+                                    <option selected value="0" disabled="disabled" >@lang('selects.select_riesgo')</option>                               
                                     @foreach($rgos as $rgo => $value)
                                         <option id="riesgo" value="{{ $value->rgo_id }}">{{ $value->rgo_nombre_es }}</option>  
                                     @endforeach  
@@ -39,10 +39,10 @@
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
-                            <label id="label_dom" for="rgo_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
+                            <label id="label_dom" for="rgo_nombre_es"><strong>@lang('menu.nombre')</strong></label>
 
                             <div class="div_register_usernameName">
-                                <label for="rgo_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
+                                <label for="rgo_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="rgo_nombre_es" type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus  disabled = "false">
@@ -57,7 +57,7 @@
                             
                             <!-- Inglés-->
                             <div class="div_register_usernameName">
-                                <label for="rgo_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
+                                <label for="rgo_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="rgo_nombre_en" type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus  disabled = "false">
@@ -74,10 +74,10 @@
                         <!-- **** DETALLES **** -->
                         <div id="div_flex_dom">
                         <!-- Español -->
-                            <label id="label_dom" for="rgo_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+                            <label id="label_dom" for="rgo_detalles_es"><strong>@lang('menu.detalles')</strong></label>
         
                             <div class="div_register_usernameName">
-                                <label for="rgo_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+                                <label for="rgo_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
                                     <textarea rows="4" cols="50" id="rgo_detalles_es" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  disabled = "false">
@@ -93,7 +93,7 @@
 
                             <!-- Inglés -->
                             <div class="div_register_usernameName">
-                                <label for="rgo_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
+                                <label for="rgo_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
                                     <textarea rows="4" cols="50" id="rgo_detalles_en" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  disabled = "false">
@@ -111,11 +111,11 @@
                         <!-- SUBPROCESO -->
                         <div id="div_flex_modificar_expediente">
                             <div class="div_register_usernameName">
-                                <label for="subproceso" class="col-md-4 col-form-label text-md-right">{{ __('Subproceso: ') }}</label>
+                                <label for="subproceso" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
 
                                 <div class="div_register_usernameName"> 
                                     <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required  disabled = "false">
-                                        <option selected value="0" disabled="disabled" > Subproceso </option>                               
+                                        <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
                                         @foreach($subps as $subp => $value)
                                             <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
                                         @endforeach  
@@ -130,7 +130,7 @@
                             </div>
 
                             <div class="div_register_usernameName">
-                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">{{ __(' Proceso: ') }}</label>
+                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="proc_id" value="{{ old('proc_id') }}" disabled = "false" required autofocus >
@@ -144,7 +144,7 @@
                             </div>
 
                             <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">{{ __(' Dominio: ') }}</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
@@ -161,7 +161,7 @@
                         <div id="div_flex_modificar_expediente">
                         <!-- Estado -->
                             <div class="div_register_usernameName">
-                                <label for="rgo_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+                                <label for="rgo_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                 <div class="div_register_usernameName">
                                     <input type="checkbox" value="1" id="rgo_estado" name="rgo_estado" disabled="true">
@@ -176,8 +176,9 @@
 
                             <div id="div_boton_registrar" class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
+                                    <br>
                                     <button id="boton_modificar" onclick="validarRgo()" type="submit" class="btn btn-primary" disabled="true">
-                                        {{ __('Modificar') }}
+                                        @lang('boton.boton_modificar')
                                     </button>
                                 </div>
                             </div>
@@ -188,7 +189,7 @@
 
                         <!-- /////////////////////////////////////////////////// CONTROLES ///////////////////////////////////////////////////////////// -->
                     <div id="div_block_riesgo">
-                        <div id="div_flex_riesgos_controles"> {{ __('CONTROLES') }}</div>
+                        <div id="div_flex_riesgos_controles"> @lang('menu.controles')</div>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
                         <div id="div_control" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
                             <div id="div_controlSeleccionado" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
@@ -211,10 +212,10 @@
                             <!-- **** NOMBRE **** -->
                             <div id="div_flex_dom">
                                 <!-- Español -->
-                                <label id="label_dom" for="cont_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
+                                <label id="label_dom" for="cont_nombre_es"><strong>@lang('menu.nombre')</strong></label>
 
                                 <div class="div_register_usernameName">
-                                    <label for="cont_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
+                                    <label for="cont_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
                                         <input id="cont_nombre_es" type="text" class="form-control{{ $errors->has('cont_nombre_es') ? ' is-invalid' : '' }}" name="cont_nombre_es" value="{{ old('cont_nombre_es') }}"  required autofocus disabled="true" >
@@ -230,7 +231,7 @@
                                 
                                 <!-- Inglés-->
                                 <div class="div_register_usernameName">
-                                    <label for="cont_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
+                                    <label for="cont_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
                                         <input id="cont_nombre_en" type="text" class="form-control{{ $errors->has('cont_nombre_en') ? ' is-invalid' : '' }}" name="cont_nombre_en" value="{{ old('cont_nombre_en') }}"  required autofocus disabled="true">
@@ -251,7 +252,7 @@
                                 <label id="label_dom" for="cont_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
             
                                 <div class="div_register_usernameName">
-                                    <label for="cont_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+                                    <label for="cont_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
                                         <textarea rows="4" cols="50" id="cont_detalles_es" type="text" class="form-control{{ $errors->has('cont_detalles_es') ? ' is-invalid' : '' }}" name="cont_detalles_es" value="{{ old('cont_detalles_es') }}" required autofocus disabled="true">
@@ -268,7 +269,7 @@
 
                                 <!-- Inglés -->
                                 <div class="div_register_usernameName">
-                                    <label for="cont_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
+                                    <label for="cont_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
                                         <textarea rows="4" cols="50" id="cont_detalles_en" class="form-control{{ $errors->has('cont_detalles_en') ? ' is-invalid' : '' }}" name="cont_detalles_en" value="{{ old('cont_detalles_en') }}" required autofocus disabled="true">
@@ -287,7 +288,7 @@
                             <!-- Estado -->
                             <div id="div_flex_modificar_expediente">
                                 <div class="div_register_usernameName">
-                                    <label for="cont_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+                                    <label for="cont_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                     <div class="div_register_usernameName">
                                         <input type="checkbox" value="1" id="cont_estado" name="cont_estado" disabled="true">
@@ -302,7 +303,8 @@
                                 </div>
                                 <div id="div_boton_registrar" class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
-                                        <button id="boton_modificar_control" class="btn btn-primary" disabled="true">Modificar</button>
+                                        <br>
+                                        <button id="boton_modificar_control" class="btn btn-primary" disabled="true">@lang('boton.boton_modificar')</button>
                                         <!-- <input type="submit" id="boton_modificar_control" value="Modificar" class="btn btn-primary" disabled="true"> -->
                                     </div>
                                 </div>
@@ -313,7 +315,7 @@
 
                     <!-- ///////////////////////////////////////// ACTIVIDADES ////////////////////////////////////////// -->
                     <div id="div_block_riesgo">
-                        <div id="div_flex_riesgos_actividades"> {{ __('ACTIVIDADES') }}</div>
+                        <div id="div_flex_riesgos_actividades"> @lang('menu.actividades')</div>
                             <!-- Seleccionar el expediente del usuario que se desea Modificar -->
                         <div id="div_actividad" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
                             <div id="div_actividadSeleccionado" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
@@ -333,10 +335,10 @@
                             <!-- **** NOMBRE **** -->
                             <div id="div_flex_dom">
                                 <!-- Español -->
-                                <label id="label_dom" for="act_nombre_es"><strong>{{ __('NOMBRE: ') }}</strong></label>
+                                <label id="label_dom" for="act_nombre_es"><strong>@lang('menu.nombre')</strong></label>
 
                                 <div class="div_register_usernameName">
-                                    <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">{{ __(' Español: ') }}</label>
+                                    <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
                                         <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}"  required autofocus disabled="true">
@@ -351,7 +353,7 @@
                                 
                                 <!-- Inglés-->
                                 <div class="div_register_usernameName">
-                                    <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">{{ __(' Inglés: ') }}</label>
+                                    <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
                                         <input id="act_nombre_en" type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
@@ -371,7 +373,7 @@
                                 <label id="label_dom" for="act_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
 
                                 <div class="div_register_usernameName">
-                                    <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">{{ __('Español: ') }}</label>
+                                    <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
                                         <textarea rows="4" cols="50" id="act_detalles_es" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true">
@@ -387,7 +389,7 @@
 
                                 <!-- Inglés -->
                                 <div class="div_register_usernameName">
-                                    <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">{{ __('Inglés: ') }}</label>
+                                    <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
                                         <textarea rows="4" cols="50" id="act_detalles_en" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true">
@@ -405,7 +407,7 @@
                             <!-- Estado -->
                             <div id="div_flex_modificar_expediente">
                                 <div class="div_register_usernameName">
-                                    <label for="act_estado" class="col-md-4 col-form-label text-md-right">{{ __('Activo: ') }}</label>
+                                    <label for="act_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                     <div class="div_register_usernameName">
                                         <input type="checkbox" value="1" id="act_estado" name="act_estado" disabled="true">
@@ -419,8 +421,9 @@
                                 </div>
                                 <div id="div_boton_registrar" class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
+                                        <br>
                                         <button id="boton_modificar_actividad" type="submit" class="btn btn-primary" disabled="true">
-                                            {{ __('Modificar') }}
+                                            @lang('boton.boton_modificar')
                                         </button>
                                     </div>
                                 </div>

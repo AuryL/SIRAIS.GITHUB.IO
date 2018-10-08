@@ -112,12 +112,17 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
 
-        $user = Auth::user();
+        $user = Auth::user();   
+
+        $userPerfil = \DB::table('perfils')
+        ->select('perfils.*')
+        ->where('perfils.per_id','=',$user->per_id)
+        ->first();
 
         $dominios = Dominio::all();
         $perfiles = Perfil::all();
 
-        return view('auth.register')->with(['dominios' => $dominios, 'perfiles' => $perfiles]);
+        return view('auth.register')->with(['$userPerfil' => $userPerfil, 'dominios' => $dominios, 'perfiles' => $perfiles]);
     }
 
 

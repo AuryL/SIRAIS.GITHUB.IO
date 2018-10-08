@@ -12,7 +12,19 @@ return [
     'control' => 'Controls',
     'actividad' => 'Activities',
 
+
     'alta' => 'Create',
     'modificar' => 'Update',
+    
+    'nombre_min' => 'Name: ',
+    'nombre' => 'NAME: ',
+    'detalles' => 'DETAILS: ',
+
+    'espaniol' => 'Spanish: ',
+    'ingles' => 'English: ',
+
+       
+    'controles' => 'CONTROLS',
+    'actividades' => 'ACTIVITIES',
 
 ];

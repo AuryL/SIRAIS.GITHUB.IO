@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#div_tree').jstree({// Funcion que permite colocar los checkbox en el arbol
+        // "languages" : [ "en", "es" ],
         "plugins": ["checkbox"]
     });
 
@@ -61,6 +62,16 @@ $(document).ready(function () {
 
 
 
+    // $("#espaniol").click(function () {
+
+    //     document.getElementById("dom_id").value = valor.dom_id;
+    //     document.getElementById("dom_nombre_es").value = valor.dom_nombre_es;
+    //     document.getElementById("dom_nombre_en").value = valor.dom_nombre_en;
+    //     document.getElementById("dom_detalles_es").value = valor.dom_detalles_es;
+    //     document.getElementById("dom_detalles_en").value = valor.dom_detalles_en;
+
+    // });
+    
 
     //////////////////////////////// TRATANDO DE LLENAR TABLA DE PORCENTAJES Y TABLA DE VISTA PREVIA /////////////////
     $('#div_tree').on('changed.jstree', function (e, data) {
@@ -250,7 +261,6 @@ $(document).ready(function () {
             $(".cuerpo_tabla_vistaPrevia").append('<tr><td class="td_body">' + arrayArrays[j][0] + '</td><td class="td_body">' + arrayArrays[j][1] + '</td><td class="td_body">' + arrayArrays[j][2] + '</td><td class="td_body">' + arrayArrays[j][3] + '</td><td class="td_body">' + arrayArrays[j][4] + '</td><td class="td_body">' + arrayArrays[j][5] + '</td></tr>');
         }
     })
-
 });
 ///////////////////////////// FUNCION QUE ELIMINA LOS ELEMENTOS DUPLICADOS EN UN ARRAY, 
 // Esta funcion es usada aqui arriba
@@ -592,7 +602,7 @@ function prueba(rgo_id) {
 
 
 
-//////////////////////////////////////////////7
+//////////////////////// AGREGAR BARRA DESPLAZADORA A TABLA //////////////////////7
 // Change the selector if needed
 var $table = $('table.tabla_vistaPrevia'),
     $bodyCells = $table.find('tbody tr:first').children(),

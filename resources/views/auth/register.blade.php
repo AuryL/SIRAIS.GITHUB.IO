@@ -8,11 +8,24 @@
                 <div class="card-header"><strong>@lang('usuario.titulo_alta')</strong></div>
                 <br>
                 <div class="card-body">
-                    <label class="col-form-label text-md-right">@lang('usuario.instr_alta')</label>
-                    <br> <br> <br>
+                    <!-- <label class="col-form-label text-md-right">@lang('usuario.instr_alta')</label> -->
+                    <!-- <br> <br> <br> -->
+                    
                     <form id="form_register" method="POST" action="{{ route('register') }}">
                         @csrf
-
+                        <br>
+                        <div id="div_flex_modificar_expediente">
+                            <label class="col-form-label">@lang('usuario.instr_alta')</label>                            
+                            <div id="div_boton_registrar" class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button id="boton_alta_dom" onclick="validar()" type="submit" class="btn btn-primary">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@lang('boton.boton_registrar')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        
                         <div id="div_flex">
                             <!-- Expediente -->
                             <!-- <div class="form-group row"> -->
@@ -32,7 +45,7 @@
                             
                             <!-- Nombre -->
                             <div class="div_register_usernameName">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('usuario.nombre')</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">@lang('menu.nombre_min')</label>
 
                                 <div class="div_register_usernameName">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus pattern="[A-Za-z]+">
@@ -114,10 +127,10 @@
                             <!-- Perfil -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('per_id') ? ' has-error' : '' }}">
 
-                                <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.perfil')</label>
+                                <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('selects.perfil')</label>
 
                                 <select id="per_id" name="per_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_perfil') </option>                               
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_perfil') </option>                               
                                     @foreach($perfiles as $perfil => $value)
                                         <option value="{{ $value->per_id }}">{{ $value->per_nombre_es }}</option>  
                                     @endforeach  
@@ -133,10 +146,10 @@
                             <!-- Dominio -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('usuario.dominio')</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <select id="dom_id" name="dom_id" class="form-control" required>
-                                    <option selected value="0" disabled="disabled" > @lang('usuario.select_dominio') </option>
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
                                     @foreach($dominios as $dominio => $value)
                                         <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
                                     @endforeach                           
@@ -177,13 +190,13 @@
                             </div> -->
                         <!-- </div> -->
 
-                        <div id="div_boton_registrar" class="form-group row mb-0">
+                        <!-- <div id="div_boton_registrar" class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button onclick="validar()" type="submit" class="btn btn-primary">
                                     @lang('boton.boton_registrar')
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
