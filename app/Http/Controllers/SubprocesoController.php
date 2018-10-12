@@ -30,10 +30,39 @@ class SubprocesoController extends Controller
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
 
-        $procs = Proceso::all();
-        $subps = Subproceso::all();
+        // $procs = Proceso::all();
+        // $subps = Subproceso::all();
+        $idioma = app()->getLocale();
+
+        if($idioma == "es"){
+
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();            
+
+            return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
+
+
+        }else{
+            if($idioma == "en"){
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
+
+            }
+        }
         
-        return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
+        // return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
     }
 
 

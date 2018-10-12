@@ -71,7 +71,7 @@ $(document).ready(function () {
     //     document.getElementById("dom_detalles_en").value = valor.dom_detalles_en;
 
     // });
-    
+
 
     //////////////////////////////// TRATANDO DE LLENAR TABLA DE PORCENTAJES Y TABLA DE VISTA PREVIA /////////////////
     $('#div_tree').on('changed.jstree', function (e, data) {
@@ -180,23 +180,50 @@ $(document).ready(function () {
 
             if (data && data.length > 0) { // Verificar que no esta vacia "data"
                 // Lleamos los array con la informacion obtenida de la DB
-                for (let j in data[0]) {
-                    dominiosTotales.push(data[0][j].dom_nombre_es);
-                }
-                for (let j in data[1]) {
-                    procesosTotales.push(data[1][j].proc_nombre_es);
-                }
-                for (let j in data[2]) {
-                    subprocesosTotales.push(data[2][j].subp_nombre_es);
-                }
-                for (let j in data[3]) {
-                    riesgosTotales.push(data[3][j].rgo_nombre_es);
-                }
-                for (let j in data[4]) {
-                    controlesTotales.push(data[4][j].cont_nombre_es);
-                }
-                for (let j in data[5]) {
-                    actividadesTotales.push(data[5][j].act_nombre_es);
+
+                var idioma = document.getElementById("idioma").value;
+                console.log(idioma);
+                if (idioma == "es") {
+                    // document.getElementById("dominio");
+                    for (let j in data[0]) {
+                        dominiosTotales.push(data[0][j].dom_nombre_es);
+                    }
+                    for (let j in data[1]) {
+                        procesosTotales.push(data[1][j].proc_nombre_es);
+                    }
+                    for (let j in data[2]) {
+                        subprocesosTotales.push(data[2][j].subp_nombre_es);
+                    }
+                    for (let j in data[3]) {
+                        riesgosTotales.push(data[3][j].rgo_nombre_es);
+                    }
+                    for (let j in data[4]) {
+                        controlesTotales.push(data[4][j].cont_nombre_es);
+                    }
+                    for (let j in data[5]) {
+                        actividadesTotales.push(data[5][j].act_nombre_es);
+                    }
+                } else {
+                    if (idioma == "en") {
+                        for (let j in data[0]) {
+                            dominiosTotales.push(data[0][j].dom_nombre_en);
+                        }
+                        for (let j in data[1]) {
+                            procesosTotales.push(data[1][j].proc_nombre_en);
+                        }
+                        for (let j in data[2]) {
+                            subprocesosTotales.push(data[2][j].subp_nombre_en);
+                        }
+                        for (let j in data[3]) {
+                            riesgosTotales.push(data[3][j].rgo_nombre_en);
+                        }
+                        for (let j in data[4]) {
+                            controlesTotales.push(data[4][j].cont_nombre_en);
+                        }
+                        for (let j in data[5]) {
+                            actividadesTotales.push(data[5][j].act_nombre_en);
+                        }
+                    }
                 }
                 console.log("dominiosTotales", dominiosTotales);
                 console.log("procesosTotales", procesosTotales);
@@ -221,32 +248,45 @@ $(document).ready(function () {
                 console.log("actividadesSinDuplicar", actividadesSinDuplicar);
 
 
+
                 ////////////////////// Se calcula el promedio con los elementos totales y los elementos seleccionados en el tree, segun sea el caso
                 var numeroDouble = (dominiosSinDuplicar.length * 100) / dominiosTotales.length;
                 var porcentajeDominios = numeroDouble.toFixed(2);
-                $("#dominio").append("<td class='td_body'>Dominio</td><td class='td_body' id='total'>" + dominiosTotales.length + "</td><td class='td_body' id='seleccionados'>" + dominiosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeDominios + "% </td>");
 
                 numeroDouble = (procesosSinDuplicar.length * 100) / procesosTotales.length;
                 var porcentajeProcesos = numeroDouble.toFixed(2);
-                $("#proceso").append("<td class='td_body'>Proceso</td><td class='td_body' id='total'>" + procesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + procesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeProcesos + "% </td>");
 
                 numeroDouble = (subprocesosSinDuplicar.length * 100) / subprocesosTotales.length;
                 var porcentajeSubprocesos = numeroDouble.toFixed(2);
-                $("#subproceso").append("<td class='td_body'>Subproceso</td><td class='td_body' id='total'>" + subprocesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + subprocesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeSubprocesos + "% </td>");
 
                 numeroDouble = (riesgosSinDuplicar.length * 100) / riesgosTotales.length;
                 var porcentajeRiesgos = numeroDouble.toFixed(2);
-                $("#riesgo").append("<td class='td_body'>Riesgo</td><td class='td_body' id='total'>" + riesgosTotales.length + "</td><td class='td_body' id='seleccionados'>" + riesgosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeRiesgos + "% </td>");
 
                 numeroDouble = (controlesSinDuplicar.length * 100) / controlesTotales.length;
                 var porcentajeControles = numeroDouble.toFixed(2);
-                $("#control").append("<td class='td_body'>Control</td><td class='td_body' id='total'>" + controlesTotales.length + "</td><td class='td_body' id='seleccionados'>" + controlesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeControles + "% </td>");
 
                 numeroDouble = (actividadesSinDuplicar.length * 100) / actividadesTotales.length;
                 var porcentajeActividades = numeroDouble.toFixed(2);
-                $("#actividad").append("<td class='td_body'>Actividad</td><td class='td_body' id='total'>" + actividadesTotales.length + "</td><td class='td_body' id='seleccionados'>" + actividadesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeActividades + "% </td>");
 
 
+                if (idioma == "es") {
+                    $("#dominio").append("<td class='td_body'<strong>Dominio</strong></td><td class='td_body' id='total'>" + dominiosTotales.length + "</td><td class='td_body' id='seleccionados'>" + dominiosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeDominios + "% </td>");
+                    $("#proceso").append("<td class='td_body'>Proceso</td><td class='td_body' id='total'>" + procesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + procesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeProcesos + "% </td>");
+                    $("#subproceso").append("<td class='td_body'>Subproceso</td><td class='td_body' id='total'>" + subprocesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + subprocesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeSubprocesos + "% </td>");
+                    $("#riesgo").append("<td class='td_body'>Riesgo</td><td class='td_body' id='total'>" + riesgosTotales.length + "</td><td class='td_body' id='seleccionados'>" + riesgosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeRiesgos + "% </td>");
+                    $("#control").append("<td class='td_body'>Control</td><td class='td_body' id='total'>" + controlesTotales.length + "</td><td class='td_body' id='seleccionados'>" + controlesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeControles + "% </td>");
+                    $("#actividad").append("<td class='td_body'>Actividad</td><td class='td_body' id='total'>" + actividadesTotales.length + "</td><td class='td_body' id='seleccionados'>" + actividadesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeActividades + "% </td>");
+
+                } else {
+                    if (idioma == "en") {
+                        $("#dominio").append("<td class='td_body'>Domain</td><td class='td_body' id='total'>" + dominiosTotales.length + "</td><td class='td_body' id='seleccionados'>" + dominiosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeDominios + "% </td>");
+                        $("#proceso").append("<td class='td_body'>Process</td><td class='td_body' id='total'>" + procesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + procesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeProcesos + "% </td>");
+                        $("#subproceso").append("<td class='td_body'>Subprocess</td><td class='td_body' id='total'>" + subprocesosTotales.length + "</td><td class='td_body' id='seleccionados'>" + subprocesosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeSubprocesos + "% </td>");
+                        $("#riesgo").append("<td class='td_body'>Risk</td><td class='td_body' id='total'>" + riesgosTotales.length + "</td><td class='td_body' id='seleccionados'>" + riesgosSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeRiesgos + "% </td>");
+                        $("#control").append("<td class='td_body'>Control</td><td class='td_body' id='total'>" + controlesTotales.length + "</td><td class='td_body' id='seleccionados'>" + controlesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeControles + "% </td>");
+                        $("#actividad").append("<td class='td_body'>Activity</td><td class='td_body' id='total'>" + actividadesTotales.length + "</td><td class='td_body' id='seleccionados'>" + actividadesSinDuplicar.length + "</td><td class='td_body' id='porcentaje'>" + porcentajeActividades + "% </td>");
+                    }
+                }
 
 
             } else { // Si el array "data" recibido esta vacia
@@ -443,6 +483,8 @@ var cargarActividadesYControlesAlClick = function (rgo_id, cont_id) {
     console.log('cargarActividades');
     console.log("rgo_id: " + rgo_id);
     console.log("cont_id: " + cont_id);
+    var idioma = document.getElementById("idioma").value;
+
     /////////////////////////// CONTROLES ///////////////////////////
     $.get("http://127.0.0.1:8000/api/cargar_controles/" + rgo_id, function (data) {// Se direcciona a la url especificada (api.php)
         // Posteriormente, recibe el resultado de la petición, que es data
@@ -452,7 +494,13 @@ var cargarActividadesYControlesAlClick = function (rgo_id, cont_id) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
                 // $(".cuerpo_tabla").append('<tr><td class="td_body">' + a.cont_nombre_es + '</td><td class="td_body">' + a.cont_detalles_es + '</td></tr>');
-                $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objetivo</td><td class='td_cabecera'>@lang('tree.tabla_controles_detalles')</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
+                if (idioma == "es") {
+                    $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objetivo</td><td class='td_cabecera'>Detalles</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_es + "</td><td class='td_body'>" + a.cont_detalles_es + "</td></tr></tbody></table><h6><strong>ACTIVIDADES ASOCIADAS</strong></h6><div id='div_actividades'></div>");
+                } else {
+                    if (idioma == "en") {
+                        $("#div_controles").append("<table class='tabla_controles' border='1'><thead class='cabecera_tabla'><tr><td class='td_cabecera'>Objective</td><td class='td_cabecera'>Details</td></tr></thead><tbody class='cuerpo_tabla'><tr><td class='td_body'>" + a.cont_nombre_en + "</td><td class='td_body'>" + a.cont_detalles_en + "</td></tr></tbody></table><h6><strong>ASSOCIATED ACTIVITIES</strong></h6><div id='div_actividades'></div>");
+                    }
+                }
             });
         } else {// Si el array "data" recibido esta vacia
             $(".cuerpo_tabla").append("<p>No se encontraron controles</p>");// Se agrega un <p> señalando que no se encontraron controles
@@ -466,7 +514,15 @@ var cargarActividadesYControlesAlClick = function (rgo_id, cont_id) {
         $("#div_actividades").empty(); // Elimina el contenido del elemento #div_actividades
         if (data && data.length > 0) { // Verificar que no esta vacia "data"
             data.forEach(function (a) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                $("#div_actividades").append('<p>' + a.act_nombre_es + '</p>'); // Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
+
+                if (idioma == "es") {
+                    $("#div_actividades").append('<p>' + a.act_nombre_es + '</p>'); // Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"
+                } else {
+                    if (idioma == "en") {
+                        $("#div_actividades").append('<p>' + a.act_nombre_en + '</p>'); // Se agrega un <p> en el elemento #div_actividades, por cada elemento del array "data"                    }
+                    }
+                }
+
             });
         } else { // Si el array "data" recibido esta vacia
             $("#div_actividades").append("<p>No se encontraron actividades</p>"); // Se agrega un <p> señalando que no se encontraron actividades

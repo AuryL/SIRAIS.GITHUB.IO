@@ -19,7 +19,13 @@
                                 <select id="proceso" name="proceso" class="form-control" onchange="procesoSelected(this.value)" required>
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
                                     @foreach($procs as $proc => $value)
-                                        <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+
+                                        @if($idioma == "es")
+                                            <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+                                        @elseif($idioma == "en")
+                                            <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_en }}</option>  
+                                        @endif
+
                                     @endforeach  
                                 </select>
                                 <br>
@@ -132,7 +138,13 @@
                                 <select id="dom_id" name="dom_id" class="form-control" required>
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
                                     @foreach($doms as $dom => $value)
-                                        <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
+
+                                        @if($idioma == "es")
+                                            <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
+                                        @elseif($idioma == "en")
+                                            <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_en }}</option>  
+                                        @endif
+
                                     @endforeach                           
                                                                     
                                 </select>

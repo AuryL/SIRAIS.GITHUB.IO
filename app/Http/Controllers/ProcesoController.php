@@ -23,15 +23,38 @@ class ProcesoController extends Controller
        public function viewProceso () {
 
             $user = Auth::user();    
+            $idioma = app()->getLocale();
 
             $userPerfil = \DB::table('perfils')
             ->select('perfils.*')
             ->where('perfils.per_id','=',$user->per_id)
             ->first();
 
-            $doms = Dominio::all();
+            // $doms = Dominio::all();
+            if($idioma == "es"){
+
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+    
+                return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+    
+            }else{
+                if($idioma == "en"){
+                    $doms = \DB::table('dominios')
+                    ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                    ->get();
+        
+    
+                    return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+    
+                    
+                }
+            }
+
             
-            return view('/proceso/proc_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+            // return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
     }
 
 
@@ -41,13 +64,29 @@ class ProcesoController extends Controller
     public function altaProceso () {
         
         $user = Auth::user();    
+        $idioma = app()->getLocale();
 
         $userPerfil = \DB::table('perfils')
         ->select('perfils.*')
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
 
-        $doms = Dominio::all();
+        // $doms = Dominio::all();
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+                   
+            }
+        }
 
         $rules = array(
             'proc_nombre_es' => 'required|string|max:45',
@@ -76,7 +115,7 @@ class ProcesoController extends Controller
             Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/proceso/proc_viewAlta');
             return Redirect::to('home');
-            // return view('/proceso/proc_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+            // return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
         }
     }
 
@@ -89,10 +128,39 @@ class ProcesoController extends Controller
 
         $user = Auth::user();        
 
-        $procs = Proceso::all();
-        $doms = Dominio::all();
+        // $procs = Proceso::all();
+        // $doms = Dominio::all();
+        $idioma = app()->getLocale();
 
-        return view('/proceso/proc_viewModificar', ['user' => $user, 'procs' => $procs, 'doms' => $doms]);
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();            
+
+            return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
+
+            }
+        }
+
+        // return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
     }
 
 

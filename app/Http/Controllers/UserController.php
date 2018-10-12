@@ -36,10 +36,40 @@ class UserController extends Controller
         ->get();
 
         $usuarios = User::all();
-        $perfiles = Perfil::all();
-        $dominios = Dominio::all();
+        // $perfiles = Perfil::all();
+        // $dominios = Dominio::all();
 
-        return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios, 'userPerfil' => $userPerfil]);
+        
+        // echo(app()->getLocale());
+        $idioma = app()->getLocale();
+
+        if($idioma == "es"){
+
+            $dominios = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $perfiles = \DB::table('perfils')
+            ->select('perfils.per_id', 'perfils.per_nombre_es', 'perfils.per_descripcion_es', 'perfils.per_estado', 'created_at', 'updated_at')
+            ->get();
+
+            return view('user/us_viewModificar', ['usuarios' => $usuarios, 'idioma' => $idioma, 'perfiles' => $perfiles, 'dominios' => $dominios, 'userPerfil' => $userPerfil]);          
+
+        }else{
+            if($idioma == "en"){
+                $dominios = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $perfiles = \DB::table('perfils')
+                ->select('perfils.per_id', 'perfils.per_nombre_en', 'perfils.per_descripcion_en', 'perfils.per_estado', 'created_at', 'updated_at')
+                ->get();
+
+                return view('user/us_viewModificar', ['usuarios' => $usuarios, 'idioma' => $idioma, 'perfiles' => $perfiles, 'dominios' => $dominios, 'userPerfil' => $userPerfil]);
+
+                
+            }
+        }
     }
 
 

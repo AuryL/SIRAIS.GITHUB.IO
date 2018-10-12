@@ -6,64 +6,123 @@
             <div class="card-header">@lang('menu.arbol')</div>
 
                 <div class="card-body">
-
                     <div id="div_flex_tree">
                         <div id="div_block_tree">
                             <p>@lang('tree.instr1')</p>
-                            <div id="div_tree">
-                                <ul class="tree_menu">
-                                    @foreach($dominios as $dominio => $value1) <!-- Dominio -->
-                                        <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_es }} 
-                                            <ul>
-                                            @foreach($procesos as $proceso => $value2) <!-- Proceso -->
-                                                @if($value1->dom_id == $value2->dom_id)
-                                                    <li>{{ $value2->proc_nombre_es }}
-                                                        <ul>
-                                                            @foreach($subprocesos as $subproceso => $value3) <!-- Subproceso -->
-                                                                @if($value2->proc_id == $value3->proc_id)
-                                                                    <li>{{ $value3->subp_nombre_es }}
-                                                                        <ul>
-                                                                            @foreach($riesgos as $riesgo => $value4) <!-- Riesgo -->
-                                                                                @if($value3->subp_id == $value4->subp_id)
-                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
-                                                                                    <!-- La funcion esta en el archivo tree.js -->
-                                                                                    <li>{{ $value4->rgo_nombre_es }}
-                                                                                        <ul>
-                                                                                            @foreach($controls as $control => $value5) <!-- Riesgo -->
-                                                                                                @if($value4->rgo_id == $value5->rgo_id)
-                                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
-                                                                                                    <!-- La funcion esta en el archivo tree.js -->
-                                                                                                    <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}" onclick="cargarActividadesYControlesAlClick(this.attributes['name'].value, this.value)">{{ $value5->cont_nombre_es }}
-                                                                                                        <ul>
-                                                                                                            @foreach($actividads as $actividad => $value6) <!-- Riesgo -->
-                                                                                                                @if($value5->cont_id == $value6->cont_id)
-                                                                                                                    <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
-                                                                                                                    <!-- La funcion esta en el archivo tree.js -->
-                                                                                                                    <li>{{ $value6->act_nombre_es }}</li>
-                                                                                                                @endif
-                                                                                                            @endforeach
-                                                                                                        </ul>
-                                                                                                    </li>
-                                                                                                @endif
-                                                                                            @endforeach
-                                                                                        </ul>                                                                                    
-                                                                                    </li>
-                                                                                @endif
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    </li>
-                                                                @endif
-                                                            @endforeach
-                                                        </ul>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                            <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
+                            @if($idioma == 'es')
+                                <div id="div_tree">
+                                    <ul class="tree_menu">
+                                        @foreach($dominios as $dominio => $value1) <!-- Dominio -->
+                                            <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_es }} 
+                                                <ul>
+                                                @foreach($procesos as $proceso => $value2) <!-- Proceso -->
+                                                    @if($value1->dom_id == $value2->dom_id)
+                                                        <li>{{ $value2->proc_nombre_es }}
+                                                            <ul>
+                                                                @foreach($subprocesos as $subproceso => $value3) <!-- Subproceso -->
+                                                                    @if($value2->proc_id == $value3->proc_id)
+                                                                        <li>{{ $value3->subp_nombre_es }}
+                                                                            <ul>
+                                                                                @foreach($riesgos as $riesgo => $value4) <!-- Riesgo -->
+                                                                                    @if($value3->subp_id == $value4->subp_id)
+                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                        <li>{{ $value4->rgo_nombre_es }}
+                                                                                            <ul>
+                                                                                                @foreach($controls as $control => $value5) <!-- Riesgo -->
+                                                                                                    @if($value4->rgo_id == $value5->rgo_id)
+                                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                                        <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}" onclick="cargarActividadesYControlesAlClick(this.attributes['name'].value, this.value)">{{ $value5->cont_nombre_es }}
+                                                                                                            <ul>
+                                                                                                                @foreach($actividads as $actividad => $value6) <!-- Riesgo -->
+                                                                                                                    @if($value5->cont_id == $value6->cont_id)
+                                                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                                                        <li>{{ $value6->act_nombre_es }}</li>
+                                                                                                                    @endif
+                                                                                                                @endforeach
+                                                                                                            </ul>
+                                                                                                        </li>
+                                                                                                    @endif
+                                                                                                @endforeach
+                                                                                            </ul>                                                                                    
+                                                                                        </li>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </li>
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @elseif($idioma == 'en')
+                                <div id="div_tree">
+                                    <ul class="tree_menu">
+                                        @foreach($dominios as $dominio => $value1) <!-- Dominio -->
+                                            <li data-jstree='{"opened":false}'>{{ $value1->dom_nombre_en }} 
+                                                <ul>
+                                                @foreach($procesos as $proceso => $value2) <!-- Proceso -->
+                                                    @if($value1->dom_id == $value2->dom_id)
+                                                        <li>{{ $value2->proc_nombre_en }}
+                                                            <ul>
+                                                                @foreach($subprocesos as $subproceso => $value3) <!-- Subproceso -->
+                                                                    @if($value2->proc_id == $value3->proc_id)
+                                                                        <li>{{ $value3->subp_nombre_en }}
+                                                                            <ul>
+                                                                                @foreach($riesgos as $riesgo => $value4) <!-- Riesgo -->
+                                                                                    @if($value3->subp_id == $value4->subp_id)
+                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                        <li>{{ $value4->rgo_nombre_en }}
+                                                                                            <ul>
+                                                                                                @foreach($controls as $control => $value5) <!-- Riesgo -->
+                                                                                                    @if($value4->rgo_id == $value5->rgo_id)
+                                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                                        <li value="{{ $value5 -> cont_id }}" name="{{ $value4 -> rgo_id }}" onclick="cargarActividadesYControlesAlClick(this.attributes['name'].value, this.value)">{{ $value5->cont_nombre_en }}
+                                                                                                            <ul>
+                                                                                                                @foreach($actividads as $actividad => $value6) <!-- Riesgo -->
+                                                                                                                    @if($value5->cont_id == $value6->cont_id)
+                                                                                                                        <!-- Funcion cargarActividadesYControles, que por medio del rgo_id, selecciona las actividades y controles correspondientes a dicho riesgo -->
+                                                                                                                        <!-- La funcion esta en el archivo tree.js -->
+                                                                                                                        <li>{{ $value6->act_nombre_en }}</li>
+                                                                                                                    @endif
+                                                                                                                @endforeach
+                                                                                                            </ul>
+                                                                                                        </li>
+                                                                                                    @endif
+                                                                                                @endforeach
+                                                                                            </ul>                                                                                    
+                                                                                        </li>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </li>
+                                                                    @endif
+                                                                @endforeach
+                                                            </ul>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                                </ul>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
+
+
+
                         <div id="div_block">
                             <h6>@lang('tree.instr2')</h6>
                             <div id="div_block_tabla_controles">

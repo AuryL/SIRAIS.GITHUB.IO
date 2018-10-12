@@ -81,9 +81,31 @@ class DominioController extends Controller
 
         $user = Auth::user();        
 
-        $doms = Dominio::all();
+        // $doms = Dominio::all();
+         // echo(app()->getLocale());
+         $idioma = app()->getLocale();
 
-        return view('/dominio/dom_viewModificar', ['user' => $user, 'doms' => $doms]);
+         if($idioma == "es"){
+ 
+             $doms = \DB::table('dominios')
+             ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+             ->get();
+ 
+             return view('/dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms]);
+ 
+         }else{
+             if($idioma == "en"){
+                 $doms = \DB::table('dominios')
+                 ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                 ->get();
+ 
+                 return view('/dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms]);
+ 
+                 
+             }
+         }
+
+        // return view('/dominio/dom_viewModificar', ['user' => $user, 'doms' => $doms]);
     }
 
 
@@ -91,6 +113,11 @@ class DominioController extends Controller
 
     // 
     public function modificar () {
+
+        
+        $user = Auth::user(); 
+        $idioma = app()->getLocale();
+
         // validate
         $rules = array(
             'dom_nombre_es' => 'required|string|max:45',
@@ -129,10 +156,34 @@ class DominioController extends Controller
             }
             $dom->save();
 
+
+            // echo(app()->getLocale());
+            $idioma = app()->getLocale();
+
+            if($idioma == "es"){
+    
+                $dominios = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                return view('dominios/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'dominio' => $dominio, 'dom' => $dom]);
+    
+            }else{
+                if($idioma == "en"){
+                    $dominios = \DB::table('dominios')
+                    ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                    ->get();
+    
+                    return view('dominios/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'dominio' => $dominio, 'dom' => $dom]);
+    
+                    
+                }
+            }
+
             // // redirect
             Session::flash('message', 'Successfully updated nerd!');
-            return Redirect::to('/dominio/dom_viewModificar');
+            // return Redirect::to('/dominio/dom_viewModificar');
         }
-        return view('dominios/dom_viewModificar', ['dominio' => $dominio, 'dom' => $dom]);
+        // return view('dominios/dom_viewModificar', ['dominio' => $dominio, 'dom' => $dom]);
     }
 }

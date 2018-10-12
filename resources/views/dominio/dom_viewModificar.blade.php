@@ -19,7 +19,13 @@
                                 <select id="dominio" name="dominio" class="form-control" onchange="dominioSelected(this.value)" required>
                                     <option selected value="0" disabled="disabled" >@lang('selects.select_dominio')</option>                               
                                     @foreach($doms as $dom => $value)
-                                        <option id="dominio" value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
+
+                                        @if($idioma == "es")
+                                            <option id="dominio" value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
+                                        @elseif($idioma == "en")
+                                            <option id="dominio" value="{{ $value->dom_id }}">{{ $value->dom_nombre_en }}</option>  
+                                        @endif
+                                        
                                     @endforeach  
                                 </select>
                                 @if ($errors->has('dominio'))

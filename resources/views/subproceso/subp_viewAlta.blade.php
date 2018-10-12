@@ -105,7 +105,13 @@
                                     <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required>
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
                                         @foreach($procs as $proc => $value)
-                                            <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+
+                                            @if($idioma == "es")
+                                                <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+                                            @elseif($idioma == "en")
+                                                <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_en }}</option>  
+                                            @endif
+
                                         @endforeach  
                                     </select>
                                     <br>
