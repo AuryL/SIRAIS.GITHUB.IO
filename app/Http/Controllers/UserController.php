@@ -91,7 +91,7 @@ class UserController extends Controller
             // 'dom_id' => 'required|integer|max:15',
             // 'password' => 'required|string|min:6|confirmed',  
         );
-        
+
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login

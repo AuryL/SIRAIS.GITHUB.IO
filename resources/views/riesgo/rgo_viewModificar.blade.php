@@ -263,7 +263,7 @@
                             <!-- **** DETALLES **** -->
                             <div id="div_flex_dom">
                             <!-- Español -->
-                                <label id="label_dom" for="cont_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+                                <label id="label_dom" for="cont_detalles_es"><strong>@lang('menu.detalles')</strong></label>
             
                                 <div class="div_register_usernameName">
                                     <label for="cont_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
@@ -355,7 +355,7 @@
                                     <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}"  required autofocus disabled="true">
+                                        <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}" placeholder="Nombre" required autofocus disabled="true">
 
                                         @if ($errors->has('act_nombre_es'))
                                             <span class="invalid-feedback" role="alert">
@@ -384,7 +384,7 @@
                             <!-- **** DETALLES **** -->
                             <div id="div_flex_dom">
                             <!-- Español -->
-                                <label id="label_dom" for="act_detalles_es"><strong>{{ __('DETALLES: ') }}</strong></label>
+                                <label id="label_dom" for="act_detalles_es"><strong>@lang('menu.detalles')</strong></label>
 
                                 <div class="div_register_usernameName">
                                     <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>

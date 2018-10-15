@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+// use Illuminate\Support\MessageBag;
 
 use Auth;
 use Redirect;
@@ -70,7 +71,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:45',
             'us_apellidopat' => 'required|string|max:45',
             'us_apellidomat' => 'required|string|max:45',
-            // 'us_extension' => 'required|digits:value',
+            // 'us_extension' => 'required|number',
             'email' => 'required|string|email|max:255|unique:users',
             'per_id' => 'required|integer|max:15',
             'dom_id' => 'required|integer|max:15',
