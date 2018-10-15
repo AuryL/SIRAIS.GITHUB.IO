@@ -70,7 +70,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:45',
             'us_apellidopat' => 'required|string|max:45',
             'us_apellidomat' => 'required|string|max:45',
-            // 'us_extension' => 'required|integer',
+            // 'us_extension' => 'required|digits:value',
             'email' => 'required|string|email|max:255|unique:users',
             'per_id' => 'required|integer|max:15',
             'dom_id' => 'required|integer|max:15',

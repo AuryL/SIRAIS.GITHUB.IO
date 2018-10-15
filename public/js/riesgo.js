@@ -259,8 +259,8 @@ $(document).ready(function () {
 
 
 //////////////////////////////////////////////////
-var domSubproceso = function (proceso) {
-    console.log('domSubproceso');
+var domSubproceso_riesgo = function (proceso) {
+    console.log('domSubproceso_riesgo');
     console.log("PROCESO: " + proceso);
     var dom_id = "";
 
@@ -273,13 +273,22 @@ var domSubproceso = function (proceso) {
                 dom_id = valor.dom_id;
                 console.log("dom_id: " + dom_id);
 
+                var idioma = document.getElementById("idioma").value;
+                console.log("idioma: " + idioma);
+
                 $.get("http://127.0.0.1:8000/api/cargar_domId/" + dom_id, function (data2) {// Se direcciona a la url especificada (api.php)
                     // Posteriormente, recibe el resultado de la petición, que es data
 
                     console.log("data2", data2);
                     if (data2 && data2.length > 0) {// Verificar que no esta vacia "data"
                         data2.forEach(function (valor2) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                            document.getElementById("dom_id").value = valor2.dom_nombre_es;
+                            if (idioma == "es") {
+                                document.getElementById("dom_id").value = valor2.dom_nombre_es;
+                            } else {
+                                if (idioma == "en") {
+                                    document.getElementById("dom_id").value = valor2.dom_nombre_en;
+                                }
+                            }
                             document.getElementById("dom_id").disabled = true; // habilitar boton al llenar campos del formulario
                         });
                     } else {// Si el array "data" recibido esta vacia
@@ -314,15 +323,26 @@ var procRiesgo = function (subproceso) {
                 proceso = valor.proc_id;
                 console.log("proceso: " + proceso);
 
+                var idioma = document.getElementById("idioma").value;
+                console.log("idioma: " + idioma);
+
                 $.get("http://127.0.0.1:8000/api/cargar_procId/" + proceso, function (data2) {// Se direcciona a la url especificada (api.php)
                     // Posteriormente, recibe el resultado de la petición, que es data
 
                     console.log("data2", data2);
                     if (data2 && data2.length > 0) {// Verificar que no esta vacia "data"
                         data2.forEach(function (valor2) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                            document.getElementById("proc_id").value = valor2.proc_nombre_es;
+
+                            if (idioma == "es") {
+                                document.getElementById("proc_id").value = valor2.proc_nombre_es;
+                            } else {
+                                if (idioma == "en") {
+                                    document.getElementById("proc_id").value = valor2.proc_nombre_en;
+                                }
+                            }
+
                             document.getElementById("proc_id").disabled = true; // habilitar boton al llenar campos del formulario
-                            domSubproceso(valor2.proc_id);
+                            domSubproceso_riesgo(valor2.proc_id);
 
                         });
                     } else {// Si el array "data" recibido esta vacia
@@ -353,7 +373,20 @@ var contSelect = function (riesgo) {
         $("#control").append("<option selected value='0' disabled='disabled' > Control </option>");
         if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
             data1.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                $("#control").append("<option id='control' value='" + valor.cont_id + "'>" + valor.cont_nombre_es + "</option>");
+                
+                var idioma = document.getElementById("idioma").value;
+                console.log("idioma: " + idioma);
+
+                if (idioma == "es") {
+                    $("#control").append("<option id='control' value='" + valor.cont_id + "'>" + valor.cont_nombre_es + "</option>");
+
+                } else {
+                    if(idioma == "en") {
+                        $("#control").append("<option id='control' value='" + valor.cont_id + "'>" + valor.cont_nombre_en + "</option>");
+
+                    }
+                }
+
             });
         } else {// Si el array "data" recibido esta vacia
             $("#div_controlSeleccionado").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
@@ -427,7 +460,20 @@ var actSelect = function (control) {
         $("#actividad").append("<option selected value='0' disabled='disabled' > Actividad </option>");
         if (data1 && data1.length > 0) {// Verificar que no esta vacia "data"
             data1.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                $("#actividad").append("<option id='actividad' value='" + valor.act_id + "'>" + valor.act_nombre_es + "</option>");
+                
+                var idioma = document.getElementById("idioma").value;
+                console.log("idioma: " + idioma);
+                
+                if (idioma == "es") {
+                    $("#actividad").append("<option id='actividad' value='" + valor.act_id + "'>" + valor.act_nombre_es + "</option>");
+
+                } else {
+                    if(idioma == "en") {
+                        $("#actividad").append("<option id='actividad' value='" + valor.act_id + "'>" + valor.act_nombre_en + "</option>");
+
+                    }
+                }
+
             });
         } else {// Si el array "data" recibido esta vacia
             $("#actividad").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles

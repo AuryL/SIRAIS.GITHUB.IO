@@ -128,10 +128,15 @@ class UserController extends Controller
                 $user->us_estado = 1;
             }
             
-            $user->save();
+            $guardarEnDB = $user->save();
 
             // redirect
             Session::flash('message', 'Successfully updated nerd!');
+
+            if(!$guardarEnDB){
+                App::abort(500, 'Error');
+            }
+
             return Redirect::to('/home');
         }
         // return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);

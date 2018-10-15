@@ -24,11 +24,13 @@ class SubprocesoController extends Controller
     public function viewSubproceso () {
 
         $user = Auth::user();    
+        
 
         $userPerfil = \DB::table('perfils')
         ->select('perfils.*')
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
+
 
         // $procs = Proceso::all();
         // $subps = Subproceso::all();
@@ -78,8 +80,41 @@ class SubprocesoController extends Controller
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
 
-        $procs = Proceso::all();
-        $subp = Subproceso::all();
+        // $procs = Proceso::all();
+        // $subp = Subproceso::all();
+        $idioma = app()->getLocale();
+        
+        if($idioma == "es"){
+
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();        
+            
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get();
+
+        }else{
+            if($idioma == "en"){
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+
+            }
+        }
+
 
         $rules = array(
             'subp_nombre_es' => 'required|string|max:45',
@@ -110,14 +145,14 @@ class SubprocesoController extends Controller
             ->select('perfils.*')
             ->where('perfils.per_id','=',$user->per_id)
             ->first();    
-            $procs = Proceso::all();
-            $subps = Subproceso::all();
+            // $procs = Proceso::all();
+            // $subps = Subproceso::all();
 
             // redirect
             Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/proceso/proc_viewAlta');
             // return Redirect::to('home');
-            return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
+            return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
         }
     }
 
@@ -130,11 +165,45 @@ class SubprocesoController extends Controller
 
         $user = Auth::user();        
 
-        $doms = Dominio::all();
-        $procs = Proceso::all();
-        $subps = Subproceso::all();
+        // $doms = Dominio::all();
+        // $procs = Proceso::all();
+        // $subps = Subproceso::all();
 
-        return view('/subproceso/subp_viewModificar', ['user' => $user, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
+
+        $idioma = app()->getLocale();        
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();          
+            
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get(); 
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+
+            }
+        }
+
+        return view('/subproceso/subp_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
     }
 
 
@@ -189,14 +258,46 @@ class SubprocesoController extends Controller
             ->select('perfils.*')
             ->where('perfils.per_id','=',$user->per_id)
             ->first();
-            $subps = Subproceso::all();
-            $procs = Proceso::all();
 
+            // $subps = Subproceso::all();
+            // $procs = Proceso::all();
+
+            $idioma = app()->getLocale();        
+            if($idioma == "es"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();          
+                
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get(); 
+    
+    
+            }else{
+                if($idioma == "en"){
+                    $doms = \DB::table('dominios')
+                    ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+                    ->get();
+        
+                    $procs = \DB::table('procesos')
+                    ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                    ->get();
+    
+                    $subps = \DB::table('subprocesos')
+                    ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                    ->get();
+    
+                }
+            }
 
 
             // // redirect
             Session::flash('message', 'Successfully updated nerd!');     
-            return view('/subproceso/subp_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'subps' => $subps, 'procs' => $procs]);
+            return view('/subproceso/subp_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'subps' => $subps, 'procs' => $procs]);
             // return Redirect::to('/proceso/proc_viewAlta');       
         }
     }

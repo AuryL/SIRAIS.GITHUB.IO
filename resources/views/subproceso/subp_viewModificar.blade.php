@@ -20,7 +20,13 @@
                                 <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required>
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
                                     @foreach($subps as $subp => $value)
-                                        <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+
+                                        @if($idioma == "es")
+                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+                                        @elseif($idioma == "en")
+                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option>  
+                                        @endif
+
                                     @endforeach  
                                 </select>
                                 <br>
@@ -35,6 +41,7 @@
                         
                         <!-- ID -->
                         <input type="hidden" id="subp_id" name="subp_id" value="subp_id">
+                        <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
 
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
@@ -117,7 +124,13 @@
                                     <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required>
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
                                         @foreach($procs as $proc => $value)
-                                            <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+                                        
+                                            @if($idioma == "es")
+                                                <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
+                                            @elseif($idioma == "en")
+                                                <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_en }}</option>  
+                                            @endif
+
                                         @endforeach  
                                     </select>
                                     <br>

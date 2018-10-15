@@ -33,10 +33,43 @@ class RiesgoController extends Controller
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
 
-        $procs = Proceso::all();
-        $subps = Subproceso::all();
+        // $procs = Proceso::all();
+        // $subps = Subproceso::all();
+
+        $idioma = app()->getLocale();        
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();          
+            
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get(); 
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+
+            }
+        }
         
-        return view('/riesgo/rgo_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
+        return view('/riesgo/rgo_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
     }
 
 
@@ -52,8 +85,41 @@ class RiesgoController extends Controller
         ->where('perfils.per_id','=',$user->per_id)
         ->first();
 
-        $procs = Proceso::all();
-        $subps = Subproceso::all();
+        // $procs = Proceso::all();
+        // $subps = Subproceso::all();
+
+        $idioma = app()->getLocale();        
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();          
+            
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get(); 
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+
+            }
+        }
 
         $rules = array(
             'rgo_nombre_es' => 'required|string|max:45',
@@ -82,7 +148,7 @@ class RiesgoController extends Controller
             Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/proceso/proc_viewAlta');
             // return Redirect::to('home');
-            return view('/riesgo/rgo_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'procs' => $procs, 'subps' => $subps]);
+            return view('/riesgo/rgo_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
         }
     }
 
@@ -95,13 +161,55 @@ class RiesgoController extends Controller
 
         $user = Auth::user();        
 
-        $doms = Dominio::all();
-        $procs = Proceso::all();
-        $subps = Subproceso::all();
-        $rgos = Riesgo::all();
+        // $doms = Dominio::all();
+        // $procs = Proceso::all();
+        // $subps = Subproceso::all();
+        // $rgos = Riesgo::all();
+
+        
+        $idioma = app()->getLocale();        
+        if($idioma == "es"){
+
+            $doms = \DB::table('dominios')
+            ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+            ->get();
+
+            $procs = \DB::table('procesos')
+            ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+            ->get();          
+            
+            $subps = \DB::table('subprocesos')
+            ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+            ->get(); 
+
+            $rgos = \DB::table('riesgos')
+            ->select('riesgos.rgo_id', 'riesgos.rgo_nombre_es', 'riesgos.rgo_detalles_es', 'riesgos.rgo_estado', 'created_at', 'updated_at')
+            ->get(); 
+
+
+        }else{
+            if($idioma == "en"){
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get();
+
+                $rgos = \DB::table('riesgos')
+                ->select('riesgos.rgo_id', 'riesgos.rgo_nombre_en', 'riesgos.rgo_detalles_en', 'riesgos.rgo_estado', 'created_at', 'updated_at')
+                ->get(); 
+
+            }
+        }
         
 
-        return view('/riesgo/rgo_viewModificar', ['user' => $user, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
+        return view('/riesgo/rgo_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
     }
 
 
@@ -156,16 +264,56 @@ class RiesgoController extends Controller
             ->select('perfils.*')
             ->where('perfils.per_id','=',$user->per_id)
             ->first();
-            $doms = Dominio::all();
-            $procs = Proceso::all();
-            $subps = Subproceso::all();
-            $rgos = Riesgo::all();
 
+            // $doms = Dominio::all();
+            // $procs = Proceso::all();
+            // $subps = Subproceso::all();
+            // $rgos = Riesgo::all();
 
+            $idioma = app()->getLocale();        
+            if($idioma == "es"){
+    
+                $doms = \DB::table('dominios')
+                ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
+                ->get();
+    
+                $procs = \DB::table('procesos')
+                ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
+                ->get();          
+                
+                $subps = \DB::table('subprocesos')
+                ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_es', 'subprocesos.subp_detalles_es', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                ->get(); 
+    
+                $rgos = \DB::table('riesgos')
+                ->select('riesgos.rgo_id', 'riesgos.rgo_nombre_es', 'riesgos.rgo_detalles_es', 'riesgos.rgo_estado', 'created_at', 'updated_at')
+                ->get(); 
+    
+    
+            }else{
+                if($idioma == "en"){
+                    $doms = \DB::table('dominios')
+                    ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
+                    ->get();
+        
+                    $procs = \DB::table('procesos')
+                    ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
+                    ->get();
+    
+                    $subps = \DB::table('subprocesos')
+                    ->select('subprocesos.subp_id', 'subprocesos.subp_nombre_en', 'subprocesos.subp_detalles_en', 'subprocesos.subp_estado', 'created_at', 'updated_at')
+                    ->get();
+    
+                    $rgos = \DB::table('riesgos')
+                    ->select('riesgos.rgo_id', 'riesgos.rgo_nombre_en', 'riesgos.rgo_detalles_en', 'riesgos.rgo_estado', 'created_at', 'updated_at')
+                    ->get(); 
+    
+                }
+            }
 
             // redirect
             Session::flash('message', 'Successfully updated nerd!');     
-            return view('/riesgo/rgo_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
+            return view('/riesgo/rgo_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
             // return Redirect::to('/proceso/proc_viewAlta');       
         }
     }

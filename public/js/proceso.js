@@ -14,14 +14,15 @@ var validarProc = function () {
     var selectedDominioId = document.getElementById("dom_id");
     var dominioId = selectedDominioId.options[selectedDominioId.selectedIndex].text;
 
-    if (dominioId == "Dominio") {
+    if (dominioId == "Dominio" || dominioId == "Domain" ) {
         alert("Debes seleccionar un Domino")
         return false
     }
 
 
-    if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
+    if (dominioId == "Dominio" || dominioId == "Domain" || escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
+        
         return false
     } else {
         alert("Perfecto");

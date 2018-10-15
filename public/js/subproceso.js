@@ -41,6 +41,7 @@ var domSubproceso = function (proceso) {
     console.log("PROCESO: " + proceso);
     var dom_id = "";
 
+
     $.get("http://127.0.0.1:8000/api/cargar_subpId/" + proceso, function (data1) {// Se direcciona a la url especificada (api.php)
         // Posteriormente, recibe el resultado de la petición, que es data
         console.log('datosProceso:data1', data1);
@@ -49,6 +50,9 @@ var domSubproceso = function (proceso) {
             data1.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
                 dom_id = valor.dom_id;
                 console.log("dom_id: " + dom_id);
+                
+                var idioma = document.getElementById("idioma").value;
+                console.log("idioma: " + idioma);
 
                 $.get("http://127.0.0.1:8000/api/cargar_domId/" + dom_id, function (data2) {// Se direcciona a la url especificada (api.php)
                     // Posteriormente, recibe el resultado de la petición, que es data
@@ -56,7 +60,16 @@ var domSubproceso = function (proceso) {
                     console.log("data2", data2);
                     if (data2 && data2.length > 0) {// Verificar que no esta vacia "data"
                         data2.forEach(function (valor2) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-                            document.getElementById("dom_id").value = valor2.dom_nombre_es;
+
+                            // var idioma = document.getElementById("idioma").value;
+                            // console.log("idioma: " + idioma);
+                            if (idioma == "es") {
+                                document.getElementById("dom_id").value = valor2.dom_nombre_es;
+                            } else {
+                                if (idioma == "en") {
+                                    document.getElementById("dom_id").value = valor2.dom_nombre_en;
+                                }
+                            }
                             document.getElementById("dom_id").disabled = true; // habilitar boton al llenar campos del formulario
                         });
                     } else {// Si el array "data" recibido esta vacia

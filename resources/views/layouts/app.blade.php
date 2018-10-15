@@ -60,7 +60,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 
-                <a class"a-logo_Santander" href="{{ url('/home') }}"><img class="logo_san" src="/svg/logo_Santander3.png"  alt="X"></a>
+                <a class="a-logo_Santander" href="{{ url('/home') }}"><img class="logo_san" src="/svg/logo_Santander3.png"  alt="X"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -98,7 +98,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="">@lang('menu.dominio')</a>
-                                    <ul
+                                    <ul>
                                         <li><a href="{{ route('dom_viewAlta') }}">@lang('menu.alta')</a></li>
                                         <li><a href="{{ route('dom_viewModificar') }}">@lang('menu.modificar')</a></li>
                                     </ul>

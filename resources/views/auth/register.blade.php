@@ -48,7 +48,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">@lang('menu.nombre_min')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
                                 <label for="us_apellidopat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoPat')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="us_apellidopat" type="text" class="form-control{{ $errors->has('us_apellidopat') ? ' is-invalid' : '' }}" name="us_apellidopat" value="{{ old('us_apellidopat') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="us_apellidopat" type="text" class="form-control{{ $errors->has('us_apellidopat') ? ' is-invalid' : '' }}" name="us_apellidopat" value="{{ old('us_apellidopat') }}" required autofocus pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('us_apellidopat'))
                                         <span class="invalid-feedback" role="alert">
@@ -80,7 +80,7 @@
                                 <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoMat')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('us_apellidomat'))
                                         <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required pattern="^[_a-z0-9-]+@+(santander.com.mx)$">
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">
@@ -129,14 +129,16 @@
 
                                 <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('selects.perfil')</label>
 
-                                <select id="per_id" name="per_id" class="form-control" required>
+                                <select required id="per_id" name="per_id" class="form-control">
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_perfil') </option>                               
                                     @foreach($perfiles as $perfil => $value)
+
                                         @if($idioma == "es")
                                             <option value="{{ $value->per_id }}">{{ $value->per_nombre_es }}</option>  
                                         @elseif($idioma == "en")
                                             <option value="{{ $value->per_id }}">{{ $value->per_nombre_en }}</option>  
                                         @endif
+
                                     @endforeach  
                                 </select>
                                 <br>

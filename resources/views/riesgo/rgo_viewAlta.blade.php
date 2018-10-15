@@ -24,6 +24,8 @@
                         </div>
                         <br>
 
+                        <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
+
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
@@ -105,7 +107,13 @@
                                     <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required>
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
                                         @foreach($subps as $subp => $value)
-                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+
+                                            @if($idioma == "es")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+                                            @elseif($idioma == "en")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option>  
+                                            @endif
+
                                         @endforeach  
                                     </select>
                                     <br>

@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
         <!-- <link href="{{ asset('css/nunito.css') }}" rel="stylesheet" type="text/css"> -->
 
+     
         <!-- Styles -->
         <style>
             html, body {
@@ -50,8 +51,18 @@
                 font-size: 84px;
             }
 
-            .links > a {
+            .links    {
                 color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .links_es_en {
+                color: #fd0000;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -64,15 +75,19 @@
                 margin-bottom: 30px;
             }
         </style>
+        
+
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                        <li><a id="espaniol" href="{{ url('lang', ['es']) }}">ES</a></li>
-                        <li><a id="ingles" href="{{ url('lang', ['en']) }}">EN</a></li>
+                   
+                        <a class="links" href="{{ url('/home') }}">Home</a>
+                        <a class="links_es_en" id="espaniol" href="{{ url('lang', ['es']) }}">ES</a>
+                        <a class="links_es_en" id="ingles" href="{{ url('lang', ['en']) }}">EN</a>
+                         
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth

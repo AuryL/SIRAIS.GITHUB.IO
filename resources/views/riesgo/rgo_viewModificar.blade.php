@@ -20,7 +20,13 @@
                                 <select id="riesgo" name="riesgo" class="form-control" onchange="riesgoSelected(this.value)" required>
                                     <option selected value="0" disabled="disabled" >@lang('selects.select_riesgo')</option>                               
                                     @foreach($rgos as $rgo => $value)
-                                        <option id="riesgo" value="{{ $value->rgo_id }}">{{ $value->rgo_nombre_es }}</option>  
+
+                                        @if($idioma == "es")
+                                            <option id="riesgo" value="{{ $value->rgo_id }}">{{ $value->rgo_nombre_es }}</option> 
+                                        @elseif($idioma == "en")
+                                            <option id="riesgo" value="{{ $value->rgo_id }}">{{ $value->rgo_nombre_en }}</option> 
+                                        @endif
+
                                     @endforeach  
                                 </select>
                                 <br>
@@ -33,6 +39,8 @@
                         </div>
                         <br>
                         
+                        <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
+
                         <!-- ID -->
                         <input type="hidden" id="rgo_id" name="rgo_id" value="rgo_id">
 
@@ -117,7 +125,13 @@
                                     <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required  disabled = "false">
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
                                         @foreach($subps as $subp => $value)
-                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+
+                                            @if($idioma == "es")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option> 
+                                            @elseif($idioma == "en")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option> 
+                                            @endif
+
                                         @endforeach  
                                     </select>
                                     <br>
@@ -194,7 +208,7 @@
                         <div id="div_control" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
                             <div id="div_controlSeleccionado" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
                                 <select id="control" name="control" class="form-control" onchange="contRiesgo(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > Control </option>  
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_control') </option>  
                                 </select>
                                 <br>
                                 @if ($errors->has('control'))
@@ -320,7 +334,7 @@
                         <div id="div_actividad" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
                             <div id="div_actividadSeleccionado" class="form-group{{ $errors->has('actividad') ? ' has-error' : '' }}">
                                 <select id="actividad" name="actividad" class="form-control" onchange="actControl(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > Actividad </option>  
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_actividad') </option>  
                                 </select>
                                 <br>
                                 @if ($errors->has('actividad'))

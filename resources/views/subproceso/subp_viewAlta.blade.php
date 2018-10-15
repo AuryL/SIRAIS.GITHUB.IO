@@ -24,6 +24,9 @@
                         </div>
                         <br>
 
+
+                        <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
+                        
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
@@ -95,7 +98,8 @@
                                 </div>
                             </div>
                         </div>
-                        <br>                   
+                        <br>  
+
                         <!-- PROCESO -->
                         <div id="div_flex_modificar_expediente">
                             <div class="div_register_usernameName">
