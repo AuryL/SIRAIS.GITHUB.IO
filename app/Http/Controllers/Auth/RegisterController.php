@@ -87,7 +87,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         try{
             $usuario = User::create([            
                 'username' => $data['username'],            
@@ -101,10 +100,11 @@ class RegisterController extends Controller
                 // 'password' => Hash::make($data['password']),
             ]);
         
-            return  $usuario;
+            // return  $usuario;
+            return redirect('/register')->with('status', 'Usuario creado correctamente');
             
         }catch (Exception $e) {
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
+            return redirect('/register')->with('status', $e);
         }
     }
 

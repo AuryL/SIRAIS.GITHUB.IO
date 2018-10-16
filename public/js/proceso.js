@@ -24,9 +24,10 @@ var validarProc = function () {
         alert("Debes llenar todos los campos");
         
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 
 
@@ -44,6 +45,13 @@ var procesoSelected = function (proceso) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
 
+                document.getElementById("proc_id").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("proc_nombre_es").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("proc_nombre_en").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("proc_detalles_es").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("proc_detalles_en").disabled = false; // habilitar boton al llenar campos del formulario  
+                document.getElementById("proc_estado").disabled = false; // habilitar boton al llenar campos del formulario   
+                document.getElementById("dom_id").disabled = false; // habilitar boton al llenar campos del formulario 
 
                 document.getElementById("proc_id").value = valor.proc_id;
                 document.getElementById("proc_nombre_es").value = valor.proc_nombre_es;

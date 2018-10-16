@@ -38,6 +38,15 @@
                             </div>
                         </div>
                         <br>
+
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
                         
                         <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
 
@@ -53,7 +62,7 @@
                                 <label for="rgo_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_es" type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus  disabled = "false">
+                                    <input id="rgo_nombre_es" placeholder="Estrategia de Transformación Digita." type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus  disabled = "false">
 
                                     @if ($errors->has('rgo_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -68,7 +77,7 @@
                                 <label for="rgo_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_en" type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus  disabled = "false">
+                                    <input id="rgo_nombre_en" placeholder="Digital Transformation Strategy. " type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus  disabled = "false">
 
                                     @if ($errors->has('rgo_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -88,8 +97,7 @@
                                 <label for="rgo_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_es" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  disabled = "false">
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_es" placeholder="@lang('riesgo.placeholder_riesgo_es')" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  disabled = "false"></textarea>
 
                                     @if ($errors->has('rgo_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,8 +112,7 @@
                                 <label for="rgo_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_en" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  disabled = "false">
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_en" placeholder="@lang('riesgo.placeholder_riesgo_en')" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  disabled = "false"></textarea>
 
                                     @if ($errors->has('rgo_detalles_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -173,7 +180,7 @@
                         </div>
 
                         <div id="div_flex_modificar_expediente">
-                        <!-- Estado -->
+                        <!-- Estado --> 
                             <div class="div_register_usernameName">
                                 <label for="rgo_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
@@ -232,7 +239,7 @@
                                     <label for="cont_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="cont_nombre_es" type="text" class="form-control{{ $errors->has('cont_nombre_es') ? ' is-invalid' : '' }}" name="cont_nombre_es" value="{{ old('cont_nombre_es') }}"  required autofocus disabled="true" >
+                                        <input id="cont_nombre_es" placeholder="Compromiso continuo." type="text" class="form-control{{ $errors->has('cont_nombre_es') ? ' is-invalid' : '' }}" name="cont_nombre_es" value="{{ old('cont_nombre_es') }}"  required autofocus disabled="true" >
                                         <span id="cont_nombre_es_error"></span>
 
                                         @if ($errors->has('cont_nombre_es'))
@@ -248,7 +255,7 @@
                                     <label for="cont_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="cont_nombre_en" type="text" class="form-control{{ $errors->has('cont_nombre_en') ? ' is-invalid' : '' }}" name="cont_nombre_en" value="{{ old('cont_nombre_en') }}"  required autofocus disabled="true">
+                                        <input id="cont_nombre_en" placeholder="Continuous commitment. " type="text" class="form-control{{ $errors->has('cont_nombre_en') ? ' is-invalid' : '' }}" name="cont_nombre_en" value="{{ old('cont_nombre_en') }}"  required autofocus disabled="true">
                                         <span id="cont_nombre_en_error"></span>
 
                                         @if ($errors->has('cont_nombre_en'))
@@ -269,8 +276,7 @@
                                     <label for="cont_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="cont_detalles_es" type="text" class="form-control{{ $errors->has('cont_detalles_es') ? ' is-invalid' : '' }}" name="cont_detalles_es" value="{{ old('cont_detalles_es') }}" required autofocus disabled="true">
-                                        </textarea>
+                                        <textarea rows="4" cols="50" id="cont_detalles_es" placeholder="@lang('riesgo.placeholder_control_es')" type="text" class="form-control{{ $errors->has('cont_detalles_es') ? ' is-invalid' : '' }}" name="cont_detalles_es" value="{{ old('cont_detalles_es') }}" required autofocus disabled="true"></textarea>
                                         <span id="cont_detalles_es_error"></span>
 
                                         @if ($errors->has('cont_detalles_es'))
@@ -286,8 +292,7 @@
                                     <label for="cont_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="cont_detalles_en" class="form-control{{ $errors->has('cont_detalles_en') ? ' is-invalid' : '' }}" name="cont_detalles_en" value="{{ old('cont_detalles_en') }}" required autofocus disabled="true">
-                                        </textarea>
+                                        <textarea rows="4" cols="50" id="cont_detalles_en" placeholder="@lang('riesgo.placeholder_control_en')" class="form-control{{ $errors->has('cont_detalles_en') ? ' is-invalid' : '' }}" name="cont_detalles_en" value="{{ old('cont_detalles_en') }}" required autofocus disabled="true"></textarea>
                                         <span id="cont_detalles_en_error"></span>
 
                                         @if ($errors->has('cont_detalles_en'))
@@ -355,7 +360,7 @@
                                     <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="act_nombre_es" type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}" placeholder="Nombre" required autofocus disabled="true">
+                                        <input id="act_nombre_es" placeholder="Revision del diseño del gobierno de la Fabrica Digital." type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}" placeholder="Nombre" required autofocus disabled="true">
 
                                         @if ($errors->has('act_nombre_es'))
                                             <span class="invalid-feedback" role="alert">
@@ -370,7 +375,7 @@
                                     <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="act_nombre_en" type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
+                                        <input id="act_nombre_en" placeholder="Revision of the design of the government of the Digital Factory." type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
 
                                         @if ($errors->has('act_nombre_en'))
                                             <span class="invalid-feedback" role="alert">
@@ -390,8 +395,7 @@
                                     <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="act_detalles_es" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true">
-                                        </textarea>
+                                        <textarea rows="4" cols="50" id="act_detalles_es"  placeholder="@lang('riesgo.placeholder_actividad_es')" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true"></textarea>
 
                                         @if ($errors->has('act_detalles_es'))
                                             <span class="invalid-feedback" role="alert">
@@ -406,8 +410,7 @@
                                     <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="act_detalles_en" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true">
-                                        </textarea>
+                                        <textarea rows="4" cols="50" id="act_detalles_en" placeholder="@lang('riesgo.placeholder_actividad_en')" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true"></textarea>
 
                                         @if ($errors->has('act_detalles_en'))
                                             <span class="invalid-feedback" role="alert">

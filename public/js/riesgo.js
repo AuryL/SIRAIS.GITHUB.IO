@@ -24,9 +24,10 @@ var validarRgo = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 //////////////////////
 var validarCont = function (cont_id) {
@@ -45,9 +46,10 @@ var validarCont = function (cont_id) {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 /////////////////////////////////////////////////
 var validarAct = function () {
@@ -65,9 +67,10 @@ var validarAct = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 
 

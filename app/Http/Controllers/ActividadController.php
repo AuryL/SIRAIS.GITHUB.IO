@@ -33,9 +33,7 @@ class ActividadController extends Controller
         ->first();
 
         $rgo = Riesgo::where('rgo_id',$riesgo)->first();
-        
-        // echo($rgo)->rgo_id;
-        
+                
         $actividad = \DB::table('actividads')
         ->select('actividads.*')
         ->leftjoin('riesgos', 'riesgos.rgo_id','=', 'actividads.rgo_id')
@@ -43,9 +41,6 @@ class ActividadController extends Controller
         ->where('actividads.rgo_id', '=', $riesgo)
         ->where('actividads.act_id', '=', $act_id)
         ->first();  
-
-        // echo($actividad->act_nombre_es);
-
         
         return view('/actividad/act_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'rgo' => $rgo, 'actividad' => $actividad]);
     }
@@ -69,10 +64,7 @@ class ActividadController extends Controller
         } else {
             // store
             $input = $request->all();
-
-            // $actId = $request->cont_id;
-            // $act = Actividad::findOrFail($actId); 
-            // $act->update($input);       
+      
             $act = Actividad::create($input);
         
             return response()->json(['details' => $act], 200);          

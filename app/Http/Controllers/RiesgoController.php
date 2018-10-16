@@ -132,8 +132,10 @@ class RiesgoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('/home')
-                ->withErrors($validator);
+            // return Redirect::to('/home')
+            //     ->withErrors($validator);
+            return redirect('/riesgo/rgo_viewAlta')->with('status', $validator);
+
         } else {
             // store
             $rgo = new Riesgo;
@@ -145,10 +147,9 @@ class RiesgoController extends Controller
             $rgo->save();
 
             // redirect
-            Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/proceso/proc_viewAlta');
-            // return Redirect::to('home');
-            return view('/riesgo/rgo_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps]);
+            return redirect('/riesgo/rgo_viewAlta')->with('status', 'Riesgo creado correctamente');
+
         }
     }
 
@@ -229,8 +230,10 @@ class RiesgoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('home')
-                ->withErrors($validator);
+            // return Redirect::to('home')
+            //     ->withErrors($validator);
+            return redirect('/riesgo/rgo_viewModificar')->with('status', $validator);
+
         } else {
             // store
             $rgoId = Input::get('rgo_id');
@@ -311,16 +314,10 @@ class RiesgoController extends Controller
                 }
             }
 
-            // redirect
-            Session::flash('message', 'Successfully updated nerd!');     
-            return view('/riesgo/rgo_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
-            // return Redirect::to('/proceso/proc_viewAlta');       
-        }
-    }
-
-
-
-
-    ///////////////////////////////////////////
+            // redirect   
+            // return view('/riesgo/rgo_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'procs' => $procs, 'subps' => $subps, 'rgos' => $rgos]);
+            return redirect('/riesgo/rgo_viewModificar')->with('status', 'Modificación exitosa :D');
     
+        }
+    }    
 }

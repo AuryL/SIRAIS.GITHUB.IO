@@ -17,6 +17,14 @@
                         </div>
                         <br>
 
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
@@ -26,7 +34,7 @@
                                 <label for="proc_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="proc_nombre_es" type="text" class="form-control{{ $errors->has('proc_nombre_es') ? ' is-invalid' : '' }}" name="proc_nombre_es" value="{{ old('proc_nombre_es') }}" required autofocus pattern="[A-Za-z0-9]+">
+                                    <input id="proc_nombre_es" type="text" class="form-control{{ $errors->has('proc_nombre_es') ? ' is-invalid' : '' }}"  placeholder="Ciberseguridad" name="proc_nombre_es" value="{{ old('proc_nombre_es') }}" required autofocus pattern="[A-Za-z0-9]+">
 
                                     @if ($errors->has('proc_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -41,7 +49,7 @@
                                 <label for="proc_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="proc_nombre_en" type="text" class="form-control{{ $errors->has('proc_nombre_en') ? ' is-invalid' : '' }}" name="proc_nombre_en" value="{{ old('proc_nombre_en') }}" required autofocus pattern="[A-Za-z0-9]+">
+                                    <input id="proc_nombre_en" type="text" class="form-control{{ $errors->has('proc_nombre_en') ? ' is-invalid' : '' }}" placeholder="Cybersecurity" name="proc_nombre_en" value="{{ old('proc_nombre_en') }}" required autofocus pattern="[A-Za-z0-9]+">
 
                                     @if ($errors->has('proc_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -61,8 +69,7 @@
                                 <label for="proc_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="proc_detalles_es" type="text" class="form-control{{ $errors->has('proc_detalles_es') ? ' is-invalid' : '' }}" name="proc_detalles_es" value="{{ old('proc_detalles_es') }}" required autofocus pattern="[A-Za-z0-9]+">
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="proc_detalles_es" placeholder="Escribe el detalle del proceso en idioma español aquí..."   type="text" class="form-control{{ $errors->has('proc_detalles_es') ? ' is-invalid' : '' }}" name="proc_detalles_es" value="{{ old('proc_detalles_es') }}" required autofocus pattern="[A-Za-z0-9]+"></textarea>
 
                                     @if ($errors->has('proc_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -77,8 +84,7 @@
                                 <label for="proc_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="proc_detalles_en" class="form-control{{ $errors->has('proc_detalles_en') ? ' is-invalid' : '' }}" name="proc_detalles_en" value="{{ old('proc_detalles_en') }}" required autofocus pattern="[A-Za-z0-9]+">
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="proc_detalles_en" placeholder="Escribe el detalle del dominio en idioma inglés aquí..."   class="form-control{{ $errors->has('proc_detalles_en') ? ' is-invalid' : '' }}" name="proc_detalles_en" value="{{ old('proc_detalles_en') }}" required autofocus pattern="[A-Za-z0-9]+"></textarea>
 
                                     @if ($errors->has('proc_detalles_en'))
                                         <span class="invalid-feedback" role="alert">

@@ -24,9 +24,10 @@ var validarCont = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 
 

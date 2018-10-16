@@ -36,8 +36,6 @@ class ControlController extends Controller
 
         $rgo = Riesgo::where('rgo_id',$riesgo)->first();
         
-        // echo($rgo)->rgo_id;
-        
         $control = \DB::table('controls')
         ->select('controls.*')
         ->leftjoin('riesgos', 'riesgos.rgo_id','=', 'controls.rgo_id')
@@ -46,9 +44,6 @@ class ControlController extends Controller
         ->where('controls.cont_id', '=', $cont_id)
         ->first();  
 
-        // echo($control->cont_nombre_es);
-
-        
         return view('/control/cont_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'rgo' => $rgo, 'control' => $control]);
     }
 
@@ -73,10 +68,7 @@ class ControlController extends Controller
         
             // store
             $input = $request->all();
-
-            // $contId = $request->cont_id;
-            // $cont = Control::findOrFail($contId); 
-            // $cont->update($input);       
+    
             $cont = Control::create($input);
         
             return response()->json(['details' => $cont], 200);      

@@ -748,6 +748,16 @@ h6 {
 	padding:2%;
 }
 
+.mensajeStatus {
+	width: 400px;
+	height: 100px;
+	background: lightblue;
+	display:block
+}
+  
+.boton {
+	float: right;
+}
 
 /*  */
 

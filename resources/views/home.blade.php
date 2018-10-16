@@ -9,7 +9,8 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div id="mensajeStatus" class="alert alert-success">  
+                            <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                             {{ session('status') }}
                         </div>
                     @endif

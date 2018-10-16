@@ -28,6 +28,14 @@
                         <br>
                         
                         
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
 
                         <div id="div_flex">
                             <!-- Expediente -->

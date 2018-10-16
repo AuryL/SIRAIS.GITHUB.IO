@@ -32,6 +32,13 @@
                         </div>
                         @csrf
 
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
                         <div id="div_flex">
                             <!-- Expediente -->
@@ -40,7 +47,7 @@
                                 <label for="username" class="col-md-4 col-form-label text-md-right">@lang('usuario.expediente')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="c048205" name="username" value="{{ old('username') }}" required autofocus pattern="[A-Za-z0-9]+">
+                                    <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="c048205" name="username" value="{{ old('username') }}" required autofocus disabled="true" pattern="[A-Za-z0-9]+">
 
                                     @if ($errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
@@ -55,7 +62,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">@lang('menu.nombre_min')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="c048205" name="name" value="{{ old('name') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Aurora" name="name" value="{{ old('name') }}" required autofocus disabled="true" pattern="[A-Za-z]+">
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -72,7 +79,7 @@
                                 <label for="us_apellidopat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoPat')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="us_apellidopat" type="text" class="form-control{{ $errors->has('us_apellidopat') ? ' is-invalid' : '' }}" placeholder="López" name="us_apellidopat" value="{{ old('us_apellidopat') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="us_apellidopat" type="text" class="form-control{{ $errors->has('us_apellidopat') ? ' is-invalid' : '' }}" placeholder="López" name="us_apellidopat" value="{{ old('us_apellidopat') }}" required autofocus disabled="true" pattern="[A-Za-z]+">
 
                                     @if ($errors->has('us_apellidopat'))
                                         <span class="invalid-feedback" role="alert">
@@ -87,7 +94,7 @@
                                 <label for="us_apellidomat" class="col-md-4 col-form-label text-md-right">@lang('usuario.apellidoMat')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" placeholder="Galicia" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus pattern="[A-Za-z]+">
+                                    <input id="us_apellidomat" type="text" class="form-control{{ $errors->has('us_apellidomat') ? ' is-invalid' : '' }}" placeholder="Galicia" name="us_apellidomat" value="{{ old('us_apellidomat') }}" required autofocus disabled="true" pattern="[A-Za-z]+">
 
                                     @if ($errors->has('us_apellidomat'))
                                         <span class="invalid-feedback" role="alert">
@@ -104,7 +111,7 @@
                                 <label for="us_extension" class="col-md-4 col-form-label text-md-right">@lang('usuario.extension')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="us_extension" type="text" class="form-control{{ $errors->has('us_extension') ? ' is-invalid' : '' }}" placeholder="19829" name="us_extension" value="{{ old('us_extension') }}" required autofocus pattern="[0-9]+">
+                                    <input id="us_extension" type="text" class="form-control{{ $errors->has('us_extension') ? ' is-invalid' : '' }}" placeholder="19829" name="us_extension" value="{{ old('us_extension') }}" required autofocus disabled="true" pattern="[0-9]+">
 
                                     @if ($errors->has('us_extension'))
                                         <span class="invalid-feedback" role="alert">
@@ -136,7 +143,7 @@
 
                                 <label for="per_id" class="col-md-4 col-form-label text-md-right">@lang('selects.perfil')</label>
 
-                                <select id="per_id" name="per_id" class="form-control" required>
+                                <select id="per_id" name="per_id" class="form-control" required disabled="true">
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_perfil') </option>                               
                                     @foreach($perfiles as $perfil => $value)
                                         @if($idioma == "es")
@@ -159,7 +166,7 @@
 
                                 <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
-                                <select id="dom_id" name="dom_id" class="form-control" required>
+                                <select id="dom_id" name="dom_id" class="form-control" required disabled="true">
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
                                     @foreach($dominios as $dominio => $value)
                                         @if($idioma == "es")
@@ -213,7 +220,7 @@
                                 <label for="us_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input type="checkbox" value="1" id="us_estado" name="us_estado">
+                                    <input type="checkbox" value="1" id="us_estado" name="us_estado" disabled="true">
 
                                     @if ($errors->has('us_estado'))
                                         <span class="invalid-feedback" role="alert">

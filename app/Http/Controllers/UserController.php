@@ -96,9 +96,12 @@ class UserController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('register')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+            // return Redirect::to('register')
+                // ->withErrors($validator)
+                // ->withInput(Input::except('password'));
+
+            return redirect('/user/us_viewModificar')->with('status', $validator);
+
         } else {
             // store
 
@@ -130,14 +133,8 @@ class UserController extends Controller
             
             $guardarEnDB = $user->save();
 
-            // redirect
-            Session::flash('message', 'Successfully updated nerd!');
+            return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
 
-            if(!$guardarEnDB){
-                App::abort(500, 'Error');
-            }
-
-            return Redirect::to('/home');
         }
         // return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);
     }

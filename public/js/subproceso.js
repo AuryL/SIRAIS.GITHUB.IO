@@ -24,9 +24,10 @@ var validarSubp = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
-    }
+    } 
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 
 
@@ -98,7 +99,14 @@ var subprocesoSelected = function (subproceso) {
 
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-
+            
+                document.getElementById("subp_id").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("subp_nombre_es").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("subp_nombre_en").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("subp_detalles_es").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("subp_detalles_en").disabled = false; // habilitar boton al llenar campos del formulario  
+                document.getElementById("proceso").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("subp_estado").disabled = false; // habilitar boton al llenar campos del formulario  
 
                 document.getElementById("subp_id").value = valor.subp_id;
                 document.getElementById("subp_nombre_es").value = valor.subp_nombre_es;

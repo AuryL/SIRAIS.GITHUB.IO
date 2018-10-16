@@ -38,6 +38,14 @@
                             </div>
                         </div>
                         <br>
+
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         
                         <!-- ID -->
                         <input type="hidden" id="subp_id" name="subp_id" value="subp_id">
@@ -52,7 +60,7 @@
                                 <label for="subp_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_es" type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus >
+                                    <input id="subp_nombre_es" placeholder="Modelo de Gobierno de Transformación Digital." type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus disabled="true">
 
                                     @if ($errors->has('subp_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -67,7 +75,7 @@
                                 <label for="subp_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_en" type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus >
+                                    <input id="subp_nombre_en" placeholder="Model of Government of Digital Transformation." type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus disabled="true">
 
                                     @if ($errors->has('subp_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -87,8 +95,7 @@
                                 <label for="subp_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_es" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus >
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="subp_detalles_es" placeholder="@lang('subp.placeholder_subproceso_es')" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus disabled="true"></textarea>
 
                                     @if ($errors->has('subp_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -103,8 +110,7 @@
                                 <label for="subp_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_en" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus >
-                                    </textarea>
+                                    <textarea rows="4" cols="50" id="subp_detalles_en" placeholder="@lang('subp.placeholder_subproceso_en')" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus disabled="true"></textarea>
 
                                     @if ($errors->has('subp_detalles_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -121,7 +127,7 @@
                                 <label for="proceso" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
                                 <div class="div_register_usernameName"> 
-                                    <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required>
+                                    <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required disabled="true">
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
                                         @foreach($procs as $proc => $value)
                                         
@@ -142,11 +148,12 @@
                                 </div>
                             </div>
 
+                            <!-- Dominio -->
                             <div class="div_register_usernameName">
                                 <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
+                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "true" required autofocus>
 
                                     @if ($errors->has('dom_id'))
                                         <span class="invalid-feedback" role="alert">
@@ -163,7 +170,7 @@
                                 <label for="subp_estado" class="col-md-4 col-form-label text-md-right">@lang('selects.activo')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input type="checkbox" value="1" id="subp_estado" name="subp_estado">
+                                    <input type="checkbox" value="1" id="subp_estado" name="subp_estado" disabled="true">
 
                                     @if ($errors->has('subp_estado'))
                                         <span class="invalid-feedback" role="alert">

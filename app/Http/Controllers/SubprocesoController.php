@@ -46,9 +46,6 @@ class SubprocesoController extends Controller
             ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
             ->get();            
 
-            return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
-
-
         }else{
             if($idioma == "en"){
                 $subps = \DB::table('subprocesos')
@@ -59,12 +56,10 @@ class SubprocesoController extends Controller
                 ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
                 ->get();
 
-                return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
-
             }
         }
         
-        // return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
+        return view('/subproceso/subp_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
     }
 
 
@@ -127,8 +122,10 @@ class SubprocesoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('/home')
-                ->withErrors($validator);
+            // return Redirect::to('/home')
+            //     ->withErrors($validator);
+            return redirect('/subproceso/subp_viewAlta')->with('status', $validator);
+
         } else {
             // store
             $subp = new Subproceso;
@@ -149,10 +146,9 @@ class SubprocesoController extends Controller
             // $subps = Subproceso::all();
 
             // redirect
-            Session::flash('message', 'Successfully updated nerd!');
-            // return Redirect::to('/proceso/proc_viewAlta');
-            // return Redirect::to('home');
-            return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
+            // return view('/subproceso/subp_viewAlta',['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'procs' => $procs, 'subps' => $subps]);
+            return redirect('/subproceso/subp_viewAlta')->with('status', 'Subproceso creado correctamente');
+
         }
     }
 
@@ -223,8 +219,11 @@ class SubprocesoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('home')
-                ->withErrors($validator);
+            // return Redirect::to('home')
+            //     ->withErrors($validator);
+
+            return redirect('/subproceso/subp_viewModificar')->with('status', $validator);
+
         } else {
             // store
             $subpId = Input::get('subp_id');
@@ -295,10 +294,10 @@ class SubprocesoController extends Controller
             }
 
 
-            // // redirect
-            Session::flash('message', 'Successfully updated nerd!');     
-            return view('/subproceso/subp_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'subps' => $subps, 'procs' => $procs]);
-            // return Redirect::to('/proceso/proc_viewAlta');       
+            // // redirect   
+            // return view('/subproceso/subp_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma, 'doms' => $doms, 'subps' => $subps, 'procs' => $procs]);
+            return redirect('/subproceso/subp_viewModificar')->with('status', 'Modificación exitosa :D');
+     
         }
     }
 }

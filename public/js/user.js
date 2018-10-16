@@ -24,6 +24,16 @@ var expedienteSelected = function (expediente) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
 
+                document.getElementById("username").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("name").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("us_apellidopat").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("us_apellidomat").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("us_extension").disabled = false; // habilitar boton al llenar campos del formulario  
+                document.getElementById("email").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("per_id").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("dom_id").disabled = false; // habilitar boton al llenar campos del formulario   
+                document.getElementById("us_estado").disabled = false; // habilitar boton al llenar campos del formulario   
+
                 document.getElementById("username").value = valor.username;
                 document.getElementById("name").value = valor.name;
                 document.getElementById("us_apellidopat").value = valor.us_apellidopat;
@@ -43,7 +53,8 @@ var expedienteSelected = function (expediente) {
                     }
                 }
 
-                document.getElementById("boton_modificar").disabled = false;// habilitar boton al llenar campos del formulario
+                document.getElementById("boton_modificar").disabled = false;// habilitar boton al llenar campos del formulario  
+
 
             });
 

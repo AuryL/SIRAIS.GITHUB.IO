@@ -165,6 +165,14 @@
                     </div>
                     <br>
                     <div class="row">
+                        <!-- Mensaje de elemento creado correctamente -->
+                        @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        
                         <div class="col sm-12">
                             <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
                             <!-- La funcion se encuentra en el archivo tree.js -->

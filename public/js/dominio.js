@@ -14,11 +14,17 @@ var validarDom = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } else {
-        alert("Perfecto");
     }
+    // else {
+    //     alert("Perfecto");
+    // }
 }
 
+
+// Permite cerrar el div de confirmacion del status
+var cerraranuncio = mensajeStatus => {
+    document.getElementById(mensajeStatus).style.display = "none";
+}
 
 
 
@@ -34,6 +40,12 @@ var dominioSelected = function (dominio) {
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
 
+                document.getElementById("dom_id").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("dom_nombre_es").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("dom_nombre_en").disabled = false; // habilitar boton al llenar campos del formulario
+                document.getElementById("dom_detalles_es").disabled = false; // habilitar boton al llenar campos del formulario 
+                document.getElementById("dom_detalles_en").disabled = false; // habilitar boton al llenar campos del formulario   
+                document.getElementById("dom_estado").disabled = false; // habilitar boton al llenar campos del formulario   
 
                 document.getElementById("dom_id").value = valor.dom_id;
                 document.getElementById("dom_nombre_es").value = valor.dom_nombre_es;

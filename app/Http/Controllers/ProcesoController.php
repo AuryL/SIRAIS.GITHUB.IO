@@ -36,26 +36,19 @@ class ProcesoController extends Controller
                 $doms = \DB::table('dominios')
                 ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
                 ->get();
-    
-    
-                return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
-    
+        
             }else{
                 if($idioma == "en"){
                     $doms = \DB::table('dominios')
                     ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
                     ->get();
         
-    
-                    return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
-    
-                    
                 }
             }
 
-            
-            // return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
-    }
+            return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+
+        }
 
 
 
@@ -99,8 +92,10 @@ class ProcesoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('/home')
-                ->withErrors($validator);
+            // return Redirect::to('/home')
+            //     ->withErrors($validator);
+            return redirect('/proceso/proc_viewAlta')->with('status', $validator);
+
         } else {
             // store
             $proc = new Proceso;
@@ -112,10 +107,10 @@ class ProcesoController extends Controller
             $proc->save();
 
             // redirect
-            Session::flash('message', 'Successfully updated nerd!');
-            // return Redirect::to('/proceso/proc_viewAlta');
-            return Redirect::to('home');
             // return view('/proceso/proc_viewAlta', ['user' => $user, 'idioma' => $idioma, 'userPerfil' => $userPerfil, 'doms' => $doms]);
+
+            return redirect('/proceso/proc_viewAlta')->with('status', 'Proceso creado correctamente');
+
         }
     }
 
@@ -142,9 +137,6 @@ class ProcesoController extends Controller
             ->select('procesos.proc_id', 'procesos.proc_nombre_es', 'procesos.proc_detalles_es', 'procesos.proc_estado', 'created_at', 'updated_at')
             ->get();            
 
-            return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
-
-
         }else{
             if($idioma == "en"){
                 $doms = \DB::table('dominios')
@@ -155,12 +147,10 @@ class ProcesoController extends Controller
                 ->select('procesos.proc_id', 'procesos.proc_nombre_en', 'procesos.proc_detalles_en', 'procesos.proc_estado', 'created_at', 'updated_at')
                 ->get();
 
-                return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
-
             }
         }
 
-        // return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
+        return view('/proceso/proc_viewModificar', ['user' => $user, 'idioma' => $idioma, 'procs' => $procs, 'doms' => $doms]);
     }
 
 
@@ -180,8 +170,10 @@ class ProcesoController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('home')
-                ->withErrors($validator);
+            // return Redirect::to('home')
+            //     ->withErrors($validator);
+            return redirect('/proceso/proc_viewModificar')->with('status', $validator);
+
         } else {
             // store
             $procId = Input::get('proc_id');
@@ -197,6 +189,7 @@ class ProcesoController extends Controller
             $proc->proc_nombre_en = Input::get('proc_nombre_en');
             $proc->proc_detalles_es = Input::get('proc_detalles_es');
             $proc->proc_detalles_en = Input::get('proc_detalles_en'); 
+            $proc->dom_id = Input::get('dom_id'); 
             if((Input::get('proc_estado')) == null) {
                 $proc->proc_estado = 0;
             }else {
@@ -216,11 +209,10 @@ class ProcesoController extends Controller
             $doms = Dominio::all();
 
 
+            // // redirect  
+            // return view('/proceso/proc_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil,  'procs' => $procs, 'doms' => $doms]);
+            return redirect('/proceso/proc_viewModificar')->with('status', 'Modificación exitosa :D');
 
-            // // redirect
-            Session::flash('message', 'Successfully updated nerd!');     
-            return view('/proceso/proc_viewModificar', ['user' => $user, 'userPerfil' => $userPerfil,  'procs' => $procs, 'doms' => $doms]);
-            // return Redirect::to('/proceso/proc_viewAlta');       
         }
     }
 }
