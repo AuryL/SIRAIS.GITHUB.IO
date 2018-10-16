@@ -55,8 +55,12 @@ class DominioController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('/home')
-                ->withErrors($validator);
+            // return Redirect::to('/home')
+            //     ->withErrors($validator);
+            // return redirect('/home')->with('status', 'Error al crear Dominio');
+            return redirect('/dominio/dom_viewAlta')->with('status', $validator);
+
+
         } else {
             // store
             $dom = new Dominio;
@@ -67,8 +71,10 @@ class DominioController extends Controller
             $dom->save();
 
             // redirect
-            Session::flash('message', 'Successfully updated nerd!');
-            return Redirect::to('/dominio/dom_viewAlta');
+            // Session::flash('message', 'Successfully updated nerd!');
+            // return Redirect::to('/dominio/dom_viewAlta');
+
+            return redirect('/dominio/dom_viewAlta')->with('status', 'Dominio creado correctamente');
         }
     }
 
@@ -91,22 +97,17 @@ class DominioController extends Controller
              ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
              ->get();
  
-             return view('/dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms]);
- 
          }else{
              if($idioma == "en"){
                  $doms = \DB::table('dominios')
                  ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
                  ->get();
- 
-                 return view('/dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms]);
- 
                  
              }
          }
 
-        // return view('/dominio/dom_viewModificar', ['user' => $user, 'doms' => $doms]);
-    }
+            return view('/dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms]);
+        }
 
 
 
@@ -130,8 +131,11 @@ class DominioController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('home')
-                ->withErrors($validator);
+            // return Redirect::to('home')
+            //     ->withErrors($validator);
+
+                return redirect('/dominio/dom_viewAlta')->with('status', 'Dominio modificado incorrectamente');
+
         } else {
             // store
             $domId = Input::get('dom_id');
@@ -162,28 +166,29 @@ class DominioController extends Controller
 
             if($idioma == "es"){
     
-                $dominios = \DB::table('dominios')
+                $doms = \DB::table('dominios')
                 ->select('dominios.dom_id', 'dominios.dom_nombre_es', 'dominios.dom_detalles_es', 'dominios.dom_estado', 'created_at', 'updated_at')
                 ->get();
-    
-                return view('dominios/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'dominio' => $dominio, 'dom' => $dom]);
-    
+      
             }else{
                 if($idioma == "en"){
-                    $dominios = \DB::table('dominios')
+                    $doms = \DB::table('dominios')
                     ->select('dominios.dom_id', 'dominios.dom_nombre_en', 'dominios.dom_detalles_en', 'dominios.dom_estado', 'created_at', 'updated_at')
-                    ->get();
-    
-                    return view('dominios/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'dominio' => $dominio, 'dom' => $dom]);
-    
+                    ->get(); 
                     
                 }
             }
 
             // // redirect
-            Session::flash('message', 'Successfully updated nerd!');
+            // Session::flash('message', 'Successfully updated nerd!');
             // return Redirect::to('/dominio/dom_viewModificar');
+        
+        // return view('dominio/dom_viewModificar', ['dominio' => $dominio, 'dom' => $dom]);
+
+        // return view('dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'dominio' => $dominio, 'dom' => $dom]);
+
+
+            return view('dominio/dom_viewModificar', ['user' => $user, 'idioma' => $idioma, 'doms' => $doms, 'dom' => $dom])->with('status', 'Dominio modificado correctamente');
         }
-        // return view('dominios/dom_viewModificar', ['dominio' => $dominio, 'dom' => $dom]);
     }
 }

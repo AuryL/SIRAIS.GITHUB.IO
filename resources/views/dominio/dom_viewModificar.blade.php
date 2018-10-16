@@ -37,6 +37,15 @@
                         </div>
                         @csrf
 
+
+                        <!-- Mensaje de Dominio creado correctamente -->
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
+
                         <!-- ID -->
                         <input type="hidden" id="dom_id" name="dom_id" value="dom_id">
 

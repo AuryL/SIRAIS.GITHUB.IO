@@ -12,6 +12,7 @@
                 <form id="form_dom" method="POST" action="{{ route('dom_alta') }}">
                     @csrf
                     <br>
+
                     <div id="div_flex_modificar_expediente">
                         <label class="col-form-label">@lang('dominio.instr_alta', ['perfil' => $userPerfil->per_nombre_en])</label>                            
                         <div id="div_boton_registrar" class="form-group row mb-0">
@@ -23,6 +24,16 @@
                         </div>
                     </div>
                     <br>
+
+                              
+                    <!-- Mensaje de Dominio creado correctamente -->
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+
                     <!-- **** NOMBRE **** -->
                     <!-- <div id="div_flex_dom"> -->
                         <div id="div_flex_dom">
