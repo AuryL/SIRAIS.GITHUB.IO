@@ -9,7 +9,7 @@
                 <br>
                 <div class="card-body">
                     
-                    <form id="form_dom" method="POST" action="{{ route('dom_modificar') }}">
+                    <form id="form_dom" method="POST" action="{{ route('dom_modificar') }}" onsubmit="return checkSubmit();">
                     
                         <div id="div_flex_modificar_expediente">
                             <label class="col-form-label text-md-right">@lang('dominio.instr_modificar')</label>

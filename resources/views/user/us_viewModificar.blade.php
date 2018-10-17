@@ -9,7 +9,7 @@
                 <br>
                 <div class="card-body">
                     
-                    <form id="form_register" method="POST" action="{{ route('us_modificar') }}">
+                    <form id="form_register" method="POST" action="{{ route('us_modificar') }}" onsubmit="return checkSubmit();">
                     
                         <div id="div_flex_modificar_expediente">
                             <label class="col-form-label">@lang('usuario.instr_modificar')</label>   
@@ -39,6 +39,9 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
+
+                        <input type="hidden" id="us_id" name="us_id" value="us_id">
 
                         <div id="div_flex">
                             <!-- Expediente -->

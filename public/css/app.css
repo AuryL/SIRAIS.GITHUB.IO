@@ -5979,6 +5979,15 @@ input[type=submit].btn-block {
 	border-color: #c7eed8
 }
 
+/*  */
+.alert-error {
+	color: #fc451b;
+	background-color: #e9981f59;
+	border-color: #eed4c8;
+}
+/*  */
+
+
 .alert-success hr {
 	border-top-color: #b3e8ca
 }

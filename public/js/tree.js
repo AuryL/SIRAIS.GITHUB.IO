@@ -186,7 +186,7 @@ $(document).ready(function () {
                 if (idioma == "es") {
                     // document.getElementById("dominio");
                     for (let j in data[0]) {
-                        dominiosTotales.push(data[0][j].dom_nombre_es);
+                          dominiosTotales.push(data[0][j].dom_nombre_es);
                     }
                     for (let j in data[1]) {
                         procesosTotales.push(data[1][j].proc_nombre_es);
@@ -224,7 +224,7 @@ $(document).ready(function () {
                             actividadesTotales.push(data[5][j].act_nombre_en);
                         }
                     }
-                }
+                                                                                                                                                                                           }
                 console.log("dominiosTotales", dominiosTotales);
                 console.log("procesosTotales", procesosTotales);
                 console.log("subprocesosTotales", subprocesosTotales);
@@ -676,3 +676,30 @@ $(window).resize(function () {
         $(v).width(colWidth[i]);
     });
 }).resize(); // Trigger resize handler
+
+
+
+
+
+
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit = function () {
+    document.getElementById("boton_excel").value = "Enviando...";
+    document.getElementById("boton_excel").disabled = true;
+    return true;
+}
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta = function () {
+    document.getElementById("boton_alta").value = "Enviando...";
+    document.getElementById("boton_alta").disabled = true;
+    return true;
+}
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta_dom = function () {
+    document.getElementById("boton_alta_dom").value = "Enviando...";
+    document.getElementById("boton_alta_dom").disabled = true;
+    return true;
+}

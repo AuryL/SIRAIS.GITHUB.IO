@@ -9,7 +9,7 @@
                 <br>
                 <div class="card-body">
 
-                    <form id="form_register" method="POST" action="{{ route('subp_modificar') }}">
+                    <form id="form_register" method="POST" action="{{ route('subp_modificar') }}" onsubmit="return checkSubmit();">
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">

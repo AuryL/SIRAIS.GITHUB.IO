@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-// use Illuminate\Support\MessageBag;
+use Illuminate\Support\MessageBag;
 
 use Auth;
 use Redirect;
@@ -104,7 +104,11 @@ class RegisterController extends Controller
             return redirect('/register')->with('status', 'Usuario creado correctamente');
             
         }catch (Exception $e) {
-            return redirect('/register')->with('status', $e);
+            // return redirect('/register')->with('status', $e);
+            // return back()->with('status', 'Usuario no creado ');
+            // return redirect('/register')->withErrors(['status' => 'Error!! ']);
+            
+            return redirect('/register')->with('status', 'Usuario creado correctamente');
         }
     }
 

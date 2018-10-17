@@ -9,7 +9,7 @@
                 <br>
                 <div class="card-body">
 
-                    <form id="form_register" method="POST" action="{{ route('rgo_alta') }}">
+                    <form id="form_register" method="POST" action="{{ route('rgo_alta') }}" onsubmit="return checkSubmit_alta();"> 
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">

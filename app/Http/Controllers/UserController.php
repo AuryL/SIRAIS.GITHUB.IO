@@ -105,18 +105,19 @@ class UserController extends Controller
         } else {
             // store
 
-            $expediente = Input::get('username');
+            $id_Usuario = Input::get('us_id');
             // $user = User::where('username',$expediente);
 
             $usuario = \DB::table('users')
             ->select('users.*')
-            ->where('users.username','=',$expediente)
+            ->where('users.us_id','=',$id_Usuario)
             ->first();
             
             $user = User::find($usuario->us_id);
 
             // echo ($user);
 
+            $user->username = Input::get('username');
             $user->name = Input::get('name');
             $user->us_apellidopat = Input::get('us_apellidopat');
             $user->us_apellidomat = Input::get('us_apellidomat');
@@ -133,7 +134,13 @@ class UserController extends Controller
             
             $guardarEnDB = $user->save();
 
-            return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
+            if( $guardarEnDB ){
+                return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
+
+            } else {
+                return redirect('/user/us_viewModificar')->with('status', 'Modificación fallida :(');
+
+            }
 
         }
         // return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);

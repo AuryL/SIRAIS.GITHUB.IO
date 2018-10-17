@@ -172,12 +172,14 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        
-                        <div class="col sm-12">
-                            <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
-                            <!-- La funcion se encuentra en el archivo tree.js -->
-                            <button class="btn btn-primary" onclick="generarExcel()">@lang('boton.boton_excel')</button>
-                        </div>
+
+                        <form  onsubmit="return checkSubmit();">
+                            <div class="col sm-12">
+                                <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
+                                <!-- La funcion se encuentra en el archivo tree.js -->
+                                <button id="boton_excel" class="btn btn-primary" onclick="generarExcel()">@lang('boton.boton_excel')</button>
+                            </div>
+                        </form>
                         
                         <div id="div_vistaPrevia">
                         <br>

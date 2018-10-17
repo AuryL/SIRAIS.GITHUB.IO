@@ -9,7 +9,7 @@
                 <br>
                 <div class="card-body">
                     
-                    <form id="form_register" method="POST" action="{{ route('proc_modificar') }}">
+                    <form id="form_register" method="POST" action="{{ route('proc_modificar') }}" onsubmit="return checkSubmit();">
                     
                         <div id="div_flex_modificar_expediente">
                             <label class="col-form-label text-md-right">@lang('proceso.instr_modificar')</label>

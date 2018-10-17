@@ -16,7 +16,7 @@ var validarProc = function () {
 
     if (dominioId == "Dominio" || dominioId == "Domain" ) {
         alert("Debes seleccionar un Domino")
-        return false
+        // return false
     }
 
 

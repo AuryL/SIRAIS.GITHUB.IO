@@ -9,7 +9,7 @@
             <br>
             <div class="card-body">
                 
-                <form id="form_dom" method="POST" action="{{ route('dom_alta') }}">
+                <form id="form_dom" method="POST" action="{{ route('dom_alta') }}" onsubmit="return checkSubmit_alta_dom();">
                     @csrf
                     <br>
 

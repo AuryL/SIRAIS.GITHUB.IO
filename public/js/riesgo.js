@@ -442,7 +442,7 @@ var contRiesgo = function (cont_id) {
 
                 // $("#boton_modificar_control").attr("onclick", "prueba()");
                 // $("#boton_modificar_control").attr("onclick", "validarCont(" + valor.cont_id + ")");
-                document.getElementById("boton_modificar_control").disabled = false; // habilitar boton al llenar campos del formulario   
+                document.getElementById("_control").disabled = false; // habilitar boton al llenar campos del formulario   
 
 
             });

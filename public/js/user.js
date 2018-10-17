@@ -6,7 +6,7 @@ var validar = function () {
     var perfilId = selectedPerfilId.options[selectedPerfilId.selectedIndex].text;
     var dominioId = selectedDominioId.options[selectedDominioId.selectedIndex].text;
 
-    if (perfilId == "Perfil" || dominioId == "Dominio") {
+    if (perfilId == "Perfil" || dominioId == "Dominio" || perfilId == "Profile" || dominioId == "Domain") {
         alert("Debes seleccionar un Perfil y Domino")
         return false
     }
@@ -34,6 +34,7 @@ var expedienteSelected = function (expediente) {
                 document.getElementById("dom_id").disabled = false; // habilitar boton al llenar campos del formulario   
                 document.getElementById("us_estado").disabled = false; // habilitar boton al llenar campos del formulario   
 
+                document.getElementById("us_id").value = valor.us_id;
                 document.getElementById("username").value = valor.username;
                 document.getElementById("name").value = valor.name;
                 document.getElementById("us_apellidopat").value = valor.us_apellidopat;
@@ -63,4 +64,17 @@ var expedienteSelected = function (expediente) {
         }
     });
 
+}
+
+
+
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit = function () {
+    document.getElementById("boton_modificar").value = "Enviando...";
+    document.getElementById("boton_modificar").disabled = true;
+
+
+    return true;
 }

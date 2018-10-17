@@ -11,8 +11,7 @@
                     <!-- <label class="col-form-label text-md-right">@lang('usuario.instr_alta')</label> -->
                     <!-- <br> <br> <br> -->
                 
-                    
-                    <form id="form_register" method="POST" action="{{ route('register') }}">
+                    <form id="form_register" method="POST" action="{{ route('register') }}" onsubmit="return checkSubmit_alta_dom();">
                         @csrf
                         <br>
                         <div id="div_flex_modificar_expediente">
@@ -29,12 +28,30 @@
                         
                         
                         <!-- Mensaje de elemento creado correctamente -->
-                        @if (session('status'))
+                        <!-- @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif -->
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-error">  
+                                <strong>Whoops!</strong> Hay algunos problemas con tus inputs<br><br>
+                                <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                    </ul>
+                            </div>
+                        @elseif (session('status')) 
                             <div id="mensajeStatus" class="alert alert-success">  
                                 <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                                 {{ session('status') }}
                             </div>
                         @endif
+                        
+                        
 
 
                         <div id="div_flex">
@@ -45,7 +62,7 @@
 
                                 <div class="div_register_usernameName">
                                     <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="c048205" name="username" value="{{ old('username') }}" required autofocus pattern="[A-Za-z0-9]+">
-
+                                    
                                     @if ($errors->has('username'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('username') }}</strong>
