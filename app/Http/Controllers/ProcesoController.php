@@ -85,7 +85,8 @@ class ProcesoController extends Controller
             'proc_nombre_es' => 'required|string|max:45',
             'proc_nombre_en' => 'required|string|max:45',
             'proc_detalles_es' => 'required|string|max:280',
-            'proc_detalles_en' => 'required|string|max:280'
+            'proc_detalles_en' => 'required|string|max:280',    
+            'dom_id' => 'required|integer|max:15',
         );
         
         $validator = Validator::make(Input::all(), $rules);
@@ -94,7 +95,7 @@ class ProcesoController extends Controller
         if ($validator->fails()) {
             // return Redirect::to('/home')
             //     ->withErrors($validator);
-            return redirect('/proceso/proc_viewAlta')->with('status', $validator);
+            return redirect('/proceso/proc_viewAlta')->with('status', 'Error');
 
         } else {
             // store

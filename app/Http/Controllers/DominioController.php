@@ -44,8 +44,8 @@ class DominioController extends Controller
         $userPerfil = User::where('per_id',$user->per_id);
 
         $rules = array(
-            'dom_nombre_es' => 'required|string|max:45',
-            'dom_nombre_en' => 'required|string|max:45',
+            'dom_nombre_es' => 'required|string|max:45|unique:posts',
+            'dom_nombre_en' => 'required|string|max:45|unique:posts',
             'dom_detalles_es' => 'required|string|max:280',
             'dom_detalles_en' => 'required|string|max:280'
         );

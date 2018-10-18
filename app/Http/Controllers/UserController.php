@@ -81,12 +81,12 @@ class UserController extends Controller
          //////////////
         // validate
         $rules = array(
-            'username' => 'required|string|max:45',
+            'username' => 'required|string|max:45|unique:users',
             'name' => 'required|string|max:45',
             'us_apellidopat' => 'required|string|max:45',
             'us_apellidomat' => 'required|string|max:45',
             // 'us_extension' => 'required|integer',
-            // 'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             // 'per_id' => 'required|integer|max:15',
             // 'dom_id' => 'required|integer|max:15',
             // 'password' => 'required|string|min:6|confirmed',  

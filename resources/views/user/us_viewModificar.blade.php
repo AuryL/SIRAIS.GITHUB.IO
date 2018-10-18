@@ -33,7 +33,24 @@
                         @csrf
 
                         <!-- Mensaje de elemento creado correctamente -->
-                        @if (session('status'))
+                        <!-- @if (session('status'))
+                            <div id="mensajeStatus" class="alert alert-success">  
+                                <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                                {{ session('status') }}
+                            </div>
+                        @endif -->
+
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-error">  
+                                <strong>Whoops!</strong> Hay algunos problemas con tus inputs<br><br>
+                                <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                    </ul>
+                            </div>
+                        @elseif (session('status')) 
                             <div id="mensajeStatus" class="alert alert-success">  
                                 <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                                 {{ session('status') }}
@@ -129,7 +146,7 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email: ') }}</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="amlopez@santander.com.mx" name="email" value="{{ old('email') }}" required>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="amlopez@santander.com.mx" name="email" value="{{ old('email') }}" required disabled="true">
 
                                     @if ($errors->has('email'))
                                         <span class="invalid-feedback" role="alert">

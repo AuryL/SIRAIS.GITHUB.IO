@@ -67,7 +67,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|max:45',
+            'username' => 'required|string|max:45|unique:users',
             'name' => 'required|string|max:45',
             'us_apellidopat' => 'required|string|max:45',
             'us_apellidomat' => 'required|string|max:45',
@@ -108,7 +108,7 @@ class RegisterController extends Controller
             // return back()->with('status', 'Usuario no creado ');
             // return redirect('/register')->withErrors(['status' => 'Error!! ']);
             
-            return redirect('/register')->with('status', 'Usuario creado correctamente');
+            return redirect('/register')->with('status', 'Usuario no creado');
         }
     }
 

@@ -70,11 +70,3 @@ var expedienteSelected = function (expediente) {
 
 
 
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit = function () {
-    document.getElementById("boton_modificar").value = "Enviando...";
-    document.getElementById("boton_modificar").disabled = true;
-
-
-    return true;
-}
