@@ -72,3 +72,25 @@ var dominioSelected = function (dominio) {
         }
     });
 }
+
+
+
+
+
+
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta_dom = function () {
+    document.getElementById("boton_alta_dom").value = "Enviando...";
+    document.getElementById("boton_alta_dom").disabled = true;
+    return true;
+}
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_modificar = function () {
+    document.getElementById("boton_modificar").value = "Enviando...";
+    document.getElementById("boton_modificar").disabled = true;
+    return true;
+}

@@ -34,6 +34,64 @@
 
                         <input type="hidden" id="idioma" name="idioma" value="{{$idioma}}">
 
+
+                        <!-- subproceso -->
+                        <div id="div_flex_modificar_expediente">
+                            <div class="div_register_usernameName">
+                                <label for="subproceso" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
+
+                                <div class="div_register_usernameName"> 
+                                    <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required>
+                                        <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
+                                        @foreach($subps as $subp => $value)
+
+                                            @if($idioma == "es")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+                                            @elseif($idioma == "en")
+                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option>  
+                                            @endif
+
+                                        @endforeach  
+                                    </select>
+                                    <br>
+                                    @if ($errors->has('subproceso'))
+                                        <span class="invalid-feedback">
+                                            <label class="label-texto"><strong>{{ $errors->first('subproceso') }}</strong></label>
+                                        </span>
+                                    @endif                                    
+                                </div>
+                            </div>
+                            <!-- Proceso asociado -->
+                            <div class="div_register_usernameName">
+                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
+
+                                <div class="div_register_usernameName">
+                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="procesp" value="{{ old('proc_id') }}" disabled = "false" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+
+                                    @if ($errors->has('proc_id'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('proc_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <!-- Dominio asociado-->
+                            <div class="div_register_usernameName">
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
+
+                                <div class="div_register_usernameName">
+                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
+
+                                    @if ($errors->has('dom_id'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('dom_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                        </div>
+                        
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
@@ -104,63 +162,7 @@
                             </div>
                         </div>
                         <br>                   
-                        <!-- subproceso -->
-                        <div id="div_flex_modificar_expediente">
-                            <div class="div_register_usernameName">
-                                <label for="subproceso" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
-
-                                <div class="div_register_usernameName"> 
-                                    <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required>
-                                        <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
-                                        @foreach($subps as $subp => $value)
-
-                                            @if($idioma == "es")
-                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
-                                            @elseif($idioma == "en")
-                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option>  
-                                            @endif
-
-                                        @endforeach  
-                                    </select>
-                                    <br>
-                                    @if ($errors->has('subproceso'))
-                                        <span class="invalid-feedback">
-                                            <label class="label-texto"><strong>{{ $errors->first('subproceso') }}</strong></label>
-                                        </span>
-                                    @endif                                    
-                                </div>
-                            </div>
-
-                            <div class="div_register_usernameName">
-                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
-
-                                <div class="div_register_usernameName">
-                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="procesp" value="{{ old('proc_id') }}" disabled = "false" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
-
-                                    @if ($errors->has('proc_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('proc_id') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
-
-                                <div class="div_register_usernameName">
-                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
-
-                                    @if ($errors->has('dom_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('dom_id') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                        </div>
-
+                        
                     </form>
                 </div>
             </div>

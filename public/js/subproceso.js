@@ -24,7 +24,7 @@ var validarSubp = function () {
     if (escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
         return false
-    } 
+    }
     // else {
     //     alert("Perfecto");
     // }
@@ -51,7 +51,7 @@ var domSubproceso = function (proceso) {
             data1.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
                 dom_id = valor.dom_id;
                 console.log("dom_id: " + dom_id);
-                
+
                 var idioma = document.getElementById("idioma").value;
                 console.log("idioma: " + idioma);
 
@@ -88,6 +88,109 @@ var domSubproceso = function (proceso) {
 
 
 
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var domSelected = function (dominio) {
+    console.log('domSelected');
+    console.log(dominio);
+
+    var arrayProcEs = [];
+    var arrayProcEn = [];
+
+    var idioma = document.getElementById("idioma").value;
+
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroDominio/" + dominio, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+            data.forEach(function (valor) { // El método forEach() ejecuta la función 
+                arrayProcEs.push(valor.proc_nombre_es);
+                arrayProcEn.push(valor.proc_nombre_en);
+            });
+
+            document.getElementById("proc_id_filtro").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#proc_id_filtro").empty();
+
+            if (idioma == "es") {
+                $("#proc_id_filtro").append('<option selected value="0" disabled="disabled" > Proceso </option>');
+                data.forEach(function (valor) {
+                    $("#proc_id_filtro").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#proc_id_filtro").append('<option selected value="0" disabled="disabled" > Proceso </option>');
+                    data.forEach(function (valor) {
+                        $("#proc_id_filtro").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_en + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var procSelected = function (proceso) {
+    console.log('procSelected');
+    console.log(proceso);
+
+    var idioma = document.getElementById("idioma").value;
+
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroProceso/" + proceso, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+
+            document.getElementById("subproceso").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#subproceso").empty();
+
+            if (idioma == "es") {
+                $("#subproceso").append('<option selected value="0" disabled="disabled" > Subproceso </option>');
+                data.forEach(function (valor) {
+                    $("#subproceso").append('<option value="' + valor.subp_id + '">' + valor.subp_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#subproceso").append('<option selected value="0" disabled="disabled" > Subprocess </option>');
+                    data.forEach(function (valor) {
+                        $("#subproceso").append('<option value="' + valor.subp_id + '">' + valor.subp_nombre_es + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
+
 //////////////////////////////////////////////////
 var subprocesoSelected = function (subproceso) {
     console.log('subprocesoSelected');
@@ -99,7 +202,7 @@ var subprocesoSelected = function (subproceso) {
 
         if (data && data.length > 0) {// Verificar que no esta vacia "data"
             data.forEach(function (valor) { // El método forEach() ejecuta la función indicada una vez por cada elemento "a" del array "data"
-            
+
                 document.getElementById("subp_id").disabled = false; // habilitar boton al llenar campos del formulario
                 document.getElementById("subp_nombre_es").disabled = false; // habilitar boton al llenar campos del formulario
                 document.getElementById("subp_nombre_en").disabled = false; // habilitar boton al llenar campos del formulario
@@ -148,3 +251,19 @@ var subprocesoSelected = function (subproceso) {
 
 
 
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta = function () {
+    document.getElementById("boton_alta").value = "Enviando...";
+    document.getElementById("boton_alta").disabled = true;
+    return true;
+}
+
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_modificar = function () {
+    document.getElementById("boton_modificar").value = "Enviando...";
+    document.getElementById("boton_modificar").disabled = true;
+    return true;
+}

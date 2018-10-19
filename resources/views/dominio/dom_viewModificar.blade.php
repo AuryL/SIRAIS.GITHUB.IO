@@ -39,14 +39,33 @@
 
 
                         <!-- Mensaje de elemento creado correctamente -->
-                        @if (session('status'))
+                        <!-- @if (session('status'))
                             <div id="mensajeStatus" class="alert alert-success">  
                                 <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                                 {{ session('status') }}
                             </div>
-                        @endif
+                        @endif -->
+ 
 
-                        {!! session()->get('error') !!} 
+
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-error">  
+                            <strong>Whoops!</strong> Hay algunos problemas con tus inputs<br><br>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                                </ul>
+                        </div>
+                    @elseif (session('status')) 
+                        <div id="mensajeStatus" class="alert alert-success">  
+                            <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+
 
                         <!-- ID -->
                         <input type="hidden" id="dom_id" name="dom_id" value="dom_id">

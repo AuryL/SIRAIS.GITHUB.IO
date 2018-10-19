@@ -15,19 +15,57 @@
                         <div id="div_flex_modificar_expediente">
                             <label class="col-form-label text-md-right">@lang('subp.instr_modificar')</label>
                             <br> <br> <br>
-                            <!-- Seleccionar el expediente del usuario que se desea Modificar -->
-                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
-                                <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required>
-                                    <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
-                                    @foreach($subps as $subp => $value)
+                        </div>
+
+                        <div id="div_flex_modificar_expediente">
+                            <!-- FILTRO DOMINIO -->
+                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
+
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
+
+                                <select id="dom_id_filtro" name="dom_id_filtro" class="form-control" required onchange="domSelected(this.value)">
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
+                                    @foreach($doms as $dom => $value)
 
                                         @if($idioma == "es")
-                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option>  
+                                            <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
                                         @elseif($idioma == "en")
-                                            <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option>  
+                                            <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_en }}</option>  
                                         @endif
 
-                                    @endforeach  
+                                    @endforeach                           
+                                                                    
+                                </select>
+                                <br>
+                                @if ($errors->has('dom_id'))
+                                    <span class="invalid-feedback">
+                                        <label class="label-texto"><strong>{{ $errors->first('dom_id') }}</strong></label>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <!-- FILTRO PROCESO -->
+                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('proceso') ? ' has-error' : '' }}">
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
+
+                                <select name="proc_id_filtro" id="proc_id_filtro" class="form-control" onchange="procSelected(this.value)" required disabled="true" >
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                         
+                                </select>
+                                <br>
+                                @if ($errors->has('proceso'))
+                                    <span class="invalid-feedback">
+                                        <label class="label-texto"><strong>{{ $errors->first('proceso') }}</strong></label>
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <!--  FILTRO SUBPROCESO-->
+                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
+
+                                <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required disabled="true" >
+                                    <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
                                 </select>
                                 <br>
                                 @if ($errors->has('subproceso'))

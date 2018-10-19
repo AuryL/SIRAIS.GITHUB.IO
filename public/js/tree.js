@@ -686,29 +686,6 @@ $(window).resize(function () {
 
 // //////////////////// Bloquear Boton al enviar formulario
 var checkSubmit = function () {
-    document.getElementById("boton_excel").value = "Enviando...";
-    document.getElementById("boton_excel").disabled = true;
-    return true;
-}
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_alta = function () {
-    document.getElementById("boton_alta").value = "Enviando...";
-    document.getElementById("boton_alta").disabled = true;
-    return true;
-}
-
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_alta_dom = function () {
-    document.getElementById("boton_alta_dom").value = "Enviando...";
-    document.getElementById("boton_alta_dom").disabled = true;
-    return true;
-}
-
-
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_modificar = function () {
-    document.getElementById("boton_modificar").value = "Enviando...";
-    document.getElementById("boton_modificar").disabled = true;
-
-    return true;
+    document.getElementById("boton_excel").valuedocument.getElementById("boton_excel").value = "Enviando...";
+    document.getElementById("boton_excel").disabled = false; // habilitar boton al llenar campos del formulario    return true;
 }

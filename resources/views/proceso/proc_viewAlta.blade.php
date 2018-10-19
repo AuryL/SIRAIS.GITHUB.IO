@@ -43,6 +43,48 @@
                         @endif
 
 
+                        <!-- DOMINIO -->
+                        <!-- <div id="div_flex"> -->
+                        <div id="div_flex_modificar_expediente">
+                            <div class="div_register_usernameName">
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
+
+                                <div class="div_register_usernameName">
+                                    <select id="dom_id" name="dom_id" class="form-control" required>
+                                        <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
+                                        @foreach($doms as $dom => $value)
+
+                                            @if($idioma == "es")
+                                                <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
+                                            @elseif($idioma == "en")
+                                                <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_en }}</option>  
+                                            @endif
+
+                                        @endforeach                           
+                                                                        
+                                    </select>
+                                    <br>
+                                    @if ($errors->has('dom_id'))
+                                        <span class="invalid-feedback">
+                                            <label class="label-texto"><strong>{{ $errors->first('dom_id') }}</strong></label>
+                                        </span>
+                                    @endif                                    
+                                </div>
+                            </div>
+                            
+                            <!-- Boton -->
+                            <div id="div_boton_registrar" class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <br>
+                                    <button id="boton_alta_dom" onclick="validarProc()" type="submit" class="btn btn-primary">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@lang('boton.boton_registrar')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                         <!-- **** NOMBRE **** -->
                         <div id="div_flex_dom">
                             <!-- Español -->
@@ -111,48 +153,8 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <br>                   
-                        <!-- DOMINIO -->
-                        <!-- <div id="div_flex"> -->
-                        <div id="div_flex_modificar_expediente">
-                            <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
-
-                                <div class="div_register_usernameName">
-                                    <select id="dom_id" name="dom_id" class="form-control" required>
-                                        <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
-                                        @foreach($doms as $dom => $value)
-
-                                            @if($idioma == "es")
-                                                <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_es }}</option>  
-                                            @elseif($idioma == "en")
-                                                <option value="{{ $value->dom_id }}">{{ $value->dom_nombre_en }}</option>  
-                                            @endif
-
-                                        @endforeach                           
-                                                                        
-                                    </select>
-                                    <br>
-                                    @if ($errors->has('dom_id'))
-                                        <span class="invalid-feedback">
-                                            <label class="label-texto"><strong>{{ $errors->first('dom_id') }}</strong></label>
-                                        </span>
-                                    @endif                                    
-                                </div>
-                            </div>
-                            
-                            <!-- Boton -->
-                            <div id="div_boton_registrar" class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <br>
-                                    <button id="boton_alta_dom" onclick="validarProc()" type="submit" class="btn btn-primary">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@lang('boton.boton_registrar')&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
+                        </div>         
+                        
                     </form>
                 </div>
             </div>

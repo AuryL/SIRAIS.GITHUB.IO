@@ -177,7 +177,10 @@
                             <div class="col sm-12">
                                 <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
                                 <!-- La funcion se encuentra en el archivo tree.js -->
-                                <button id="boton_excel" onclick="generarExcel()"  type="submit" class="btn btn-primary">@lang('boton.boton_excel')</button>
+                                <button id="boton_excel" onclick="generarExcel()"  type="submit" class="btn btn-primary">
+                                    @lang('boton.boton_excel')
+                                </button>
+
                             </div>
                         </form>
                         

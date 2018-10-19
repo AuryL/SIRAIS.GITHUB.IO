@@ -110,6 +110,10 @@ Route::get('cargar_datosdom/{dominio}', function($dominio) {
 
 
 /////////////////// DATOS PROCESO /////////////////////
+Route::get('cargar_datosFiltroDominio/{dominio}', function($dominio) {
+    $proceso = Proceso::where('dom_id',$dominio);
+    return $proceso->get(); 
+});
 Route::get('cargar_datosProc/{proceso}', function($proceso) {
     $proc = Proceso::where('proc_id',$proceso);
     return $proc->get(); 
@@ -117,6 +121,16 @@ Route::get('cargar_datosProc/{proceso}', function($proceso) {
 
 
 
+
+// PROCESO
+Route::get('cargar_datosFiltroDominio/{dominio}', function($dominio) {
+    $proceso = Proceso::where('dom_id',$dominio);
+    return $proceso->get(); 
+});
+Route::get('cargar_datosFiltroProceso/{proceso}', function($proceso) {
+    $subp = Subproceso::where('proc_id',$proceso);
+    return $subp->get(); 
+});
 /////////////////// DATOS Dominio asociado al Subproceso /////////////////////
 Route::get('cargar_subpId/{proceso}', function($proceso) {
     $proc = Proceso::where('proc_id',$proceso);
@@ -132,7 +146,12 @@ Route::get('cargar_datosSubp/{subproceso}', function($subproceso) {
     $subp = Subproceso::where('subp_id',$subproceso);
     return $subp->get(); 
 });
-///////////////////////RIESGOS - CONTROLES / ACTIVIDDES/////////////////////////
+
+
+
+
+
+///////////////////////RIESGOS - CONTROLES / ACTIVIDDES///////////////////////// cargar_datosFiltroSubp
 Route::post('modificarControl', 'ControlController@post');
 Route::post('modificarActividad', 'ActividadController@post');
 
@@ -145,6 +164,21 @@ Route::post('modificarActividad', 'ActividadController@post');
 
 
 
+
+// RIESGO
+Route::get('cargar_datosFiltroDominio/{dominio}', function($dominio) {
+    $proceso = Proceso::where('dom_id',$dominio);
+    return $proceso->get(); 
+});
+Route::get('cargar_datosFiltroProceso/{proceso}', function($proceso) {
+    $subp = Subproceso::where('proc_id',$proceso);
+    return $subp->get(); 
+});
+/////////////////// DATOS Dominio asociado al Subproceso /////////////////////
+Route::get('cargar_datosFiltroSubp/{subproceso}', function($subproceso) {
+    $rgo = Riesgo::where('subp_id',$subproceso);
+    return $rgo->get(); 
+});
 
 /////////////////// DATOS Proceso asociado al Riesgo /////////////////////
 Route::get('cargar_rgoId/{subproceso}', function($subproceso) {

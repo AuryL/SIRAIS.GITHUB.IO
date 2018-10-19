@@ -534,6 +534,161 @@ var actControl = function (act_id) {
 
 
 
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var domSelected = function (dominio) {
+    console.log('domSelected');
+    console.log(dominio);
+
+    var arrayProcEs = [];
+    var arrayProcEn = [];
+
+    var idioma = document.getElementById("idioma").value;
+
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroDominio/" + dominio, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+            data.forEach(function (valor) { // El método forEach() ejecuta la función 
+                arrayProcEs.push(valor.proc_nombre_es);
+                arrayProcEn.push(valor.proc_nombre_en);
+            });
+
+            document.getElementById("proc_id_filtro").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#proc_id_filtro").empty();
+
+            if (idioma == "es") {
+                $("#proc_id_filtro").append('<option selected value="0" disabled="disabled" > Proceso </option>');
+                data.forEach(function (valor) {
+                    $("#proc_id_filtro").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#proc_id_filtro").append('<option selected value="0" disabled="disabled" > Proceso </option>');
+                    data.forEach(function (valor) {
+                        $("#proc_id_filtro").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_en + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var procSelected = function (proceso) {
+    console.log('procSelected');
+    console.log(proceso);
+
+    var idioma = document.getElementById("idioma").value;
+
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroProceso/" + proceso, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+
+            document.getElementById("subp_id_filtro").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#subp_id_filtro").empty();
+
+            if (idioma == "es") {
+                $("#subp_id_filtro").append('<option selected value="0" disabled="disabled" > Subproceso </option>');
+                data.forEach(function (valor) {
+                    $("#subp_id_filtro").append('<option value="' + valor.subp_id + '">' + valor.subp_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#subp_id_filtro").append('<option selected value="0" disabled="disabled" > Subproceso </option>');
+                    data.forEach(function (valor) {
+                        $("#subp_id_filtro").append('<option value="' + valor.subp_id + '">' + valor.subp_nombre_es + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var subpSelected = function (subp) {
+    console.log('procSelected');
+    console.log(subp);
+
+    var idioma = document.getElementById("idioma").value;
+
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroSubp/" + subp, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+
+            document.getElementById("riesgo").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#riesgo").empty();
+
+            if (idioma == "es") {
+                $("#riesgo").append('<option selected value="0" disabled="disabled" > Riesgo </option>');
+                data.forEach(function (valor) {
+                    $("#riesgo").append('<option value="' + valor.rgo_id + '">' + valor.rgo_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#riesgo").append('<option selected value="0" disabled="disabled" > Risk </option>');
+                    data.forEach(function (valor) {
+                        $("#riesgo").append('<option value="' + valor.rgo_id + '">' + valor.rgo_nombre_en + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
 //////////////////////////////////////////////////
 var riesgoSelected = function (riesgo) {
     console.log('riesgoSelected');
@@ -625,5 +780,31 @@ var riesgoSelected = function (riesgo) {
 
 
 
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta = function () {
+    document.getElementById("boton_alta").value = "Enviando...";
+    document.getElementById("boton_alta").disabled = true;
+    return true;
+}
 
-//////////////////////////////////////////////////////
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta_dom = function () {
+    document.getElementById("boton_modificar_control").value = "Enviando...";
+    document.getElementById("boton_modificar_control").disabled = true;
+    return true;
+}
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta_dom = function () {
+    document.getElementById("boton_modificar_actividad").value = "Enviando...";
+    document.getElementById("boton_modificar_actividad").disabled = true;
+    return true;
+}
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_modificar = function () {
+    document.getElementById("boton_modificar").value = "Enviando...";
+    document.getElementById("boton_modificar").disabled = true;
+    return true;
+}

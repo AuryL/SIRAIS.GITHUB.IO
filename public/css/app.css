@@ -568,7 +568,7 @@ h6 {
 	padding-right: 2%;
 	padding-bottom: 2%;
 	margin-bottom: 2%;
-	justify-content:space-between;
+	/* justify-content:space-between; */
 }
 
 #div_flex_riesgos {
@@ -2621,6 +2621,7 @@ select.form-control:focus::-ms-value {
 	color: #495057;
 	background-color: #fff
 }
+
 
 .form-control-file,
 .form-control-range {

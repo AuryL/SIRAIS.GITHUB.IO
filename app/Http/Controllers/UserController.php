@@ -86,7 +86,7 @@ class UserController extends Controller
             'us_apellidopat' => 'required|string|max:45',
             'us_apellidomat' => 'required|string|max:45',
             // 'us_extension' => 'required|integer',
-            'email' => 'required|string|email|max:255|unique:users',
+            // 'email' => 'required|string|email|max:255|unique:users',
             // 'per_id' => 'required|integer|max:15',
             // 'dom_id' => 'required|integer|max:15',
             // 'password' => 'required|string|min:6|confirmed',  
@@ -95,18 +95,17 @@ class UserController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
-        if ($validator->fails()) {
-            // return Redirect::to('register')
-                // ->withErrors($validator)
-                // ->withInput(Input::except('password'));
-
+        if ($validator->fails()) {             
+            // return redirect('/user/us_viewModificar')->with('status', $validator);
+            // return redirect('/user/us_viewModificar')->with('status', 'Validación fallida :(');
             return redirect('/user/us_viewModificar')->with('status', $validator);
 
-        } else {
-            // store
 
+        } else {
+            
+            
+            // store
             $id_Usuario = Input::get('us_id');
-            // $user = User::where('username',$expediente);
 
             $usuario = \DB::table('users')
             ->select('users.*')
@@ -115,8 +114,7 @@ class UserController extends Controller
             
             $user = User::find($usuario->us_id);
 
-            // echo ($user);
-
+            // echo($user);
             $user->username = Input::get('username');
             $user->name = Input::get('name');
             $user->us_apellidopat = Input::get('us_apellidopat');
@@ -132,15 +130,15 @@ class UserController extends Controller
                 $user->us_estado = 1;
             }
             
-            $guardarEnDB = $user->save();
+            $user->save();
 
-            if( $guardarEnDB ){
+            // if( $guardarEnDB ){
+            //     return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
+
+            // } else {
                 return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
-
-            } else {
-                return redirect('/user/us_viewModificar')->with('status', 'Modificación fallida :(');
-
-            }
+// 
+            // }
 
         }
         // return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);

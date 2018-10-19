@@ -22,13 +22,65 @@ var validarProc = function () {
 
     if (dominioId == "Dominio" || dominioId == "Domain" || escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
         alert("Debes llenar todos los campos");
-        
+
         return false;
-    } 
+    }
     // else {
     //     alert("Perfecto");
     // }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////
+var domSelected = function (dominio) {
+    console.log('domSelected');
+    console.log(dominio);
+
+    var idioma = document.getElementById("idioma").value;
+
+    $.get("http://127.0.0.1:8000/api/cargar_datosFiltroDominio/" + dominio, function (data) {// Se direcciona a la url especificada (api.php)
+        // Posteriormente, recibe el resultado de la petición, que es data
+        console.log('datosProc:data', data);
+
+        if (data && data.length > 0) {// Verificar que no esta vacia "data"
+
+            document.getElementById("proceso").disabled = false; // habilitar boton al llenar campos del formulario
+            $("#proceso").empty();
+
+            if (idioma == "es") {
+                $("#proceso").append('<option selected value="0" disabled="disabled" > Proceso </option>');
+                data.forEach(function (valor) {
+                    $("#proceso").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_es + '</option>');
+                });
+            } else {
+                if (idioma == "en") {
+                    $("#proceso").append('<option selected value="0" disabled="disabled" > Process </option>');
+                    data.forEach(function (valor) {
+                        $("#proceso").append('<option value="' + valor.proc_id + '">' + valor.proc_nombre_en + '</option>');
+                    });
+                }
+            }
+
+        } else {// Si el array "data" recibido esta vacia
+            $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
+        }
+    });
+}
+
+
+
+
+
 
 
 
@@ -86,4 +138,26 @@ var procesoSelected = function (proceso) {
             $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
         }
     });
+}
+
+
+
+
+
+
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_alta_dom = function () {
+    document.getElementById("boton_alta_dom").value = "Enviando...";
+    document.getElementById("boton_alta_dom").disabled = true;
+    return true;
+}
+
+
+// //////////////////// Bloquear Boton al enviar formulario
+var checkSubmit_modificar = function () {
+    document.getElementById("boton_modificar").value = "Enviando...";
+    document.getElementById("boton_modificar").disabled = true;
+    return true;
 }

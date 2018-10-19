@@ -33,15 +33,15 @@
                         @csrf
 
                         <!-- Mensaje de elemento creado correctamente -->
-                        <!-- @if (session('status'))
+                        @if (session('status'))
                             <div id="mensajeStatus" class="alert alert-success">  
                                 <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                                 {{ session('status') }}
                             </div>
-                        @endif -->
+                        @endif
 
 
-                        @if (count($errors) > 0)
+                        <!-- @if (count($errors) > 0)
                             <div class="alert alert-error">  
                                 <strong>Whoops!</strong> Hay algunos problemas con tus inputs<br><br>
                                 <ul>
@@ -55,8 +55,9 @@
                                 <span class="boton" onclick="cerraranuncio('mensajeStatus')">x</span>
                                 {{ session('status') }}
                             </div>
-                        @endif
+                        @endif -->
 
+                   
 
                         <input type="hidden" id="us_id" name="us_id" value="us_id">
 
@@ -260,13 +261,11 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 
