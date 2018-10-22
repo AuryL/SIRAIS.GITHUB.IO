@@ -9,11 +9,13 @@
                 <br>
                 <div class="card-body">
                     
-                    <form id="form_register" method="POST" action="{{ route('proc_modificar') }}" onsubmit="return checkSubmit();">
+                    <form id="form_register" method="POST" action="{{ route('proc_modificar') }}" onsubmit="return checkSubmit_modificar();">
                     
-                        <div id="div_flex_modificar_expediente">
+                        <div id="div_flex">
                             <label class="col-form-label text-md-right">@lang('proceso.instr_modificar')</label>
-                            
+                        </div>
+                        <br>
+                        <div id="div_flex_modificar_expediente">
                             <!-- DOMINIO -->
                             <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
@@ -41,8 +43,11 @@
                             </div>
 
                             <!-- Seleccionar PROCESO que se desea Modificar -->
-                            <div id="div_modificar_expediente" class="form-group{{ $errors->has('proceso') ? ' has-error' : '' }}">
-                                <select name="proceso" id="proceso" class="form-control" onchange="procesoSelected(this.value)" required disabled="true" >
+                            <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
+
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
+
+                                <select name="proc_id_filtro" id="proc_id_filtro" class="form-control" onchange="procesoSelected(this.value)" required disabled="true" >
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                         
                                 </select>
                                 <br>
@@ -155,9 +160,9 @@
                             </div>
                             
                             <!-- DOMINIO -->
-                            <div id="div_register_usernameName" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
+                            <div id="div_flex" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
+                                <label id="label_modiciar_dominio_proceso" for="dom_id" >@lang('proceso.instr_modificar_dominio')</label>
 
                                 <select id="dom_id" name="dom_id" class="form-control" required disabled="true" >
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>

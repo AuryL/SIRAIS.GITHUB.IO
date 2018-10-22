@@ -78,13 +78,15 @@ class UserController extends Controller
     // 
     function modificar () 
     {
+
          //////////////
         // validate
         $rules = array(
-            'username' => 'required|string|max:45|unique:users',
-            'name' => 'required|string|max:45',
-            'us_apellidopat' => 'required|string|max:45',
-            'us_apellidomat' => 'required|string|max:45',
+            // 'username' => 'required|min:7|max:8|unique:users|regex:/^([A-Za-z0-9_])+$/',
+            'username' => 'required|alpha_num|min:7|max:8',
+            'name' => 'required|string|max:45|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'us_apellidopat' => 'required|string|max:45|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
+            'us_apellidomat' => 'required|string|max:45|regex:/^([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-])+((\s*)+([0-9a-zA-ZñÑáéíóúÁÉÍÓÚ_-]*)*)+$/',
             // 'us_extension' => 'required|integer',
             // 'email' => 'required|string|email|max:255|unique:users',
             // 'per_id' => 'required|integer|max:15',
@@ -95,12 +97,8 @@ class UserController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         // process the login
-        if ($validator->fails()) {             
-            // return redirect('/user/us_viewModificar')->with('status', $validator);
-            // return redirect('/user/us_viewModificar')->with('status', 'Validación fallida :(');
-            return redirect('/user/us_viewModificar')->with('status', $validator);
-
-
+        if ($validator->fails()) {                      
+            return redirect('/user/us_viewModificar')->with('status', 'Validación fallida :(');    
         } else {
             
             
@@ -114,7 +112,6 @@ class UserController extends Controller
             
             $user = User::find($usuario->us_id);
 
-            // echo($user);
             $user->username = Input::get('username');
             $user->name = Input::get('name');
             $user->us_apellidopat = Input::get('us_apellidopat');
@@ -132,18 +129,15 @@ class UserController extends Controller
             
             $user->save();
 
-            // if( $guardarEnDB ){
-            //     return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
-
-            // } else {
+            if($user->save()){
                 return redirect('/user/us_viewModificar')->with('status', 'Modificación exitosa :D');
-// 
-            // }
 
+            } else {
+                return redirect('/user/us_viewModificar')->with('status', 'Modificación fallida :(');
+
+            }
         }
-        // return view('user/us_viewModificar', ['usuarios' => $usuarios, 'perfiles' => $perfiles, 'dominios' => $dominios]);
     }
-
 }
 
 

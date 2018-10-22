@@ -350,6 +350,12 @@ label {
 	padding: 3%;
 }
 
+#label_modiciar_dominio_proceso {
+	font-size: .8rem;
+	color: blue;
+	width: 100%;
+}
+
 /*  */
 
 
@@ -546,7 +552,7 @@ h6 {
 
 #div_flex {
 	display: flex; 
-	width: 100%;
+	width: 100%;padding-top: 2%;
 }
 
 #div_flex_tree {
@@ -2547,7 +2553,8 @@ th, td {
 /*  */
 
 #per_id, #dom_id {
-	width: 50%;
+	/* width: 50%; */
+	margin-left: 2%;
 }
 
 #form_login {

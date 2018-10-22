@@ -252,18 +252,18 @@ var subprocesoSelected = function (subproceso) {
 
 
 
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_alta = function () {
-    document.getElementById("boton_alta").value = "Enviando...";
-    document.getElementById("boton_alta").disabled = true;
-    return true;
-}
+// // //////////////////// Bloquear Boton al enviar formulario
+// var checkSubmit_alta = function () {
+//     document.getElementById("boton_alta").value = "Enviando...";
+//     document.getElementById("boton_alta").disabled = true;
+//     return true;
+// }
 
 
 
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_modificar = function () {
-    document.getElementById("boton_modificar").value = "Enviando...";
-    document.getElementById("boton_modificar").disabled = true;
-    return true;
-}
+// // //////////////////// Bloquear Boton al enviar formulario
+// var checkSubmit_modificar = function () {
+//     document.getElementById("boton_modificar").value = "Enviando...";
+//     document.getElementById("boton_modificar").disabled = true;
+//     return true;
+// }

@@ -5,7 +5,6 @@ var validarProc = function () {
     var escribirDetallesEs = document.getElementById("proc_detalles_es");
     var escribirDetallesEn = document.getElementById("proc_detalles_en");
 
-
     console.log(escribirNombreEs.value);
     console.log(escribirNombreEn.value);
     console.log(escribirDetallesEs.value);
@@ -20,20 +19,17 @@ var validarProc = function () {
     // }
 
 
-    if (dominioId == "Dominio" || dominioId == "Domain" || escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
-        alert("Debes llenar todos los campos");
+    // if (dominioId == "Dominio" || dominioId == "Domain" || escribirNombreEs.value == null || escribirNombreEn.value == null || escribirDetallesEs.value == null || escribirDetallesEn.value == null) {
+    //     alert("Debes llenar todos los campos");
 
-        return false;
-    }
-    // else {
-    //     alert("Perfecto");
+    //     return false;
     // }
+
+    if (dominioId == "Dominio" || dominioId == "Domain") {
+        alert("Debes seleccionar un Domino")
+        return false
+    }
 }
-
-
-
-
-
 
 
 
@@ -138,26 +134,4 @@ var procesoSelected = function (proceso) {
             $(".col-md-6").append("<p>No se encontraron registros</p>");// Se agrega un <p> señalando que no se encontraron controles
         }
     });
-}
-
-
-
-
-
-
-
-
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_alta_dom = function () {
-    document.getElementById("boton_alta_dom").value = "Enviando...";
-    document.getElementById("boton_alta_dom").disabled = true;
-    return true;
-}
-
-
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_modificar = function () {
-    document.getElementById("boton_modificar").value = "Enviando...";
-    document.getElementById("boton_modificar").disabled = true;
-    return true;
 }

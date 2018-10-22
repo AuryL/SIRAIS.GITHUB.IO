@@ -1,15 +1,33 @@
 var validar = function () {
 
+    var expediente = document.getElementById("dom_id");
+    var nombre = document.getElementById("dom_id");
+    var apellidoP = document.getElementById("dom_id");
+    var apellidoM = document.getElementById("dom_id");
+    var extension = document.getElementById("dom_id");
+    var email = document.getElementById("dom_id");
     var selectedPerfilId = document.getElementById("per_id");
     var selectedDominioId = document.getElementById("dom_id");
 
     var perfilId = selectedPerfilId.options[selectedPerfilId.selectedIndex].text;
     var dominioId = selectedDominioId.options[selectedDominioId.selectedIndex].text;
 
+    // if (expediente != "" && nombre != "" && apellidoP != "" && apellidoM != "" && extension != "" && email != "" && perfilId != "Perfil" && dominioId != "Dominio" && perfilId != "Profile" && dominioId != "Domain") {
+    //     // El boton "boton_excel" esta bloqueado, hasta que se seleccione algun elemento del arbol, se desbloquear
+    //     // En este caso, se esta removiendo el atributo disabled para que el boton se desbloque
+    //     $("#boton_excel").removeAttr('disabled');
+    // } else {
+    //     if (perfilId == "Perfil" || dominioId == "Dominio" || perfilId == "Profile" || dominioId == "Domain") {
+    //         alert("Debes seleccionar un Perfil y Domino")
+    //         return false
+    //     }
+    // }
+
     if (perfilId == "Perfil" || dominioId == "Dominio" || perfilId == "Profile" || dominioId == "Domain") {
         alert("Debes seleccionar un Perfil y Domino")
         return false
     }
+
 }
 
 //////////////////////////////////////////////////
@@ -70,14 +88,39 @@ var expedienteSelected = function (expediente) {
 
 
 
+// 
+var checkSubmit_alta_dom = function () {
 
+    var idioma = document.getElementById("idioma").value;
 
-// //////////////////// Bloquear Boton al enviar formulario
-var checkSubmit_modificar = function () {
-    document.getElementById("boton_modificar").value = "Enviando...";
-    document.getElementById("boton_modificar").disabled = true;
-    return true;
+    if (idioma == "es") {
+        document.getElementById("boton_alta_dom").innerHTML = "Guardando...";
+        document.getElementById("boton_alta_dom").disabled = true;
+        return true;
+    } else {
+        if (idioma == "en") {
+            document.getElementById("boton_alta_dom").innerHTML = "Saving...";
+            document.getElementById("boton_alta_dom").disabled = true;
+            return true;
+        }
+    }
+
 }
+// 
+var checkSubmit_modificar = function () {
 
+    var idioma = document.getElementById("idioma").value;
 
+    if (idioma == "es") {
+        document.getElementById("boton_modificar").innerHTML = "Guardando Cambios...";
+        document.getElementById("boton_modificar").disabled = true;
+        return true;
+    } else {
+        if (idioma == "en") {
+            document.getElementById("boton_modificar").innerHTML = "Saving Changes...";
+            document.getElementById("boton_modificar").disabled = true;
+            return true;
+        }
+    }
 
+}

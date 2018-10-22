@@ -28,7 +28,9 @@ class DominioController extends Controller
             ->where('perfils.per_id','=',$user->per_id)
             ->first();
 
-            return view('/dominio/dom_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil]);
+            $idioma = app()->getLocale();
+
+            return view('/dominio/dom_viewAlta', ['user' => $user, 'userPerfil' => $userPerfil, 'idioma' => $idioma]);
 
         }catch (Exception $e) {
             return redirect()->to('/home')->withErrors(['message1'=>'Sorry, Error']);
@@ -57,7 +59,7 @@ class DominioController extends Controller
         if ($validator->fails()) {
             // return Redirect::to('/home')
             //     ->withErrors($validator);
-            return redirect('/dominio/dom_viewAlta')->with('status', $validator);
+            return redirect('/dominio/dom_viewAlta')->with('status', 'Validación fallida :(');
 
 
         } else {

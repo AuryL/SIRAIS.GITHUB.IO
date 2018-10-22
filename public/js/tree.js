@@ -83,6 +83,12 @@ $(document).ready(function () {
                 r.push(data.instance.get_node(data.selected[i]).text);
             }
         }
+
+        // El boton "boton_excel" esta bloqueado, hasta que se seleccione algun elemento del arbol, se desbloquear
+        // En este caso, se esta removiendo el atributo disabled para que el boton se desbloque
+        $("#boton_excel").removeAttr('disabled');
+
+
         console.log(r);
 
         ///////////////// PARTE DE LA FUNCION QUE PERMITE LLENAR LA TABLA DE VISTA PREVIA DEL EXCEL, EN LA VISTA DEL TREE
@@ -186,7 +192,7 @@ $(document).ready(function () {
                 if (idioma == "es") {
                     // document.getElementById("dominio");
                     for (let j in data[0]) {
-                          dominiosTotales.push(data[0][j].dom_nombre_es);
+                        dominiosTotales.push(data[0][j].dom_nombre_es);
                     }
                     for (let j in data[1]) {
                         procesosTotales.push(data[1][j].proc_nombre_es);
@@ -224,7 +230,7 @@ $(document).ready(function () {
                             actividadesTotales.push(data[5][j].act_nombre_en);
                         }
                     }
-                                                                                                                                                                                           }
+                }
                 console.log("dominiosTotales", dominiosTotales);
                 console.log("procesosTotales", procesosTotales);
                 console.log("subprocesosTotales", subprocesosTotales);
@@ -684,8 +690,20 @@ $(window).resize(function () {
 
 
 
-// //////////////////// Bloquear Boton al enviar formulario
+// //////////////////// Bloquear Boton al enviar formulario, para que no se intente clickear nuevamente por el usuario muchas veces y se caiga la pag
 var checkSubmit = function () {
-    document.getElementById("boton_excel").valuedocument.getElementById("boton_excel").value = "Enviando...";
-    document.getElementById("boton_excel").disabled = false; // habilitar boton al llenar campos del formulario    return true;
+
+    var idioma = document.getElementById("idioma").value;
+
+    if (idioma == "es") {
+        document.getElementById("boton_excel").innerHTML = "Exportando...";
+        document.getElementById("boton_excel").disabled = true; // habilitar boton al llenar campos del formulario    return true;
+        return true;
+    } else {
+        if (idioma == "en") {
+            document.getElementById("boton_excel").innerHTML = "Exporting...";
+            document.getElementById("boton_excel").disabled = true; // habilitar boton al llenar campos del formulario    return true;
+            return true;
+        }
+    }
 }
