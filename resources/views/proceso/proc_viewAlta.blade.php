@@ -8,7 +8,8 @@
                 <div class="card-header"><strong>@lang('proceso.titulo_alta')</strong></div>
                 <br>
                 <div class="card-body">
-
+                    <!-- El metodo que se usa poder bloquear el boton en lo que se esta enviando la informacion para guardarla a la DB,
+                    se encuentra en user.js  "checkSubmit_alta_dom" -->
                     <form id="form_register" method="POST" action="{{ route('proc_alta') }}" onsubmit="return checkSubmit_alta_dom();">
                         @csrf
                         <br>

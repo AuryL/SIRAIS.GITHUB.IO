@@ -8,15 +8,14 @@
                 <div class="card-header"><strong>@lang('subp.titulo_modificar')</strong></div>
                 <br>
                 <div class="card-body">
-
-                    <form id="form_register" method="POST" action="{{ route('subp_modificar') }}" onsubmit="return checkSubmit();">
+                <!-- El metodo que se usa poder bloquear el boton en lo que se esta enviando la informacion para guardarla a la DB,
+                se encuentra en user.js  "checkSubmit_alta_dom" -->                
+                <form id="form_register" method="POST" action="{{ route('subp_modificar') }}" onsubmit="return checkSubmit_modificar();">
                         @csrf
-                        <br>
-                        <div id="div_flex_modificar_expediente">
+                        <div id="div_flex">
                             <label class="col-form-label text-md-right">@lang('subp.instr_modificar')</label>
-                            <br> <br> <br>
                         </div>
-
+                        <br>
                         <div id="div_flex_modificar_expediente">
                             <!-- FILTRO DOMINIO -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
@@ -62,10 +61,10 @@
 
                             <!--  FILTRO SUBPROCESO-->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
+                                <label for="dom_id" class="col-md-4 col-form-label text-md-right" style="font-size:0.9rem;">@lang('selects.select_subp')</label>
 
                                 <select id="subproceso" name="subproceso" class="form-control" onchange="subprocesoSelected(this.value)" required disabled="true" >
-                                    <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
+                                    <option selected value="0" disabled="disabled"> @lang('selects.select_subp') </option>                               
                                 </select>
                                 <br>
                                 @if ($errors->has('subproceso'))
@@ -160,15 +159,13 @@
                         </div>
                         <br>                   
                         <!-- PROCESO -->
-                        <div id="div_flex_modificar_expediente">
-                            <div class="div_register_usernameName">
-                                <label for="proceso" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
-
+                        <div id="div_flex_subp_proceso_dominio">
+                            <div id="div_block_sbp_proceso_dominio_izq" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
+                                <label  id="label_modiciar_dominio_proceso_subp" for="proceso" >@lang('subp.instr_modificar_proceso')</label>
                                 <div class="div_register_usernameName"> 
                                     <select id="proceso" name="proceso" class="form-control" onchange="domSubproceso(this.value)" required disabled="true">
                                         <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                               
-                                        @foreach($procs as $proc => $value)
-                                        
+                                        @foreach($procs as $proc => $value)                                        
                                             @if($idioma == "es")
                                                 <option id="proceso" value="{{ $value->proc_id }}">{{ $value->proc_nombre_es }}</option>  
                                             @elseif($idioma == "en")
@@ -187,10 +184,9 @@
                             </div>
 
                             <!-- Dominio -->
-                            <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
-
-                                <div class="div_register_usernameName">
+                            <div class="div_block_sbp_proceso_dominio_der">
+                                <label id="label_modiciar_dominio_proceso_subp" for="dom_id" >@lang('domino.instr_modificar')</label>
+                                <div id="div_block_modiciar_dominio_proceso_subp">
                                     <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "true" required autofocus>
 
                                     @if ($errors->has('dom_id'))

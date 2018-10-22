@@ -48,7 +48,7 @@
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('proceso') ? ' has-error' : '' }}">
                                 <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
-                                <select name="proc_id_filtro" id="proc_id_filtro" class="form-control" onchange="procSelected(this.value)" required disabled="true" >
+                                <select name="proc_id_filtro" id="proc_id_filtro" class="form-control" onchange="procSelected_riesgo(this.value)" required disabled="true" >
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                         
                                 </select>
                                 <br>

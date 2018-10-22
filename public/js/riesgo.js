@@ -598,7 +598,7 @@ var domSelected = function (dominio) {
 
 
 //////////////////////////////////////////////////
-var procSelected = function (proceso) {
+var procSelected_riesgo = function (proceso) {
     console.log('procSelected');
     console.log(proceso);
 
