@@ -86,8 +86,17 @@ $(document).ready(function () {
 
         // El boton "boton_excel" esta bloqueado, hasta que se seleccione algun elemento del arbol, se desbloquear
         // En este caso, se esta removiendo el atributo disabled para que el boton se desbloque
-        $("#boton_excel").removeAttr('disabled');
-
+        // Siempre y cuando se seleccione algún checkbox
+        if (data.selected.length != 0) {
+            $("#boton_excel").removeAttr('disabled');
+            console.log("DESBLOQUEADO - data.selected.lengt", data.selected.lengt);
+        } else {
+            if (data.selected.length == 0) {
+                // $('#boton_excel').prop("disabled", true);
+                console.log("BLOQUEADO - data.selected.lengt", data.selected.lengt);
+                $('#boton_excel').attr("disabled", "disabled");
+            }
+        }
 
         console.log(r);
 

@@ -5,6 +5,7 @@
         <div class="card">
             <div class="card-header">@lang('menu.arbol')</div>
 
+                <form onsubmit="return checkSubmit();">
                 <div class="card-body">
                     <div id="div_flex_tree">
                         <div id="div_block_tree">
@@ -173,7 +174,7 @@
                             </div>
                         @endif
 
-                        <form onsubmit="return checkSubmit();">
+                        <!-- <form onsubmit="return checkSubmit();"> -->
                             <div class="col sm-12">
                                 <!-- Funcion  generarExcel(): Genera un excel, con base a las opciones seleccionadas en el arbol(tree) -->
                                 <!-- La funcion se encuentra en el archivo tree.js -->
