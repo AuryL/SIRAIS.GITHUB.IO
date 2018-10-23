@@ -9,19 +9,20 @@
                 <br>
                 <div class="card-body">
 
-                    <form id="form_register" method="POST" action="{{ route('rgo_modificar') }}" onsubmit="return checkSubmit();">
+                    <!-- El metodo que se usa poder bloquear el boton en lo que se esta enviando la informacion para guardarla a la DB,
+                    se encuentra en user.js  "checkSubmit_modificar" -->
+                    <form id="form_register" method="POST" action="{{ route('rgo_modificar') }}" onsubmit="return checkSubmit_modificar();">
                         @csrf
-                        <br>
-                        <div id="div_flex_modificar_expediente">
+                        
+                        <div id="div_flex">
                             <label class="col-form-label text-md-right">@lang('riesgo.instr_modificar')</label>
-                            <br> <br> <br>
                         </div>
-
+                        <br>
                         <div id="div_flex_modificar_expediente">
                             <!-- FILTRO DOMINIO -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('dom_id') ? ' has-error' : '' }}">
 
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
+                                <label for="dom_id">@lang('selects.dominio')</label>
 
                                 <select id="dom_id_filtro" name="dom_id_filtro" class="form-control" required onchange="domSelected(this.value)">
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_dominio') </option>
@@ -46,7 +47,7 @@
 
                             <!-- FILTRO PROCESO -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('proceso') ? ' has-error' : '' }}">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
+                                <label for="dom_id">@lang('selects.proceso')</label>
 
                                 <select name="proc_id_filtro" id="proc_id_filtro" class="form-control" onchange="procSelected_riesgo(this.value)" required disabled="true" >
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_proceso') </option>                         
@@ -62,7 +63,7 @@
 
                             <!--  FILTRO SUBPROCESO-->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('subproceso') ? ' has-error' : '' }}">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
+                                <label for="dom_id">@lang('selects.subp')</label>
 
                                 <select id="subp_id_filtro" name="subp_id_filtro" class="form-control" onchange="subpSelected(this.value)" required disabled="true" >
                                     <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
@@ -77,7 +78,7 @@
                         
                             <!-- FILTRO RIESGO -->
                             <div id="div_modificar_expediente" class="form-group{{ $errors->has('riesgo') ? ' has-error' : '' }}">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.riesgo')</label>
+                                <label for="dom_id">@lang('selects.riesgo')</label>
 
                                 <select id="riesgo" name="riesgo" class="form-control" onchange="riesgoSelected(this.value)" required disabled ="true" >
                                     <option selected value="0" disabled="disabled" >@lang('selects.select_riesgo')</option>                               
@@ -115,7 +116,7 @@
                                 <label for="rgo_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_es" placeholder="Estrategia de Transformación Digita." type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus  disabled = "false">
+                                    <input id="rgo_nombre_es" placeholder="Estrategia de Transformación Digita." type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus  disabled="false" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('rgo_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -130,7 +131,7 @@
                                 <label for="rgo_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_en" placeholder="Digital Transformation Strategy. " type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus  disabled = "false">
+                                    <input id="rgo_nombre_en" placeholder="Digital Transformation Strategy. " type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus  disabled="false" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('rgo_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -150,7 +151,7 @@
                                 <label for="rgo_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_es" placeholder="@lang('riesgo.placeholder_riesgo_es')" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  disabled = "false"></textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_es" placeholder="@lang('riesgo.placeholder_riesgo_es')" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  disabled="false"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('rgo_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -165,7 +166,7 @@
                                 <label for="rgo_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_en" placeholder="@lang('riesgo.placeholder_riesgo_en')" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  disabled = "false"></textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_en" placeholder="@lang('riesgo.placeholder_riesgo_en')" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  disabled="false"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('rgo_detalles_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -176,58 +177,76 @@
                             </div>
                         </div>
                         <br>                   
-                        <!-- SUBPROCESO -->
-                        <div id="div_flex_modificar_expediente">
-                            <div class="div_register_usernameName">
-                                <label for="subproceso" class="col-md-4 col-form-label text-md-right">@lang('selects.subp')</label>
+                        <!-- SUBPROCESO -->                        
+                        <div id="div_block_subp_proc_dom_rgo">
+                            <br>
+                           <label id="label_modiciar_dominio_proceso_subp" for="dom_id" >  
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               @lang('riesgo.instr_dom_proc_subp_asocialdo')</label>
 
-                                <div class="div_register_usernameName"> 
-                                    <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required  disabled = "false">
-                                        <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
-                                        @foreach($subps as $subp => $value)
+                            <div id="div_flex_subp_proc_dom_rgo">
+                                <div class="div_register_usernameName">
+                                    <label for="subproceso">@lang('selects.subp')</label>
 
-                                            @if($idioma == "es")
-                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option> 
-                                            @elseif($idioma == "en")
-                                                <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option> 
-                                            @endif
+                                    <div class="div_register_usernameName"> 
+                                        <select id="subproceso" name="subproceso" class="form-control" onchange="procRiesgo(this.value)" required  disabled = "false">
+                                            <option selected value="0" disabled="disabled" > @lang('selects.select_subp') </option>                               
+                                            @foreach($subps as $subp => $value)
 
-                                        @endforeach  
-                                    </select>
-                                    <br>
-                                    @if ($errors->has('subproceso'))
-                                        <span class="invalid-feedback">
-                                            <label class="label-texto"><strong>{{ $errors->first('subproceso') }}</strong></label>
-                                        </span>
-                                    @endif                                    
+                                                @if($idioma == "es")
+                                                    <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_es }}</option> 
+                                                @elseif($idioma == "en")
+                                                    <option id="subproceso" value="{{ $value->subp_id }}">{{ $value->subp_nombre_en }}</option> 
+                                                @endif
+
+                                            @endforeach  
+                                        </select>
+                                        <br>
+                                        @if ($errors->has('subproceso'))
+                                            <span class="invalid-feedback">
+                                                <label class="label-texto"><strong>{{ $errors->first('subproceso') }}</strong></label>
+                                            </span>
+                                        @endif                                    
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="div_register_usernameName">
-                                <label for="proc_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="proc_id" value="{{ old('proc_id') }}" disabled = "false" required autofocus >
+                                    <label for="proc_id" >@lang('selects.proceso')</label>
 
-                                    @if ($errors->has('proc_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('proc_id') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="div_register_usernameName">
+                                        <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="proc_id" value="{{ old('proc_id') }}" disabled = "false" required autofocus >
+
+                                        @if ($errors->has('proc_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('proc_id') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="div_register_usernameName">
-                                <label for="dom_id" class="col-md-4 col-form-label text-md-right">@lang('selects.dominio')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
+                                    <label for="dom_id">@lang('selects.dominio')</label>
 
-                                    @if ($errors->has('dom_id'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('dom_id') }}</strong>
-                                        </span>
-                                    @endif
+                                    <div class="div_register_usernameName">
+                                        <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "false" required autofocus >
+
+                                        @if ($errors->has('dom_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('dom_id') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -292,7 +311,7 @@
                                     <label for="cont_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="cont_nombre_es" placeholder="Compromiso continuo." type="text" class="form-control{{ $errors->has('cont_nombre_es') ? ' is-invalid' : '' }}" name="cont_nombre_es" value="{{ old('cont_nombre_es') }}"  required autofocus disabled="true" >
+                                        <input id="cont_nombre_es" placeholder="Compromiso continuo." type="text" class="form-control{{ $errors->has('cont_nombre_es') ? ' is-invalid' : '' }}" name="cont_nombre_es" value="{{ old('cont_nombre_es') }}"  required autofocus disabled="true" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
                                         <span id="cont_nombre_es_error"></span>
 
                                         @if ($errors->has('cont_nombre_es'))
@@ -308,7 +327,7 @@
                                     <label for="cont_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="cont_nombre_en" placeholder="Continuous commitment. " type="text" class="form-control{{ $errors->has('cont_nombre_en') ? ' is-invalid' : '' }}" name="cont_nombre_en" value="{{ old('cont_nombre_en') }}"  required autofocus disabled="true">
+                                        <input id="cont_nombre_en" placeholder="Continuous commitment. " type="text" class="form-control{{ $errors->has('cont_nombre_en') ? ' is-invalid' : '' }}" name="cont_nombre_en" value="{{ old('cont_nombre_en') }}"  required autofocus disabled="true" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"> 
                                         <span id="cont_nombre_en_error"></span>
 
                                         @if ($errors->has('cont_nombre_en'))
@@ -329,7 +348,7 @@
                                     <label for="cont_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="cont_detalles_es" placeholder="@lang('riesgo.placeholder_control_es')" type="text" class="form-control{{ $errors->has('cont_detalles_es') ? ' is-invalid' : '' }}" name="cont_detalles_es" value="{{ old('cont_detalles_es') }}" required autofocus disabled="true"></textarea>
+                                        <textarea rows="4" cols="50" id="cont_detalles_es" placeholder="@lang('riesgo.placeholder_control_es')" type="text" class="form-control{{ $errors->has('cont_detalles_es') ? ' is-invalid' : '' }}" name="cont_detalles_es" value="{{ old('cont_detalles_es') }}" required autofocus disabled="true" pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
                                         <span id="cont_detalles_es_error"></span>
 
                                         @if ($errors->has('cont_detalles_es'))
@@ -345,7 +364,7 @@
                                     <label for="cont_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="cont_detalles_en" placeholder="@lang('riesgo.placeholder_control_en')" class="form-control{{ $errors->has('cont_detalles_en') ? ' is-invalid' : '' }}" name="cont_detalles_en" value="{{ old('cont_detalles_en') }}" required autofocus disabled="true"></textarea>
+                                        <textarea rows="4" cols="50" id="cont_detalles_en" placeholder="@lang('riesgo.placeholder_control_en')" class="form-control{{ $errors->has('cont_detalles_en') ? ' is-invalid' : '' }}" name="cont_detalles_en" value="{{ old('cont_detalles_en') }}" required autofocus disabled="true" pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
                                         <span id="cont_detalles_en_error"></span>
 
                                         @if ($errors->has('cont_detalles_en'))
@@ -413,7 +432,7 @@
                                     <label for="act_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="act_nombre_es" placeholder="Revision del diseño del gobierno de la Fabrica Digital." type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}" placeholder="Nombre" required autofocus disabled="true">
+                                        <input id="act_nombre_es" placeholder="Revision del diseño del gobierno de la Fabrica Digital." type="text" class="form-control{{ $errors->has('act_nombre_es') ? ' is-invalid' : '' }}" name="act_nombre_es" value="{{ old('act_nombre_es') }}" placeholder="Nombre" required autofocus disabled="true"  pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                         @if ($errors->has('act_nombre_es'))
                                             <span class="invalid-feedback" role="alert">
@@ -428,7 +447,7 @@
                                     <label for="act_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <input id="act_nombre_en" placeholder="Revision of the design of the government of the Digital Factory." type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true">
+                                        <input id="act_nombre_en" placeholder="Revision of the design of the government of the Digital Factory." type="text" class="form-control{{ $errors->has('act_nombre_en') ? ' is-invalid' : '' }}" name="act_nombre_en" value="{{ old('act_nombre_en') }}"  required autofocus disabled="true"  pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                         @if ($errors->has('act_nombre_en'))
                                             <span class="invalid-feedback" role="alert">
@@ -448,7 +467,7 @@
                                     <label for="act_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="act_detalles_es"  placeholder="@lang('riesgo.placeholder_actividad_es')" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true"></textarea>
+                                        <textarea rows="4" cols="50" id="act_detalles_es"  placeholder="@lang('riesgo.placeholder_actividad_es')" type="text" class="form-control{{ $errors->has('act_detalles_es') ? ' is-invalid' : '' }}" name="act_detalles_es" value="{{ old('act_detalles_es') }}" required autofocus disabled="true"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                         @if ($errors->has('act_detalles_es'))
                                             <span class="invalid-feedback" role="alert">
@@ -463,7 +482,7 @@
                                     <label for="act_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                     <div class="div_register_usernameName">
-                                        <textarea rows="4" cols="50" id="act_detalles_en" placeholder="@lang('riesgo.placeholder_actividad_en')" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true"></textarea>
+                                        <textarea rows="4" cols="50" id="act_detalles_en" placeholder="@lang('riesgo.placeholder_actividad_en')" class="form-control{{ $errors->has('act_detalles_en') ? ' is-invalid' : '' }}" name="act_detalles_en" value="{{ old('act_detalles_en') }}" required autofocus disabled="true"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                         @if ($errors->has('act_detalles_en'))
                                             <span class="invalid-feedback" role="alert">

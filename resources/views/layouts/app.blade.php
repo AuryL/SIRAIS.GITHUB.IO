@@ -81,8 +81,8 @@
                             </li>
                         @else
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <a class="nav-link">
+                                    <strong>{{ Auth::user()->name }} </strong><span class="caret"></span>
                                 </a>
                             </li>
 

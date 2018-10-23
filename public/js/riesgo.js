@@ -778,33 +778,21 @@ var riesgoSelected = function (riesgo) {
 
 
 
+// 
+var checkSubmit_alta = function () {
 
+    var idioma = document.getElementById("idioma").value;
 
-// // //////////////////// Bloquear Boton al enviar formulario
-// var checkSubmit_alta = function () {
-//     document.getElementById("boton_alta").value = "Enviando...";
-//     document.getElementById("boton_alta").disabled = true;
-//     return true;
-// }
+    if (idioma == "es") {
+        document.getElementById("boton_alta").innerHTML = "Guardando...";
+        document.getElementById("boton_alta").disabled = true;
+        return true;
+    } else {
+        if (idioma == "en") {
+            document.getElementById("boton_alta").innerHTML = "Saving...";
+            document.getElementById("boton_alta").disabled = true;
+            return true;
+        }
+    }
 
-// // //////////////////// Bloquear Boton al enviar formulario
-// var checkSubmit_alta_dom = function () {
-//     document.getElementById("boton_modificar_control").value = "Enviando...";
-//     document.getElementById("boton_modificar_control").disabled = true;
-//     return true;
-// }
-
-
-// // //////////////////// Bloquear Boton al enviar formulario
-// var checkSubmit_alta_dom = function () {
-//     document.getElementById("boton_modificar_actividad").value = "Enviando...";
-//     document.getElementById("boton_modificar_actividad").disabled = true;
-//     return true;
-// }
-
-// // //////////////////// Bloquear Boton al enviar formulario
-// var checkSubmit_modificar = function () {
-//     document.getElementById("boton_modificar").value = "Enviando...";
-//     document.getElementById("boton_modificar").disabled = true;
-//     return true;
-// }
+}

@@ -9,6 +9,8 @@
                 <br>
                 <div class="card-body">
 
+                    <!-- El metodo que se usa poder bloquear el boton en lo que se esta enviando la informacion para guardarla a la DB,
+                    se encuentra en riesgo.js  "checkSubmit_alta" -->
                     <form id="form_register" method="POST" action="{{ route('rgo_alta') }}" onsubmit="return checkSubmit_alta();"> 
                         @csrf
                         <br>
@@ -66,7 +68,7 @@
                                 <label for="proc_id" class="col-md-4 col-form-label text-md-right">@lang('selects.proceso')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="procesp" value="{{ old('proc_id') }}" disabled = "false" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="proc_id" type="text" class="form-control{{ $errors->has('proc_id') ? ' is-invalid' : '' }}" name="procesp" value="{{ old('proc_id') }}" disabled = "false" required autofocus>
 
                                     @if ($errors->has('proc_id'))
                                         <span class="invalid-feedback" role="alert">
@@ -101,7 +103,7 @@
                                 <label for="rgo_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
   
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_es" placeholder="Estrategia de Transformación Digita." type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="rgo_nombre_es" placeholder="Estrategia de Transformación Digita." type="text" class="form-control{{ $errors->has('rgo_nombre_es') ? ' is-invalid' : '' }}" name="rgo_nombre_es" value="{{ old('rgo_nombre_es') }}" required autofocus pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('rgo_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -116,7 +118,7 @@
                                 <label for="rgo_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="rgo_nombre_en" placeholder="Digital Transformation Strategy. " type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+">
+                                    <input id="rgo_nombre_en" placeholder="Digital Transformation Strategy. " type="text" class="form-control{{ $errors->has('rgo_nombre_en') ? ' is-invalid' : '' }}" name="rgo_nombre_en" value="{{ old('rgo_nombre_en') }}" required autofocus pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('rgo_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -136,7 +138,7 @@
                                 <label for="rgo_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_es" placeholder="@lang('riesgo.placeholder_riesgo_es')" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+"></textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_es" placeholder="@lang('riesgo.placeholder_riesgo_es')" type="text" class="form-control{{ $errors->has('rgo_detalles_es') ? ' is-invalid' : '' }}" name="rgo_detalles_es" value="{{ old('rgo_detalles_es') }}" required autofocus  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('rgo_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -151,7 +153,7 @@
                                 <label for="rgo_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="rgo_detalles_en" placeholder="@lang('riesgo.placeholder_riesgo_en')" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus pattern="[A-Za-z0-9]+[\$%&_-|<>#\]+"></textarea>
+                                    <textarea rows="4" cols="50" id="rgo_detalles_en" placeholder="@lang('riesgo.placeholder_riesgo_en')" class="form-control{{ $errors->has('rgo_detalles_en') ? ' is-invalid' : '' }}" name="rgo_detalles_en" value="{{ old('rgo_detalles_en') }}" required autofocus  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('rgo_detalles_en'))
                                         <span class="invalid-feedback" role="alert">

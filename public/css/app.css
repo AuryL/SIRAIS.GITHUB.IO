@@ -583,6 +583,15 @@ h6 {
 	/* justify-content:space-between; */
 }
 
+#div_flex_subp_proc_dom_rgo {
+	display: flex;
+	padding-top: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-bottom: 2%;
+	margin-bottom: 2%;
+}
+
 #div_flex_subp_proceso_dominio {
 	display: flex;
 	border: 1px solid rgba(0, 0, 0, .125);
@@ -700,6 +709,20 @@ h6 {
 	width: 50%;
 	height: auto;
 	border-left: 8px solid #C00;
+}
+
+#div_block_subp_proc_dom_rgo {
+	display: block;
+	border: 1px solid rgba(0, 0, 0, .125);
+	border-radius: .25rem;
+	border-left: 8px solid #C00;
+	background: hsla(208, 8%, 44%, 0.22);
+	/* padding: 2% 2%; */
+	padding-top: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	padding-bottom: 2%;
+	margin-bottom: 2%;
 }
 
 #div_block_sbp_proceso_dominio_izq{

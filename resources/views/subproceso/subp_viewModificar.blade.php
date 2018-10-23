@@ -97,7 +97,7 @@
                                 <label for="subp_nombre_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_es" placeholder="Modelo de Gobierno de Transformación Digital." type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus disabled="true">
+                                    <input id="subp_nombre_es" placeholder="Modelo de Gobierno de Transformación Digital." type="text" class="form-control{{ $errors->has('subp_nombre_es') ? ' is-invalid' : '' }}" name="subp_nombre_es" value="{{ old('subp_nombre_es') }}" required autofocus disabled="true" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('subp_nombre_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                 <label for="subp_nombre_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <input id="subp_nombre_en" placeholder="Model of Government of Digital Transformation." type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus disabled="true">
+                                    <input id="subp_nombre_en" placeholder="Model of Government of Digital Transformation." type="text" class="form-control{{ $errors->has('subp_nombre_en') ? ' is-invalid' : '' }}" name="subp_nombre_en" value="{{ old('subp_nombre_en') }}" required autofocus disabled="true" pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$">
 
                                     @if ($errors->has('subp_nombre_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -132,7 +132,7 @@
                                 <label for="subp_detalles_es" class="col-md-4 col-form-label text-md-right">@lang('menu.espaniol')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_es" placeholder="@lang('subp.placeholder_subproceso_es')" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus disabled="true"></textarea>
+                                    <textarea rows="4" cols="50" id="subp_detalles_es" placeholder="@lang('subp.placeholder_subproceso_es')" type="text" class="form-control{{ $errors->has('subp_detalles_es') ? ' is-invalid' : '' }}" name="subp_detalles_es" value="{{ old('subp_detalles_es') }}" required autofocus disabled="true"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('subp_detalles_es'))
                                         <span class="invalid-feedback" role="alert">
@@ -147,7 +147,7 @@
                                 <label for="subp_detalles_en" class="col-md-4 col-form-label text-md-right">@lang('menu.ingles')</label>
 
                                 <div class="div_register_usernameName">
-                                    <textarea rows="4" cols="50" id="subp_detalles_en" placeholder="@lang('subp.placeholder_subproceso_en')" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus disabled="true"></textarea>
+                                    <textarea rows="4" cols="50" id="subp_detalles_en" placeholder="@lang('subp.placeholder_subproceso_en')" class="form-control{{ $errors->has('subp_detalles_en') ? ' is-invalid' : '' }}" name="subp_detalles_en" value="{{ old('subp_detalles_en') }}" required autofocus disabled="true"  pattern="[A-Za-z0-9]+[\$%{[}].,;*&_-|<>#\]+"></textarea>
 
                                     @if ($errors->has('subp_detalles_en'))
                                         <span class="invalid-feedback" role="alert">
@@ -185,7 +185,7 @@
 
                             <!-- Dominio -->
                             <div class="div_block_sbp_proceso_dominio_der">
-                                <label id="label_modiciar_dominio_proceso_subp" for="dom_id" >@lang('domino.instr_modificar')</label>
+                                <label id="label_modiciar_dominio_proceso_subp" for="dom_id" >@lang('subp.instr_dominio_asociado')</label>
                                 <div id="div_block_modiciar_dominio_proceso_subp">
                                     <input id="dom_id" type="text" class="form-control{{ $errors->has('dom_id') ? ' is-invalid' : '' }}" name="dominio" value="{{ old('dom_id') }}" disabled = "true" required autofocus>
 
