@@ -59,6 +59,7 @@ class TreeController extends Controller
         // return $this->excel->download(new TreeExport($controls), 'riesgos.xlsx');
      
         $actividads = request('actividads');
+        
         return $this->excel->download(new TreeExport($actividads), 'riesgos.xlsx');
 
     }

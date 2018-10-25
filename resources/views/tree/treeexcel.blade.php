@@ -10,15 +10,15 @@
         </tr>
     </thead>
     <tbody>      
-        @foreach($actividads as $actividad)
-        <tr>
-            <td>{{ $actividad[0] }}</td>
-            <td>{{ $actividad[1] }}</td>
-            <td>{{ $actividad[2] }}</td>
-            <td>{{ $actividad[3] }}</td>
-            <td>{{ $actividad[4] }}</td>
-            <td>{{ $actividad[5] }}</td>
-        </tr>
-        @endforeach
+        @for ($i = 0; $i < count($actividads); $i++)
+            <tr>
+                <td style="background-color:#EBDEF0;">{{ $actividads[$i][0] }}</td>
+                <td style="background-color:#D4E6F1;">{{ $actividads[$i][1] }}</td>
+                <td style="background-color:#D4EFDF;">{{ $actividads[$i][2] }}</td>
+                <td style="background-color:#FCF3CF;">{{ $actividads[$i][3] }}</td>
+                <td style="background-color:#F6DDCC;">{{ $actividads[$i][4] }}</td>
+                <td style="background-color:#FFCDD2;">{{ $actividads[$i][5] }}</td>
+            </tr>
+        @endfor
     </tbody>
 </table>

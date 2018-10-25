@@ -400,6 +400,14 @@ var generarExcel = function () {
     // valor: especifica el valor del encabezado
     /* Agrega un par de label/value al encabezado que se enviará*/
 
+
+
+    console.log("Cccccc", $("#dominio_excel").attr("name"));
+    console.log("ffff33", document.getElementsByName("dominio_excel").textContent);
+    console.log("rereqwrr", $("#tdid").text());
+
+
+
     xhr.responseType = 'blob'; //responseType: es un valor de cadena enumerado que especifica el tipo de datos contenidos en la respuesta.
     // blob: Los blobs son objetos inmutables que representan datos brutos. File es una derivación de Blob que representa datos 
     // del sistema de archivos. Use FileReader para leer datos de una Blob o archivo. Blobs te permite construir archivos como
