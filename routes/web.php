@@ -11,22 +11,31 @@
 |
 */
 
+// Agrupamos las rutas para que sean filtradas por el middleware 
 Route::group(['middleware' => ['web']], function () {
     
     // AUTENTICACION 
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
-    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-    // Registration Routes...
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post('register', 'Auth\RegisterController@register')->name('post.register');
+    
     // Password Reset Routes...
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
     // Auth::routes();
+});
+
+
+// Se agrupan as rutas que estarán protegidas por el middeware web y auth 
+Route::group(['middleware' => ['web','auth']], function () {
+
+    // Finalizar sesión
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register')->name('post.register');
 
 
     // PAG DE INICIO DE SESIÓN
